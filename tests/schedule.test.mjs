@@ -68,7 +68,7 @@ test('forecast can be parsed but is NEVER eligible for publishing', () => {
   assert.equal(tomorrowGroups['1.2'].mode, 'preset');
   assert.deepEqual(renderDailyMessages('2026-10-17', 'завтра', tomorrowGroups, doc), []);
   assert.throws(() => renderTelegram('2026-10-17', 'завтра', tomorrowGroups, doc), /Only confirmed/);
-  assert.equal(renderDailyMessages('2026-10-16', 'сьогодні', todayGroups, doc).length, 2);
+  assert.equal(renderDailyMessages('2026-10-16', 'сьогодні', todayGroups, doc).length, 1);
 });
 
 test('confirmed post contains only schedules without source/footer/disclaimer', () => {
@@ -78,7 +78,7 @@ test('confirmed post contains only schedules without source/footer/disclaimer', 
     group, { mode: 'fact', ...windowsFromHours(hours) }
   ]));
   const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {});
-  assert.equal(messages.length, 2);
+  assert.equal(messages.length, 1);
   for (const fragment of messages) {
     assert.match(fragment.message, /Оновлений графік/);
     assert.match(fragment.message, /Разом без світла/);
@@ -117,8 +117,9 @@ test('all 12 groups are supported and announcements split safely', () => {
   assert.equal(messages.length, 2);
   assert.ok(messages.every(p => p.message.length < 4096));
   assert.match(messages[0].message, /Підгрупа 1\.1/);
-  assert.match(messages[1].message, /Підгрупа 6\.2/);
-  assert.doesNotMatch(messages[0].message, /Підгрупа 6\.2/);
+  assert.match(messages[0].message, /Підгрупа 6\.2/);
+  assert.equal(messages[0].key, '2026-10-16/сьогодні/all');
+  assert.doesNotMatch(messages[0].message, /Частина 1\/2|Частина 2\/2/);
 });
 
 test('half-hour transition alerts distinguish start, end and still off', () => {
@@ -153,4 +154,19 @@ test('tentative forecast must never trigger half-hour change alerts', () => {
   }]));
   assert.equal(buildTransition(byGroup, 570), null);
   assert.equal(kyivMinutes(new Date('2026-10-16T06:30:00Z')), 570);
+});
+
+test('only extreme confirmed schedules require the Telegram fallback split', () => {
+  const hourly = slots('yes');
+  for (let h = 1; h <= 24; h += 2) hourly[String(h)] = 'no';
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, { mode: 'fact', ...windowsFromHours(hourly) }
+  ]));
+  const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {});
+  assert.ok(messages.length > 1);
+  assert.ok(messages.every(x => x.message.length < 4096));
+  const combined = messages.map(x => x.message).join('\n');
+  for (const group of GROUPS) {
+    assert.equal(combined.split('<b>Підгрупа ' + group + '</b>').length - 1, 1);
+  }
 });
