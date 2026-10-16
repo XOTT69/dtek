@@ -7,7 +7,7 @@ import { selectBestDtekSource, factUpdateKey } from './source-selection.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
-import { claimReminder } from './reminder-claim.mjs';
+import { claimReminder, claimScheduleUpdate } from './reminder-claim.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -238,8 +238,15 @@ async function main() {
         console.log('\n=== ' + key + ' ===\n' + fragment.message + '\n');
         continue;
       }
+      // Atomic, remote create-only claim. Checkout state may be stale after
+      // a successful Telegram send followed by a failed GitHub state push.
+      const claim = await claimScheduleUpdate(key, hash);
+      if (!claim.claimed) {
+        console.log('Schedule content already reserved on GitHub; no duplicate: ' + key);
+        continue;
+      }
       const messageId = await sendTelegram(fragment.message);
-      state.publications[key] = { hash, messageId, formatVersion: 4, publishedAt: new Date().toISOString() };
+      state.publications[key] = { hash, messageId, formatVersion: 5, publishedAt: new Date().toISOString() };
       cleanOldState(state, today);
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
