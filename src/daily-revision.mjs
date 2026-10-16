@@ -5,6 +5,16 @@ function digest(value) {
   return createHash('sha256').update(JSON.stringify(value)).digest('hex');
 }
 
+function hasComparableSnapshot(state, date, confirmed) {
+  const previous=state.scheduleSnapshots?.[date];
+  if (!previous || typeof previous !== 'object' || Array.isArray(previous))
+    return false;
+  return Object.keys(confirmed).every(group =>
+    Array.isArray(previous[group]) &&
+    previous[group].every(p => Array.isArray(p) && p.length===2 &&
+      Number.isInteger(p[0]) && Number.isInteger(p[1])));
+}
+
 function hasPublishedDate(state, date) {
   return Object.entries(state.publications || {}).some(([key, value]) =>
     key.startsWith(date + '/') && Number.isSafeInteger(value?.messageId));
@@ -26,8 +36,17 @@ export function trackDailyRevision(state, date, byGroup) {
   state.dailyRevisions ??= {};
   const previous = state.dailyRevisions[date];
   if (!previous) {
-    state.dailyRevisions[date] = { hash, revision: 0 };
-    return { eligible: true, updated: false, changed: true, revision: 0 };
+    // Upgrade old installations safely: they can already have a
+    // confirmed published schedule, plus a complete old baseline.
+    // If the live DTEK intervals truly differ from that baseline,
+    // don't mislabel the new schedule as its first announcement.
+    const oldFacts=state.scheduleSnapshots?.[date];
+    const revised=hasPublishedDate(state,date) &&
+      hasComparableSnapshot(state,date,confirmed) &&
+      digest(oldFacts)!==hash;
+    const revision=revised?1:0;
+    state.dailyRevisions[date] = { hash, revision };
+    return { eligible: true, updated: revised, changed: true, revision };
   }
   if (previous.hash === hash) {
     return { eligible: true, updated: previous.revision > 0,
