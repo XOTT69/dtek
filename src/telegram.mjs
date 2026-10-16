@@ -55,9 +55,12 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
             disable_notification: false
           });
         } catch (error) {
-          lastError = 'Network error: ' + String(error?.message || error);
-          if (attempt < 3) { await wait(attempt * 1200); continue; }
-          break;
+          // The request may have reached Telegram even if the response was
+          // lost. Retrying sendMessage could publish identical channel posts.
+          // Fail closed; the reservation token already prevents another run
+          // from blindly reposting an ambiguous delivery.
+          throw new Error('Telegram delivery unknown; refusing a duplicate retry: ' +
+            String(error?.message || error));
         }
         const { status, body } = result;
         if (status === 200 && body?.ok && body.result?.message_id) {
@@ -68,9 +71,11 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
           logger.warn('⚠️ Telegram cannot access channel via ' + chatId + '; trying verified alternative.');
           break;
         }
-        if (status !== 429 && status < 500) {
-          throw new Error('Telegram HTTP ' + status + ': ' + lastError +
-            '. Check that @' + EXPECTED_BOT + ' is a channel administrator with post rights.');
+        if (status !== 429) {
+          // Explicit rate-limit rejection is safe to retry; a 5xx response,
+          // malformed 200, or other unknown error is not proof of no post.
+          throw new Error('Telegram delivery not confirmed (HTTP ' + status + '): ' +
+            lastError + '. Refusing a duplicate retry.');
         }
         if (attempt < 3) {
           const retryAfter = Number(body?.parameters?.retry_after || 0);
