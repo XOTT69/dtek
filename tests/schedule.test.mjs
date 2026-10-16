@@ -82,10 +82,10 @@ test('confirmed post contains only schedules without source/footer/disclaimer', 
   for (const fragment of messages) {
     assert.match(fragment.message, /Оновлений графік/);
     assert.match(fragment.message, /Разом без світла/);
-    assert.match(fragment.message, /🔹 <b>Підгрупа 1\.1<\/b>/);
-    assert.match(fragment.message, /🪫 <b>09:00–10:00<\/b> · 1 год/);
-    assert.match(fragment.message, /⏳ <b>Разом без світла: 1 год<\/b>/);
-    assert.doesNotMatch(fragment.message, /1\.0 год|❌ з /);
+    assert.match(fragment.message, /💡<b>Підгрупа 1\.1 відключення:<\/b>/);
+    assert.match(fragment.message, /❌з 09:00 до 10:00 \(1\.0 год\)/);
+    assert.match(fragment.message, /⚫ <b>Разом без світла: 1\.0 год<\/b>/);
+    assert.doesNotMatch(fragment.message, /🪫 |🔹 |⏳ |1,0 год/);
     assert.doesNotMatch(fragment.message, /Можливі відключення|Разом можливих|🟠/);
     assert.doesNotMatch(fragment.message, /Дані ДТЕК:|Графік не гарантує|Джерело даних:|outage-data-ua/);
   }
@@ -176,7 +176,7 @@ test('only extreme confirmed schedules require the Telegram fallback split', () 
   assert.ok(messages.every(x => x.message.length < 4096));
   const combined = messages.map(x => x.message).join('\n');
   for (const group of GROUPS) {
-    assert.equal(combined.split('<b>Підгрупа ' + group + '</b>').length - 1, 1);
+    assert.equal(combined.split('<b>Підгрупа ' + group + ' відключення:</b>').length - 1, 1);
   }
 });
 
@@ -191,16 +191,16 @@ test('transition layout contains only relevant blocks and never adds removed dis
   assert.doesNotMatch(rendered, /Поширте графік/);
 });
 
-test('compact duration uses a decimal comma only for half-hours', () => {
+test('botvoda-compatible durations always use dot decimal with one digit', () => {
   const data = slots('yes');
   data['10'] = 'no'; data['11'] = 'first';
   const byGroup = Object.fromEntries(GROUPS.map(group => [
     group, { mode: 'fact', ...windowsFromHours(data) }
   ]));
   const post = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {})[0].message;
-  assert.match(post, /🪫 <b>09:00–10:30<\/b> · 1,5 год/);
-  assert.match(post, /⏳ <b>Разом без світла: 1,5 год<\/b>/);
-  assert.doesNotMatch(post, /1\.5 год/);
+  assert.match(post, /❌з 09:00 до 10:30 \(1\.5 год\)/);
+  assert.match(post, /⚫ <b>Разом без світла: 1\.5 год<\/b>/);
+  assert.doesNotMatch(post, /1,5 год|🪫|\d\d:\d\d–\d\d:\d\d/);
 });
 
 test('30-minute early warning includes starts, endings and continuing outages', () => {
@@ -267,4 +267,34 @@ test('no early warning from tentative or incomplete DTEK schedules', () => {
   ]));
   groups['6.2'] = {mode:'preset', ...windowsFromHours(starts,true)};
   assert.equal(upcomingTransition('2026-10-16', 540, groups), null);
+});
+
+test('water bot can read both 1.2 and 2.2 sections from the daily Telegram text', () => {
+  const on = slots();
+  const group12 = slots(); group12['10'] = 'second'; group12['11'] = 'no';
+  const group22 = slots();
+  group22['10'] = 'no'; group22['11'] = 'no'; group22['12'] = 'no';
+  group22['13'] = 'no'; group22['14'] = 'no'; group22['15'] = 'no';
+  for (let h = 19; h <= 22; h++) group22[String(h)] = 'no';
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, {mode:'fact', ...windowsFromHours(on)}
+  ]));
+  byGroup['1.2'] = {mode:'fact', ...windowsFromHours(group12)};
+  byGroup['2.2'] = {mode:'fact', ...windowsFromHours(group22)};
+  const posts = renderDailyMessages('2026-10-16','сьогодні',byGroup,{});
+  assert.equal(posts.length, 1, 'all groups must be in the forwarded Telegram post');
+  const plain = posts[0].message.replace(/<[^>]*>/g, '');
+  assert.match(plain, /^💡Оновлений графік відключення світла на сьогодні\./);
+  assert.match(plain, /📆П'ятниця, 16\.10\.2026/);
+  assert.match(plain, /💡Підгрупа 2\.2 відключення:\n❌з 09:00 до 15:00 \(6\.0 год\)\n❌з 18:00 до 22:00 \(4\.0 год\)\n⚫ Разом без світла: 10\.0 год/);
+
+  // Match the *actual structure* used by XOTT69/botvoda/src/lib.js.
+  const waterSections = [...plain.matchAll(/підгрупа\s+(\d\.\d)[^\n]*:[\s\S]*?(?=(?:\n\s*💡?\s*підгрупа\s+\d\.\d)|$)/giu)];
+  const map = Object.fromEntries(waterSections.map(match => [match[1], match[0]]));
+  assert.equal(waterSections.length, 12);
+  assert.match(map['1.2'], /❌з 09:30 до 11:00/);
+  assert.match(map['2.2'], /❌з 09:00 до 15:00/);
+  const intervals = [...map['2.2'].matchAll(/(?:з\s*)?(\d{1,2})[:.](\d{2})\s*(?:до|[-–—])\s*(\d{1,2})[:.](\d{2})/giu)];
+  assert.deepEqual(intervals.map(m => [m[1] + ':' + m[2], m[3] + ':' + m[4]]),
+    [['09:00','15:00'],['18:00','22:00']]);
 });
