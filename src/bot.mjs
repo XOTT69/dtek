@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
 import { fetchSourceJson, validateSource } from './source.mjs';
 import { createTelegramSender } from './telegram.mjs';
+import { consolidateLegacyPost } from './consolidate.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -112,6 +113,12 @@ async function main() {
     for (const fragment of messages) {
       const key = fragment.key;
       const hash = hashText(fragment.fingerprint);
+      // Upgrade existing two-part posts in place before deciding to send.
+      if (!DRY_RUN && key.endsWith('/all')) {
+        await consolidateLegacyPost({
+          state, fragment, hash, sender: sendTelegram, save: saveState
+        });
+      }
       if (state.publications[key]?.hash === hash && !DRY_RUN) {
         const previous = state.publications[key];
         if ((previous.formatVersion || 1) < 2 && previous.messageId) {
