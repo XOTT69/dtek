@@ -1,6 +1,12 @@
 name: DTEK schedules to Telegram
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/publish.yml'
   schedule:
     - cron: '3,13,23,33,43,53 * * * *'
   workflow_dispatch:
