@@ -5,6 +5,7 @@ import {
   renderCancelledReminder
 } from './corrections.mjs';
 import { claimCorrection } from './reminder-claim.mjs';
+import { emergencyAdvisory } from './emergency.mjs';
 
 function digest(value) {
   return createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -71,11 +72,12 @@ export async function publishScheduleCorrection({
       renderTransitionTelegram(date, nextTransition, '@svitlo_kyivshchyna',
         minute > nowMinute ? minute - nowMinute : null) :
       renderCancelledReminder(date, minute);
+    const annotatedText = text + emergencyAdvisory(state.emergency?.status);
     if (dryRun) {
-      logger.log('Correction preview for old reminder ' + eventKey + ':\n' + text);
+      logger.log('Correction preview for old reminder ' + eventKey + ':\n' + annotatedText);
     } else {
       // If Telegram edit fails, do not mark the snapshot complete: retry safely.
-      await sender.edit(event.messageId, text);
+      await sender.edit(event.messageId, annotatedText);
       event.correctedHash = fingerprint;
       event.editedAt = new Date().toISOString();
       await save(state);
