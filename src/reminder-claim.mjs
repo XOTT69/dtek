@@ -74,6 +74,13 @@ export async function claimEmergency(sourceId, status, fingerprint, options = {}
     {sourceId,status,fingerprint},options);
 }
 
+// One permanent image for the channel, independent of timetable revisions.
+// Reserve creation ONCE so a lost state push cannot create multiple pinned photos.
+export async function claimPinnedPhoto(options = {}) {
+  return reserveOnce('state/pinned-photo-claims/permanent.json',
+    'permanent pinned timetable image', {purpose:'pinned-schedule'}, options);
+}
+
 export async function claimReminder(
   key,
   {

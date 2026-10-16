@@ -1,11 +1,18 @@
 name: DTEK schedules to Telegram
 
 on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'package.json'
+      - '.github/workflows/publish.yml'
   push:
     branches: [main]
     paths:
       - 'src/**'
       - 'tests/**'
+      - 'package.json'
       - '.github/workflows/publish.yml'
   schedule:
     # GitHub's scheduler is fallback; cron-job.org dispatches every five minutes.
@@ -31,6 +38,7 @@ jobs:
       SOURCE_MODE: ${{ vars.SOURCE_MODE }}
       UKRENERGO_NOTICES: ${{ vars.UKRENERGO_NOTICES }}
       ADVANCE_REMINDERS: ${{ vars.ADVANCE_REMINDERS }}
+      PINNED_GRAPHIC: ${{ vars.PINNED_GRAPHIC }}
       GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
@@ -46,13 +54,15 @@ jobs:
           echo "Triggered by: ${{ github.event_name }}"
           echo "Start UTC: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           echo "Commit: ${{ github.sha }}"
+      - name: Install image renderer
+        run: npm install --no-audit --no-fund
       - name: Validate schedule conversion
         run: npm test
       - name: Publish updated schedules
-        if: env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
+        if: github.event_name != 'pull_request' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: node src/bot.mjs
       - name: Persist published state
-        if: always()
+        if: always() && github.event_name != 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
