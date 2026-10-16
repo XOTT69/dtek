@@ -9,6 +9,9 @@ import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
 import { claimReminder, claimScheduleUpdate } from './reminder-claim.mjs';
 import { publishScheduleCorrection } from './correction-publisher.mjs';
+import { publishEmergencyUpdate } from './emergency-publisher.mjs';
+import { emergencyAdvisory } from './emergency.mjs';
+import { reconcileEmergencyReminders } from './emergency-reminders.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -136,6 +139,19 @@ async function main() {
     }
   }
 
+  // Official DTEK emergency bulletins are independent of regular timetable
+  // JSON and may temporarily override it in specific districts.
+  try {
+    const emergency = await publishEmergencyUpdate({
+      state, sender:sendTelegram, save:saveState, now, dryRun:DRY_RUN
+    });
+    if (emergency.status === 'published') sent++;
+  } catch (error) {
+    // Keep scheduled publication running if official Telegram is unavailable.
+    console.warn('DTEK emergency feed unavailable; retaining last official status: ' +
+      String(error?.message || error));
+  }
+
   const source = await loadDocument();
   const todayGroups = allGroups(source, today);
 
@@ -173,9 +189,10 @@ async function main() {
     const eventMinute = String(upcoming.minute % 60).padStart(2, '0');
     const key = upcoming.date + '@' + eventHour + ':' + eventMinute + '#pre30';
     const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
+    const emergencyContext = state.emergency?.status;
     const message = renderTransitionTelegram(
       upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
-    );
+    ) + emergencyAdvisory(emergencyContext);
     if (DRY_RUN) {
       console.log('\n=== UPCOMING EVENT ' + key + ' ===\n' + message + '\n');
     } else if (!state.events[key]) {
@@ -193,6 +210,11 @@ async function main() {
         const messageId = await sendTelegram(message);
         state.events[key] = {
           messageId, leadMinutes: upcoming.leadMinutes, formatVersion: 5,
+          emergencyContextKey: JSON.stringify({
+            active:!!emergencyContext?.active,
+            kind:emergencyContext?.active ? emergencyContext.kind : '',
+            districts:emergencyContext?.active ? emergencyContext.districts : []
+          }),
           publishedAt: new Date().toISOString()
         };
         await saveState(state);
@@ -265,6 +287,17 @@ async function main() {
       });
       if (correctionResult.status === 'published') sent++;
     }
+  }
+  // A new emergency bulletin also needs to correct any *already sent*
+  // reminders for upcoming switch times, without an extra Telegram post.
+  try {
+    await reconcileEmergencyReminders({
+      state, source, allGroups, sender:sendTelegram, save:saveState,
+      now, dryRun:DRY_RUN
+    });
+  } catch (error) {
+    console.warn('Could not refresh earlier reminders with emergency warning: ' +
+      String(error?.message || error));
   }
   console.log('Finished. New messages: ' + sent);
 }
