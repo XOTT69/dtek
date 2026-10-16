@@ -24,9 +24,27 @@ export async function publishAdvanceReminder({
     kind:emergency?.active ? emergency.kind : '',
     districts:emergency?.active ? emergency.districts : []
   });
-  const message = renderTransitionTelegram(
-    upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
-  ) + emergencyAdvisory(emergency);
+  // If an earlier DTEK revision was already announced for this same time,
+  // subscribers only need a SHORT follow-up, not the entire group list again.
+  // A correction merged inside the lead window has already claimed this key.
+  const correctionKey = upcoming.date + '@' + upcoming.minute;
+  const correction = state.corrections?.[correctionKey];
+  const tag = String(channel).trim().replace(/^@/,'');
+  const link = correction?.messageId && /^[A-Za-z0-9_]{5,32}$/.test(tag) ?
+    '🔎 <a href="https://t.me/' + tag + '/' + correction.messageId +
+      '">Переглянути коригування графіка</a>' : null;
+  const short = correction?.messageId && !correction.combined;
+  const body = short ? [
+    '⏰ <b>' + hh + ':' + mm + '</b>',
+    '🔔 До планового часу: ' + upcoming.leadMinutes + ' хв',
+    '',
+    '📌 Нагадуємо про зміни за оновленим графіком.',
+    ...(link ? [link] : [])
+  ].join('\\n') :
+    renderTransitionTelegram(
+      upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
+    );
+  const message = body + emergencyAdvisory(emergency);
 
   if (dryRun) {
     logger.log('Advance reminder preview for ' + key + ':\n' + message);
