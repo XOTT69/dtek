@@ -259,17 +259,17 @@ export function renderTransitionTelegram(date, transition, channel = '', leadMin
   }
   lines.push('');
   if (transition.starting.length) {
-    lines.push('🔴 <b>Початок відключення:</b>');
+    lines.push('🔴 <b>За графіком вимикаємо світло:</b>');
     for (const group of transition.starting) lines.push('🪫 Підгрупа ' + group);
     lines.push('');
   }
   if (transition.restored.length) {
-    lines.push('🟢 <b>Завершення планового відключення:</b>');
+    lines.push('🟢 <b>За графіком вмикаємо світло:</b>');
     for (const group of transition.restored) lines.push('🔋 Підгрупа ' + group);
     lines.push('');
   }
   if (transition.continuing.length) {
-    lines.push('🌑 <b>За графіком залишаються без світла:</b>');
+    lines.push('🌑 <b>Залишаються без світла:</b>');
     for (const group of transition.continuing) lines.push('⚫️ Підгрупа ' + group);
     lines.push('');
   }
