@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { consolidateLegacyPost } from '../src/consolidate.mjs';
+import { consolidateLegacyPost, expandFullPostToSplit } from '../src/consolidate.mjs';
 import { decideDailyPublication } from '../src/daily-publication.mjs';
 
 test('old two-part posts become a single post without sending notifications', async () => {
@@ -126,4 +126,58 @@ test('split-to-one migration keeps initial heading if no real source revision oc
   ),'unchanged');
   assert.equal(edits[0][0],7);
   assert.doesNotMatch(edits[0][1],/Оновлений/);
+});
+
+
+test('full daily post expanding into two chunks reuses the original message for first part',async()=>{
+  const state={publications:{
+    '2026-10-17/сьогодні/all':{
+      hash:'oldfull',revision:0,formatVersion:7,headingState:'initial',messageId:125
+    }
+  }};
+  const fragments=[
+    {key:'2026-10-17/сьогодні/1.1-3.2',
+      message:'💡<b>Оновлений графік відключення світла на сьогодні.</b>\nЧастина 1',
+      fingerprint:'split-fragment-1'},
+    {key:'2026-10-17/сьогодні/4.1-6.2',
+      message:'💡<b>Оновлений графік відключення світла на сьогодні.</b>\nЧастина 2',
+      fingerprint:'split-fragment-2'}
+  ];
+  const edits=[],stateWrites=[];
+  const sender={edit:async(id,message)=>edits.push({id,message})};
+  const save=async()=>stateWrites.push(JSON.stringify(state));
+  const emergency='⚠️ Екстрені відключення діють у визначених районах';
+  const status=JSON.stringify({active:true,districts:['Обухівський']});
+  const options={state,fragments,sender,save,revision:1,
+    headingState:'updated',advisory:emergency,
+    emergencyContextKey:status,log:{log(){}}};
+  assert.equal(await expandFullPostToSplit(options),true);
+  assert.deepEqual(edits,[{id:125,message:fragments[0].message+emergency}]);
+  assert.equal(stateWrites.length,1);
+  assert.equal(state.publications['2026-10-17/сьогодні/all'],undefined);
+  const first=state.publications[fragments[0].key];
+  assert.equal(first.messageId,125);
+  assert.equal(first.revision,1);
+  assert.equal(first.headingState,'updated');
+  assert.equal(first.emergencyContextKey,status);
+  assert.equal(decideDailyPublication(first,first.hash,1,'updated'),'unchanged');
+  assert.equal(state.publications[fragments[1].key],undefined,
+    'second part is only created through normal atomic publisher');
+  assert.equal(await expandFullPostToSplit(options),false);
+  assert.equal(edits.length,1);
+});
+
+test('never attempt expansion without an owned prior full-day Telegram message',async()=>{
+  const fragments=[
+    {key:'2026-10-17/завтра/1.1-3.2',message:'part1',fingerprint:'a'},
+    {key:'2026-10-17/завтра/4.1-6.2',message:'part2',fingerprint:'b'}
+  ];
+  const state={publications:{}};
+  const noop={edit:async()=>{throw Error('Must not edit missing full post')}};
+  assert.equal(await expandFullPostToSplit({
+    state,fragments,sender:noop,save:async()=>{}
+  }),false);
+  assert.equal(await expandFullPostToSplit({
+    state,fragments:[fragments[0]],sender:noop,save:async()=>{}
+  }),false);
 });
