@@ -27,7 +27,7 @@ test('publishes verified Ukrenergo notice once and saves its state', async () =>
   sender.edit=async()=>{throw Error('Unexpected edit')};
   const options={
     state,sender,now:NOW,logger,fetchFn:fetchFn(html(111)),
-    save:async()=>{persisted++}
+    save:async()=>{persisted++}, claim:async()=>({claimed:true})
   };
   assert.equal((await publishTomorrowNotice(options)).status,'published');
   assert.equal(sent,1);
@@ -43,7 +43,7 @@ test('corrected hours edit existing notice without sending a second message',asy
   const calls=[];
   const sender=async text=>{calls.push(['send',text]);return 77};
   sender.edit=async(id,text)=>{calls.push(['edit',id,text]);return true};
-  const common={state,sender,now:NOW,logger,save:async()=>{}};
+  const common={state,sender,now:NOW,logger,save:async()=>{},claim:async()=>({claimed:true})};
   await publishTomorrowNotice({...common,fetchFn:fetchFn(html(112))});
   await publishTomorrowNotice({...common,fetchFn:fetchFn(html(
     113,partial.replace('06:00 – 23:59 – графіки погодинних', '08:00 – 22:00 – графіки погодинних')
@@ -59,7 +59,7 @@ test('older official post cannot reverse a later correction',async()=>{
   const state={};
   const sender=async()=>11;
   sender.edit=async()=>{throw Error('Should not edit older post')};
-  const common={state,sender,now:NOW,logger,save:async()=>{}};
+  const common={state,sender,now:NOW,logger,save:async()=>{},claim:async()=>({claimed:true})};
   await publishTomorrowNotice({...common,fetchFn:fetchFn(html(500))});
   const result=await publishTomorrowNotice({
     ...common,fetchFn:fetchFn(html(200,partial.replace('06:00','07:00')))
@@ -92,3 +92,16 @@ test('preview uses no Telegram publishing or persistent state',async()=>{
   assert.equal(calls,0);
   assert.equal(state.announcements,undefined);
 });
+
+test('first Ukrenergo send is not duplicated if GitHub state was lost', async () => {
+  let sent = 0;
+  let claimed = false;
+  const sender = async () => { sent++; return 44; };
+  const claim = async () => claimed ? {claimed:false} : (claimed = true, {claimed:true});
+  const args = {sender, claim, logger, now: NOW, save:async()=>{},
+    fetchFn:fetchFn(html(188))};
+  assert.equal((await publishTomorrowNotice({...args,state:{}})).status,'published');
+  assert.equal((await publishTomorrowNotice({...args,state:{}})).status,'already-reserved');
+  assert.equal(sent,1);
+});
+
