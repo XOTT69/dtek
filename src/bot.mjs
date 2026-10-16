@@ -11,7 +11,7 @@ import { claimReminder, claimScheduleUpdate } from './reminder-claim.mjs';
 import { publishScheduleCorrection } from './correction-publisher.mjs';
 import { publishEmergencyUpdate } from './emergency-publisher.mjs';
 import { emergencyAdvisory } from './emergency.mjs';
-import { reconcileEmergencyReminders } from './emergency-reminders.mjs';
+import { reconcileEmergencyReminders, reconcileEmergencyDaily } from './emergency-reminders.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -297,6 +297,15 @@ async function main() {
     });
   } catch (error) {
     console.warn('Could not refresh earlier reminders with emergency warning: ' +
+      String(error?.message || error));
+  }
+  try {
+    await reconcileEmergencyDaily({
+      state, source, allGroups, sender:sendTelegram, save:saveState,
+      now, dryRun:DRY_RUN
+    });
+  } catch (error) {
+    console.warn('Could not annotate daily schedule during emergency: ' +
       String(error?.message || error));
   }
   console.log('Finished. New messages: ' + sent);
