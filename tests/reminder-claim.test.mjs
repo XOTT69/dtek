@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { claimReminder, claimScheduleUpdate } from '../src/reminder-claim.mjs';
+import { claimReminder, claimScheduleUpdate, claimCorrection } from '../src/reminder-claim.mjs';
 
 const opts = {
   token: 'TEST_ONLY_FAKE_TOKEN',
@@ -79,4 +79,25 @@ test('same confirmed daily schedule hash is claimed exactly once across independ
 test('schedule claim rejects malicious keys and invalid fingerprints', async () => {
   await assert.rejects(claimScheduleUpdate('../etc/passwords', 'c'.repeat(64)), /Unsafe/);
   await assert.rejects(claimScheduleUpdate('2026-10-16/сьогодні/all', 'short'), /Unsafe/);
+});
+
+test('correction is claimed once for a given confirmed revision and slot', async()=>{
+  const seen = new Set();
+  const fetchFn = async (url, options) => {
+    const base = url.split('?')[0];
+    if (options.method === 'PUT') {
+      if (seen.has(base)) return {status:422,ok:false};
+      seen.add(base);
+      return {status:201,ok:true};
+    }
+    return {status:seen.has(base)?200:404,ok:seen.has(base)};
+  };
+  const hash='c'.repeat(64);
+  const first=await claimCorrection('2026-10-16',690,hash,{...opts,fetchFn});
+  const again=await claimCorrection('2026-10-16',690,hash,{...opts,fetchFn});
+  assert.equal(first.claimed,true);
+  assert.equal(again.claimed,false);
+  assert.match(first.path,/correction-claims\/2026-10-16\/11-30-/);
+  assert.equal((await claimCorrection('2026-10-16',690,'d'.repeat(64),{...opts,fetchFn})).claimed,true);
+  assert.equal(seen.size,2);
 });
