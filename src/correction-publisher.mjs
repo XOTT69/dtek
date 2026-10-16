@@ -29,7 +29,8 @@ function confirmedGroupSet(snapshot) {
  */
 export async function publishScheduleCorrection({
   state, date, byGroup, nowMinute, sender, save,
-  claim = claimCorrection, dryRun = false, logger = console
+  claim = claimCorrection, dryRun = false, logger = console,
+  updateReminders = true
 }) {
   const current = snapshotGroups(byGroup);
   if (!current) return {status: 'unconfirmed'};
@@ -48,7 +49,7 @@ export async function publishScheduleCorrection({
 
   // Correct already-published early reminders whenever their announced
   // switching groups have changed. Never create a second advance reminder.
-  for (const [eventKey, event] of Object.entries(state.events ?? {})) {
+  for (const [eventKey, event] of Object.entries(updateReminders ? (state.events ?? {}) : {})) {
     const m = /^(\d{4}-\d{2}-\d{2})@(\d{2}):(\d{2})#pre30$/.exec(eventKey);
     if (!m || m[1] !== date || !event?.messageId) continue;
     const minute = Number(m[2]) * 60 + Number(m[3]);
