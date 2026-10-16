@@ -15,7 +15,9 @@
       "messageId": 16,
       "formatVersion": 6,
       "publishedAt": "2026-10-16T08:37:48.987Z",
-      "editedAt": "2026-10-16T08:46:53.557Z"
+      "editedAt": "2026-10-16T08:46:53.557Z",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "emergencyEditedAt": "2026-10-16T10:03:29.271Z"
     }
   },
   "events": {
