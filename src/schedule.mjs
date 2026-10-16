@@ -106,7 +106,7 @@ export function renderTelegram(date, dayLabel, byGroup, document) {
   const preliminary = allModes.every(mode => mode === 'preset');
   const heading = preliminary
     ? '🔶 <b>Можливі відключення на ' + dayLabel + '</b>'
-    : '💡 <b>Графік відключення світла на ' + dayLabel + '</b>';
+    : '💡 <b>Оновлений графік відключення світла на ' + dayLabel + '</b>';
   const lines = [heading, '📆 <b>' + safe(formatDate(date)) + '</b>', '📍 Київська область', ''];
   if (allModes.includes('preset')) {
     lines.push('⚠️ Помаранчеві періоди — лише можливі відключення за тижневим графіком.', '');
