@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { fetchTomorrowNotice, renderUkrenergoNotice } from './ukrenergo.mjs';
+import { claimUkrenergoNotice } from './reminder-claim.mjs';
 
 function fingerprint(notice) {
   // Source-post ID is intentionally excluded. A repost with the same
@@ -11,7 +12,7 @@ function fingerprint(notice) {
 
 export async function publishTomorrowNotice({
   state, sender, save, now = new Date(), fetchFn = fetch,
-  dryRun = false, logger = console
+  dryRun = false, logger = console, claim = claimUkrenergoNotice
 } = {}) {
   const notice = await fetchTomorrowNotice({now, fetchFn});
   if (!notice) {
@@ -42,6 +43,13 @@ export async function publishTomorrowNotice({
     messageId = previous.messageId;
     logger.log('Ukrenergo: edited tomorrow announcement in place for ' + notice.date);
   } else {
+    // Fail closed if the previous send succeeded but GitHub could not
+    // persist its message ID: never post a duplicate announcement.
+    const reserved = await claim(notice.date);
+    if (!reserved.claimed) {
+      logger.warn('Ukrenergo: announcement already reserved; no duplicate for ' + notice.date);
+      return {status: 'already-reserved', notice};
+    }
     messageId = await sender(text);
     logger.log('Ukrenergo: published tomorrow announcement for ' + notice.date);
   }
