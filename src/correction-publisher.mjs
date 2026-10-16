@@ -95,7 +95,10 @@ export async function publishScheduleCorrection({
     logger.log('Updated DTEK schedule has no relevant upcoming correction slot: ' + date);
     return {status: 'no-nearby-transition'};
   }
-  const text = renderCorrectionTelegram(correction);
+  // A future switching time is a PLAN, not a guarantee, whenever
+  // DTEK has formally introduced unscheduled outages in affected districts.
+  const text = renderCorrectionTelegram(correction) +
+    emergencyAdvisory(state.emergency?.status);
   const hash = digest({date, current, minute: correction.minute});
   if (dryRun) {
     logger.log('Correction preview:\n' + text);
