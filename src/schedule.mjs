@@ -101,41 +101,28 @@ function safe(text) {
   return String(text ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-export function renderTelegram(date, dayLabel, byGroup, document, groups = GROUPS) {
-  const allModes = groups.map(group => byGroup[group]?.mode ?? 'missing');
-  const preliminary = allModes.includes('preset') && allModes.every(mode => mode === 'preset' || mode === 'missing');
-  const heading = preliminary
-    ? '🔶 <b>Можливі відключення на ' + dayLabel + '</b>'
-    : '💡 <b>Оновлений графік відключення світла на ' + dayLabel + '</b>';
-  const lines = [heading, '📆 <b>' + safe(formatDate(date)) + '</b>', '📍 Київська область', ''];
-  if (allModes.includes('preset')) {
-    lines.push('⚠️ Помаранчеві періоди — лише можливі відключення за тижневим графіком.', '');
+/** Only confirmed DTEK daily schedules are eligible for public posts. */
+export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROUPS) {
+  if (groups.some(group => byGroup[group]?.mode !== 'fact')) {
+    throw new Error('Only confirmed daily DTEK fact schedules can be published');
   }
+  const lines = [
+    '💡 <b>Оновлений графік відключення світла на ' + dayLabel + '</b>',
+    '📆 <b>' + safe(formatDate(date)) + '</b>',
+    '📍 Київська область',
+    ''
+  ];
   for (const group of groups) {
-    const schedule = byGroup[group] ?? {mode: 'missing', confirmed: [], possible: []};
+    const schedule = byGroup[group];
     lines.push('💡 <b>Підгрупа ' + group + '</b>');
-    if (schedule.mode === 'missing') {
-      lines.push('ℹ️ Інформації на цю дату поки немає.');
+    if (schedule.confirmed.length) {
+      lines.push(renderPeriods(schedule.confirmed, '❌'));
+      lines.push('⚫ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
     } else {
-      if (schedule.confirmed.length) {
-        lines.push(renderPeriods(schedule.confirmed, '❌'));
-        lines.push('⚫ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
-      } else if (schedule.mode === 'fact') {
-        lines.push('✅ Підтверджених відключень за графіком немає.');
-      }
-      if (schedule.possible.length) {
-        lines.push(renderPeriods(schedule.possible, '🟠'));
-        lines.push('🟠 Разом можливих: ' + total(schedule.possible) + ' год');
-      } else if (schedule.mode === 'preset') {
-        lines.push('✅ За тижневим шаблоном відключень немає.');
-      }
+      lines.push('✅ Підтверджених відключень за графіком немає.');
     }
     lines.push('');
   }
-  const updated = document.fact?.update || document.preset?.updateFact || document.lastUpdated;
-  lines.push('🕒 Дані ДТЕК: ' + safe(updated || 'час не вказано'));
-  lines.push('ℹ️ Графік не гарантує фактичну наявність електроенергії.');
-  lines.push('🔗 <a href="https://github.com/Baskerville42/outage-data-ua">Джерело даних: outage-data-ua</a>');
   return lines.join('\n').trim();
 }
 
@@ -150,6 +137,9 @@ export { GROUPS };
 
 /** Each Telegram message stays below 4096 characters, with one to six groups. */
 export function renderDailyMessages(date, dayLabel, byGroup, document) {
+  // Do not publish a day until DTEK has actual daily data for every subgroup.
+  // In particular never post the broad weekly preset as a daily forecast.
+  if (!GROUPS.every(group => byGroup[group]?.mode === 'fact')) return [];
   const chunks = [];
   let current = [];
   for (const group of GROUPS) {
