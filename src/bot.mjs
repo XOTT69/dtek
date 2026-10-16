@@ -1,8 +1,9 @@
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
+import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, upcomingTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
 import { fetchSourceJson, validateSource } from './source.mjs';
 import { fetchDtekDirect } from './dtek-direct.mjs';
+import { selectBestDtekSource, factUpdateKey } from './source-selection.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
@@ -12,31 +13,53 @@ const STATE_FILE = 'state/publications.json';
 const DRY_RUN = process.env.DRY_RUN === '1';
 
 async function loadDocument() {
-  // Default: official DTEK -> established outage-data-ua backup.
-  // To disable direct attempts, set SOURCE_MODE=fallback in Actions Variables.
   const mode = process.env.SOURCE_MODE || 'auto';
-  if (mode !== 'fallback') {
-    try {
-      const direct = await fetchDtekDirect();
-      console.log('✅ DIRECT DTEK (' + direct.via + '): confirmed dates ' +
-        direct.validDates.join(', ') + '. Using official site as primary source.');
-      return direct.data;
-    } catch (error) {
-      if (mode === 'direct') throw error;
-      console.warn('⚠️ DIRECT DTEK could not be read. Using backup outage-data-ua: ' +
-        String(error?.message || error));
-    }
-  }
+  let direct = null;
+  let backup = null;
+  let directError = null, backupError = null;
 
-  const raw = await fetchSourceJson(DATA_URL);
-  const snapshot = validateSource(raw);
-  if (snapshot.isFallback) {
-    console.warn('⚠️ Backup parser error. Using its last recent parsed snapshot (' +
-      snapshot.ageMinutes + ' minutes old).');
-  } else {
-    console.log('✅ BACKUP outage-data-ua: snapshot age ' + snapshot.ageMinutes + ' minutes.');
+  // Check both sources concurrently: an updated third-party JSON should not
+  // be ignored just because the direct site still exposes an older schedule.
+  const tasks = [];
+  if (mode !== 'fallback') {
+    tasks.push((async () => {
+      try {
+        const response = await fetchDtekDirect();
+        direct = response.data;
+        console.log('✅ DIRECT DTEK (' + response.via + '): dates ' +
+          response.validDates.join(', ') + '; fact update ' +
+          (direct.fact?.update || direct.fact?.updateFact || 'not provided'));
+      } catch (error) {
+        directError = error;
+        console.warn('⚠️ Direct DTEK unavailable: ' + String(error?.message || error));
+      }
+    })());
   }
-  return snapshot.data;
+  if (mode !== 'direct') {
+    tasks.push((async () => {
+      try {
+        const raw = await fetchSourceJson(DATA_URL);
+        const response = validateSource(raw);
+        backup = response.data;
+        console.log('✅ BACKUP outage-data-ua: snapshot age ' +
+          response.ageMinutes + ' min; fact update ' +
+          (backup.fact?.update || backup.fact?.updateFact || 'not provided'));
+      } catch (error) {
+        backupError = error;
+        console.warn('⚠️ Backup data unavailable: ' + String(error?.message || error));
+      }
+    })());
+  }
+  await Promise.all(tasks);
+  if (!direct && !backup) {
+    throw new Error('Both schedule sources unavailable: direct=' +
+      String(directError?.message || 'disabled') + '; backup=' +
+      String(backupError?.message || 'disabled'));
+  }
+  const chosen = selectBestDtekSource(direct, backup);
+  console.log('📊 Selected ' + chosen.kind + ': ' + chosen.reason + '. Fact update key: ' +
+    (factUpdateKey(chosen.data) ?? 'unknown'));
+  return chosen.data;
 }
 
 async function loadState() {
@@ -137,34 +160,39 @@ async function main() {
     }
   }
 
-  // An hourly/half-hour alert is sent only near the transition time, never
-  // based on tentative preset. No retrospective backlog when starting a bot.
-  const slotStart = Math.floor(minutesNow / 30) * 30;
-  const delayMinutes = minutesNow - slotStart;
-  if (slotStart > 0 && delayMinutes <= 17) {
-    const transition = buildTransition(todayGroups, slotStart);
-    if (transition) {
-      const key = today + '@' + String(Math.floor(slotStart / 60)).padStart(2, '0') +
-        ':' + String(slotStart % 60).padStart(2, '0');
-      const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
-      const message = renderTransitionTelegram(today, transition, channel);
-      if (DRY_RUN) {
-        console.log('\n=== EVENT ' + key + ' ===\n' + message + '\n');
-      } else if (!state.events[key]) {
-        const messageId = await sendTelegram(message);
-        state.events[key] = { messageId, formatVersion: 3, publishedAt: new Date().toISOString() };
-        await saveState(state);
-        console.log('Published transition ' + key + ', message ID ' + messageId);
-        sent++;
-      } else {
-        console.log('Transition already sent: ' + key);
-      }
+  // Alerts go out BEFORE the scheduled switching time, never at/after it.
+  // The lead time depends on GitHub Actions launch delay (10-30 min).
+  const tomorrow = addDays(today, 1);
+  const tomorrowGroups = allGroups(source, tomorrow);
+  const upcoming = upcomingTransition(today, minutesNow, todayGroups, tomorrowGroups);
+  if (upcoming) {
+    const eventHour = String(Math.floor(upcoming.minute / 60)).padStart(2, '0');
+    const eventMinute = String(upcoming.minute % 60).padStart(2, '0');
+    const key = upcoming.date + '@' + eventHour + ':' + eventMinute + '#pre30';
+    const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
+    const message = renderTransitionTelegram(
+      upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
+    );
+    if (DRY_RUN) {
+      console.log('\n=== UPCOMING EVENT ' + key + ' ===\n' + message + '\n');
+    } else if (!state.events[key]) {
+      const messageId = await sendTelegram(message);
+      state.events[key] = {
+        messageId, leadMinutes: upcoming.leadMinutes, formatVersion: 4,
+        publishedAt: new Date().toISOString()
+      };
+      await saveState(state);
+      console.log('Published advance reminder ' + key + ', ' +
+        upcoming.leadMinutes + ' minutes early, message ID ' + messageId);
+      sent++;
+    } else {
+      console.log('Advance reminder already sent: ' + key);
     }
   }
 
   const dates = [
     { date: today, day: 'сьогодні', byGroup: todayGroups },
-    { date: addDays(today, 1), day: 'завтра', byGroup: null }
+    { date: tomorrow, day: 'завтра', byGroup: tomorrowGroups }
   ];
   for (const item of dates) {
     const byGroup = item.byGroup || allGroups(source, item.date);
