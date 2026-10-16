@@ -94,9 +94,18 @@ export function applyEmergencyStatus(previous, event) {
     return {active: true, kind: event.kind, scope: event.scope,
       districts: event.districts, sourceUrl: event.sourceUrl};
   }
-  if (event.scope === 'oblast-unspecified' || previous?.scope === 'oblast-unspecified') {
+  if (event.scope === 'oblast-unspecified') {
+    // "у частині Київщини" is not evidence that emergency restrictions were
+    // lifted everywhere. Only a non-qualified oblast-wide cancellation is.
+    const partial = /(?:частин[іиа]|деяких|окремих)\s+(?:район[а-яіїєґ]*|територі[а-яіїєґ]*|київщин[а-яіїєґ]*)/iu.test(event.sourceText);
+    if (partial && previous?.active) return {...previous};
     return {active: false, kind: event.kind, scope: 'oblast-unspecified',
       districts: [], sourceUrl: event.sourceUrl};
+  }
+  if (previous?.scope === 'oblast-unspecified' && previous.active) {
+    // We don't know the initial district list: a district-only cancellation
+    // cannot prove that the rest of Kyiv oblast is restored.
+    return {...previous};
   }
   const remaining = (previous?.districts || []).filter(d => !event.districts.includes(d));
   return {active: remaining.length > 0, kind: previous?.kind || event.kind,
