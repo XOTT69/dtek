@@ -10,7 +10,8 @@ import { publishTomorrowNotice } from './notice-publisher.mjs';
 import { claimScheduleUpdate } from './reminder-claim.mjs';
 import { publishScheduleCorrection } from './correction-publisher.mjs';
 import { publishEmergencyUpdate } from './emergency-publisher.mjs';
-import { reconcileEmergencyDaily } from './emergency-reminders.mjs';
+import { reconcileEmergencyReminders, reconcileEmergencyDaily } from './emergency-reminders.mjs';
+import { publishAdvanceReminder } from './reminder-publisher.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -154,10 +155,20 @@ async function main() {
   const source = await loadDocument();
   const todayGroups = allGroups(source, today);
 
-  // Daily confirmed schedule publications are change-driven.
-  // No HH:00 / HH:30 switching alerts or advance reminders are sent.
   const tomorrow = addDays(today, 1);
   const tomorrowGroups = allGroups(source, tomorrow);
+
+  // cron-job.org reliably dispatches the same workflow every five minutes.
+  // Send one advance alert 10–30 minutes before each *confirmed* switching
+  // boundary; remote claim prevents repeats across overlapping runs.
+  if (process.env.ADVANCE_REMINDERS !== 'off') {
+    const advance = await publishAdvanceReminder({
+      state, date:today, minutesNow, todayGroups, tomorrowGroups,
+      sender:sendTelegram, save:saveState, dryRun:DRY_RUN,
+      channel:process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna'
+    });
+    if (advance.status === 'published') sent++;
+  }
 
   const dates = [
     { date: today, day: 'сьогодні', byGroup: todayGroups },
@@ -215,9 +226,22 @@ async function main() {
       const correctionResult = await publishScheduleCorrection({
         state, date: item.date, byGroup, nowMinute: item.date === today ? minutesNow : 0,
         sender: sendTelegram, save: saveState, dryRun: DRY_RUN,
-        updateReminders: false
+        updateReminders: process.env.ADVANCE_REMINDERS !== 'off'
       });
       if (correctionResult.status === 'published') sent++;
+    }
+  }
+  // If DTEK officially introduces or cancels emergencies after an alert,
+  // update the old message in place rather than publish misleading repeats.
+  if (process.env.ADVANCE_REMINDERS !== 'off') {
+    try {
+      await reconcileEmergencyReminders({
+        state, source, allGroups, sender:sendTelegram, save:saveState,
+        now, dryRun:DRY_RUN
+      });
+    } catch (error) {
+      console.warn('Could not refresh earlier reminders with emergency warning: ' +
+        String(error?.message || error));
     }
   }
   try {
