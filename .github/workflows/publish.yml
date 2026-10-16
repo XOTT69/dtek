@@ -8,8 +8,8 @@ on:
       - 'tests/**'
       - '.github/workflows/publish.yml'
   schedule:
-    # GitHub-only polling, best effort: delayed or skipped runs are possible.
-    # No timed Telegram outage reminders are emitted by the bot.
+    # GitHub's scheduler is fallback; cron-job.org dispatches every five minutes.
+    # Confirmed outage reminders and real schedule corrections remain enabled.
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
