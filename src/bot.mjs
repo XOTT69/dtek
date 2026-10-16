@@ -16,6 +16,7 @@ import { recordConfirmedDay } from './confirmed-feed.mjs';
 import { trackDailyRevision } from './daily-revision.mjs';
 import { emergencyAdvisory } from './emergency.mjs';
 import { decideDailyPublication } from './daily-publication.mjs';
+import { publishPinnedGraphic } from './pinned-publisher.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -185,6 +186,23 @@ async function main() {
     cleanOldState(state,today);
     await saveState(state);
     console.log('Saved confirmed schedule data feed for Chabany water bot.');
+  }
+
+  // A single pinned photo is the channel's living graphical timetable.
+  // Always edit the very same Telegram media message on content/date change.
+  // This is intentionally independent of the non-pinned text publications.
+  if (process.env.PINNED_GRAPHIC !== 'off') {
+    try {
+      const graphic=await publishPinnedGraphic({
+        state,date:today,byGroup:todayGroups,
+        sender:sendTelegram,save:saveState,dryRun:DRY_RUN
+      });
+      if(graphic.status==='published') sent++;
+    } catch(error) {
+      // Telegram pin permission, image rendering or media edit must NOT
+      // stop plain text schedules and urgent emergency announcements.
+      console.warn('Pinned photo could not be updated: '+String(error?.message||error));
+    }
   }
 
   const dates = [
