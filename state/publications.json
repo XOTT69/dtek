@@ -20,7 +20,9 @@
   "events": {
     "2026-10-16@09:30": {
       "messageId": 9,
-      "publishedAt": "2026-10-16T06:36:38.224Z"
+      "publishedAt": "2026-10-16T06:36:38.224Z",
+      "formatVersion": 2,
+      "editedAt": "2026-10-16T06:52:44.536Z"
     }
   }
 }
