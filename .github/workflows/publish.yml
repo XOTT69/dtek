@@ -26,6 +26,8 @@ jobs:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       TELEGRAM_CHANNEL_USERNAME: ${{ vars.TELEGRAM_CHANNEL_USERNAME }}
+      SOURCE_MODE: ${{ vars.SOURCE_MODE }}
+      UKRENERGO_NOTICES: ${{ vars.UKRENERGO_NOTICES }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
