@@ -13,6 +13,8 @@ import { publishEmergencyUpdate } from './emergency-publisher.mjs';
 import { reconcileEmergencyReminders, reconcileEmergencyDaily } from './emergency-reminders.mjs';
 import { publishAdvanceReminder } from './reminder-publisher.mjs';
 import { recordConfirmedDay } from './confirmed-feed.mjs';
+import { trackDailyRevision } from './daily-revision.mjs';
+import { emergencyAdvisory } from './emergency.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -115,7 +117,7 @@ function cleanOldState(state, today) {
   // The public confirmed snapshots are consumed by the Chabany water bot.
   // Keep a full week, including tomorrow, without letting the GitHub JSON
   // grow indefinitely and eventually exceed the Worker's fetch size limit.
-  for (const collection of ['scheduleSnapshots', 'confirmedSchedules', 'corrections']) {
+  for (const collection of ['scheduleSnapshots', 'confirmedSchedules', 'dailyRevisions', 'corrections']) {
     for (const key of Object.keys(state[collection] || {})) {
       const oldDate = key.slice(0, 10);
       if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) &&
@@ -190,7 +192,25 @@ async function main() {
   ];
   for (const item of dates) {
     const byGroup = item.byGroup || allGroups(source, item.date);
-    const messages = renderDailyMessages(item.date, item.day, byGroup, source);
+    // A plain heading means this is the initial confirmed timetable for
+    // that calendar date. "Оновлений" is reserved for a REAL time change
+    // after the date's first successful Telegram publication.
+    const revision = trackDailyRevision(state, item.date, byGroup);
+    if (revision.changed && !DRY_RUN) {
+      cleanOldState(state, today);
+      await saveState(state);
+    }
+    const messages = renderDailyMessages(item.date, item.day, byGroup, source,
+      {updated: revision.updated});
+    const headingState = revision.updated ? 'updated' : 'initial';
+    const advisory = item.date === today ?
+      emergencyAdvisory(state.emergency?.status) : '';
+    const status = state.emergency?.status;
+    const emergencyContextKey = item.date === today ? JSON.stringify({
+      active:!!status?.active,
+      kind:status?.active ? status.kind : '',
+      districts:status?.active ? status.districts : []
+    }) : null;
     for (const fragment of messages) {
       const key = fragment.key;
       const hash = hashText(fragment.fingerprint);
@@ -202,14 +222,18 @@ async function main() {
       }
       if (state.publications[key]?.hash === hash && !DRY_RUN) {
         const previous = state.publications[key];
-        if ((previous.formatVersion || 1) < 6 && previous.messageId) {
-          // Formatting-only change: update an existing graph in place without notifying again.
-          // No new post, no duplicate Telegram notification.
-          await sendTelegram.edit(previous.messageId, fragment.message);
-          previous.formatVersion = 6;
+        if (previous.messageId && ((previous.formatVersion || 1) < 7 ||
+          previous.headingState !== headingState)) {
+          // Title-only corrections MUST edit the existing post, never create
+          // an extra notification. Preserve the emergency caveat immediately.
+          const correctedText = fragment.message + advisory;
+          await sendTelegram.edit(previous.messageId, correctedText);
+          previous.formatVersion = 7;
+          previous.headingState = headingState;
+          if (item.date === today) previous.emergencyContextKey = emergencyContextKey;
           previous.editedAt = new Date().toISOString();
           await saveState(state);
-          console.log('Edited published message without reposting: ' + key);
+          console.log('Reformatted existing schedule without reposting: ' + key);
         } else {
           console.log('Unchanged: ' + key);
         }
@@ -226,8 +250,12 @@ async function main() {
         console.log('Schedule content already reserved on GitHub; no duplicate: ' + key);
         continue;
       }
-      const messageId = await sendTelegram(fragment.message);
-      state.publications[key] = { hash, messageId, formatVersion: 6, publishedAt: new Date().toISOString() };
+      const messageId = await sendTelegram(fragment.message + advisory);
+      state.publications[key] = {
+        hash, messageId, formatVersion: 7, headingState,
+        ...(item.date === today ? { emergencyContextKey } : {}),
+        publishedAt: new Date().toISOString()
+      };
       cleanOldState(state, today);
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
