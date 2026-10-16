@@ -139,3 +139,33 @@ test('tentative schedules never create a correction or baseline',async()=>{
   assert.equal(result.status,'unconfirmed');
   assert.equal(called,false);
 });
+
+test('recent already-passed reminder is corrected without pretending a future countdown',async()=>{
+  const state={events:{'2026-10-16@11:30#pre30':{messageId:22}},
+    scheduleSnapshots:{[DATE]:example()}};
+  const edited=[];
+  const sender=async()=>33;
+  sender.edit=async(id,text)=>{edited.push({id,text});return true};
+  await publishScheduleCorrection({
+    state,date:DATE,byGroup:asByGroup(newExample()),nowMinute:705,
+    sender,save:async()=>{},claim:async()=>({claimed:true}),logger:silence
+  });
+  assert.equal(edited.length,1);
+  assert.equal(edited[0].id,22);
+  assert.match(edited[0].text,/Уточнення після зміни графіка/);
+  assert.doesNotMatch(edited[0].text,/До планового часу/);
+  assert.match(edited[0].text,/⚫️ Підгрупа 2\.2/);
+});
+
+test('very old reminder is not silently edited after its switching time',async()=>{
+  const state={events:{'2026-10-16@11:30#pre30':{messageId:22}},
+    scheduleSnapshots:{[DATE]:example()}};
+  const edited=[];
+  const sender=async()=>33;
+  sender.edit=async(id,text)=>edited.push({id,text});
+  await publishScheduleCorrection({
+    state,date:DATE,byGroup:asByGroup(newExample()),nowMinute:780,
+    sender,save:async()=>{},claim:async()=>({claimed:true}),logger:silence
+  });
+  assert.equal(edited.length,0);
+});
