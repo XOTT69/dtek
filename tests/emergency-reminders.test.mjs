@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { reconcileEmergencyReminders } from '../src/emergency-reminders.mjs';
-import { GROUPS, windowsFromHours } from '../src/schedule.mjs';
+import { reconcileEmergencyReminders, reconcileEmergencyDaily } from '../src/emergency-reminders.mjs';
+import { GROUPS, windowsFromHours, renderDailyMessages } from '../src/schedule.mjs';
+import { createHash } from 'node:crypto';
 
 function byGroup(offGroups = [], hour = 19) {
   const hours = Object.fromEntries(Array.from({length:24},(_,i)=>[String(i+1),'yes']));
@@ -82,6 +83,58 @@ test('past scheduled switching times are never edited retroactively by emergency
     state,source:{},allGroups:()=>byGroup(['1.2'],19),
     sender:{edit:async()=>{edits++}},save:async()=>{},
     now:new Date('2026-10-16T10:00:00Z'),logger
+  }),0);
+  assert.equal(edits,0);
+});
+
+test('active emergency annotates existing confirmed daily graph without breaking water bot format',async()=>{
+  const now=new Date('2026-10-16T10:00:00Z');
+  const source={},groups=byGroup(['1.2','2.2'],19);
+  const [fragment]=renderDailyMessages('2026-10-16','сьогодні',groups,source);
+  const hash=createHash('sha256').update(fragment.fingerprint).digest('hex');
+  const state={publications:{[fragment.key]:{messageId:16,hash}},emergency:{status}};
+  const edits=[];
+  const sender={edit:async(id,text)=>edits.push({id,text})};
+  const args={state,source,allGroups:()=>groups,sender,save:async()=>{},now,logger};
+  assert.equal(await reconcileEmergencyDaily(args),1);
+  assert.equal(edits.length,1);
+  assert.equal(edits[0].id,16);
+  assert.match(edits[0].text,/💡<b>Підгрупа 1\.2 відключення:<\/b>/);
+  assert.match(edits[0].text,/❌з 18:00 до 19:00 \(1\.0 год\)/);
+  assert.match(edits[0].text,/⚠️ <b>Увага:<\/b>/);
+  assert.match(edits[0].text,/Фастівський район/);
+  assert.equal(await reconcileEmergencyDaily(args),0);
+  assert.equal(edits.length,1);
+});
+
+test('official cancellation removes only the emergency disclaimer from the existing daily message',async()=>{
+  const now=new Date('2026-10-16T10:00:00Z');
+  const groups=byGroup(['2.2'],19);
+  const [frag]=renderDailyMessages('2026-10-16','сьогодні',groups,{});
+  const hash=createHash('sha256').update(frag.fingerprint).digest('hex');
+  const state={publications:{[frag.key]:{
+    messageId:16,hash,emergencyContextKey:'previous-emergency'
+  }},emergency:{status:{active:false,kind:'екстрені',districts:[]}}};
+  const edits=[];
+  await reconcileEmergencyDaily({
+    state,source:{},allGroups:()=>groups,
+    sender:{edit:async(id,text)=>edits.push({id,text})},
+    save:async()=>{},now,logger
+  });
+  assert.equal(edits.length,1);
+  assert.equal(edits[0].id,16);
+  assert.doesNotMatch(edits[0].text,/⚠️ <b>Увага:<\/b>/);
+  assert.match(edits[0].text,/Підгрупа 2\.2 відключення/);
+});
+
+test('daily emergency annotation never replaces a graph with a mismatched content hash',async()=>{
+  const groups=byGroup(['2.2'],19);
+  const [frag]=renderDailyMessages('2026-10-16','сьогодні',groups,{});
+  const state={publications:{[frag.key]:{messageId:16,hash:'stale-digest'}},emergency:{status}};
+  let edits=0;
+  assert.equal(await reconcileEmergencyDaily({
+    state,source:{},allGroups:()=>groups,sender:{edit:async()=>edits++},
+    save:async()=>{},now:new Date('2026-10-16T10:00:00Z'),logger
   }),0);
   assert.equal(edits,0);
 });
