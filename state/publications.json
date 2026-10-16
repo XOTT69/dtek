@@ -34,6 +34,12 @@
       "messageId": 11,
       "formatVersion": 3,
       "publishedAt": "2026-10-16T08:03:42.230Z"
+    },
+    "2026-10-16@11:30#pre30": {
+      "messageId": 14,
+      "leadMinutes": 23,
+      "formatVersion": 4,
+      "publishedAt": "2026-10-16T08:07:34.050Z"
     }
   }
 }
