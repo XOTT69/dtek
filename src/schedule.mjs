@@ -1,6 +1,6 @@
 const TZ = 'Europe/Kyiv';
 const DISPLAY_WEEKDAYS = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота'];
-const GROUPS = ['1.2', '2.2'];
+const GROUPS = Array.from({ length: 6 }, (_, i) => [String(i + 1) + '.1', String(i + 1) + '.2']).flat();
 const OK_STATES = new Set(['yes', 'no', 'first', 'second', 'maybe', 'mfirst', 'msecond']);
 
 export function kyivDate(instant = new Date()) {
@@ -101,8 +101,8 @@ function safe(text) {
   return String(text ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-export function renderTelegram(date, dayLabel, byGroup, document) {
-  const allModes = GROUPS.map(group => byGroup[group]?.mode);
+export function renderTelegram(date, dayLabel, byGroup, document, groups = GROUPS) {
+  const allModes = groups.map(group => byGroup[group]?.mode);
   const preliminary = allModes.every(mode => mode === 'preset');
   const heading = preliminary
     ? '🔶 <b>Можливі відключення на ' + dayLabel + '</b>'
@@ -111,7 +111,7 @@ export function renderTelegram(date, dayLabel, byGroup, document) {
   if (allModes.includes('preset')) {
     lines.push('⚠️ Помаранчеві періоди — лише можливі відключення за тижневим графіком.', '');
   }
-  for (const group of GROUPS) {
+  for (const group of groups) {
     const schedule = byGroup[group];
     lines.push('💡 <b>Підгрупа ' + group + '</b>');
     if (schedule.mode === 'missing') {
@@ -139,11 +139,99 @@ export function renderTelegram(date, dayLabel, byGroup, document) {
   return lines.join('\n').trim();
 }
 
-export function publicationFingerprint(date, byGroup) {
+export function publicationFingerprint(date, byGroup, groups = GROUPS) {
   return JSON.stringify({
     date,
-    groups: GROUPS.map(group => ({ group, schedule: byGroup[group] }))
+    groups: groups.map(group => ({ group, schedule: byGroup[group] }))
   });
 }
 
 export { GROUPS };
+
+/** Each Telegram message stays below 4096 characters, with one to six groups. */
+export function renderDailyMessages(date, dayLabel, byGroup, document) {
+  const chunks = [];
+  let current = [];
+  for (const group of GROUPS) {
+    const candidate = [...current, group];
+    const message = renderTelegram(date, dayLabel, byGroup, document, candidate);
+    if (current.length && (candidate.length > 6 || message.length > 3500)) {
+      chunks.push(current);
+      current = [group];
+    } else {
+      current = candidate;
+    }
+  }
+  if (current.length) chunks.push(current);
+  return chunks.map((groups, index) => {
+    const message = renderTelegram(date, dayLabel, byGroup, document, groups);
+    if (message.length > 3900) throw new Error('Telegram message exceeds safe limit');
+    return {
+      key: date + '/' + dayLabel + '/' + groups[0] + '-' + groups[groups.length - 1],
+      fingerprint: publicationFingerprint(date, byGroup, groups),
+      message: message + '\n📄 Частина ' + (index + 1) + '/' + chunks.length
+    };
+  });
+}
+
+export function kyivMinutes(instant = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: TZ, hourCycle: 'h23', hour: '2-digit', minute: '2-digit'
+  }).formatToParts(instant);
+  const read = key => Number(parts.find(p => p.type === key)?.value);
+  return read('hour') * 60 + read('minute');
+}
+
+function inside(periods, minute) {
+  return (periods || []).some(p => minute >= p.start && minute < p.end);
+}
+
+/** Never infer actual electricity status from a forecast; use confirmed fact only. */
+export function buildTransition(byGroup, minute) {
+  if (minute <= 0 || minute >= 1440 || minute % 30 !== 0) return null;
+  const starting = [];
+  const restored = [];
+  const continuing = [];
+  for (const group of GROUPS) {
+    const schedule = byGroup[group];
+    if (schedule?.mode !== 'fact') continue;
+    const before = inside(schedule.confirmed, minute - 1);
+    const after = inside(schedule.confirmed, minute);
+    if (!before && after) starting.push(group);
+    if (before && !after) restored.push(group);
+    if (before && after) continuing.push(group);
+  }
+  if (!starting.length && !restored.length) return null;
+  return { minute, starting, restored, continuing };
+}
+
+export function renderTransitionTelegram(date, transition, channel = '') {
+  if (!transition) return null;
+  const lines = [
+    '💡 <b>За графіком на ' + time(transition.minute) + '</b>',
+    '📆 ' + safe(formatDate(date)),
+    '📍 Київська область',
+    ''
+  ];
+  if (transition.starting.length) {
+    lines.push('🪫 <b>Початок відключення:</b>');
+    for (const group of transition.starting) lines.push('❌ ' + group + ' підгрупа');
+    lines.push('');
+  }
+  if (transition.restored.length) {
+    lines.push('🔋 <b>Завершення планового відключення:</b>');
+    for (const group of transition.restored) lines.push('✅ ' + group + ' підгрупа');
+    lines.push('');
+  }
+  if (transition.continuing.length) {
+    lines.push('⚠️ <b>За графіком залишаються без світла:</b>');
+    for (const group of transition.continuing) lines.push('▫️ ' + group + ' підгрупа');
+    lines.push('');
+  }
+  lines.push('ℹ️ Це плановий графік, а не підтвердження фактичного стану мережі.');
+  const tag = String(channel).trim().replace(/^@/, '');
+  if (/^[A-Za-z0-9_]{5,32}$/.test(tag)) {
+    lines.push('📣 <a href="https://t.me/' + tag + '">Поширте графік та підпишіться на канал</a>');
+  }
+  return lines.join('\n').trim();
+}
