@@ -28,6 +28,7 @@ jobs:
       TELEGRAM_CHANNEL_USERNAME: ${{ vars.TELEGRAM_CHANNEL_USERNAME }}
       SOURCE_MODE: ${{ vars.SOURCE_MODE }}
       UKRENERGO_NOTICES: ${{ vars.UKRENERGO_NOTICES }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
