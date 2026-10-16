@@ -4,7 +4,7 @@ import { GROUPS } from '../src/schedule.mjs';
 import { confirmedDayForSync, recordConfirmedDay } from '../src/confirmed-feed.mjs';
 
 const make=(mode='fact')=>Object.fromEntries(GROUPS.map((group,i)=>[
-  group,{mode,confirmed: i===0?[{start:60,end:90,minutes:30}]:
+  group,{mode,confirmed: i===1?[{start:60,end:90,minutes:30}]:
     i===3?[{start:540,end:600,minutes:60}]:[]}
 ]));
 
