@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { claimReminder, claimScheduleUpdate, claimCorrection } from '../src/reminder-claim.mjs';
+import { claimReminder, claimScheduleUpdate, claimCorrection, claimUkrenergoNotice } from '../src/reminder-claim.mjs';
 
 const opts = {
   token: 'TEST_ONLY_FAKE_TOKEN',
@@ -100,4 +100,22 @@ test('correction is claimed once for a given confirmed revision and slot', async
   assert.match(first.path,/correction-claims\/2026-10-16\/11-30-/);
   assert.equal((await claimCorrection('2026-10-16',690,'d'.repeat(64),{...opts,fetchFn})).claimed,true);
   assert.equal(seen.size,2);
+});
+
+test('initial Ukrenergo announcement is reserved only once per day', async()=>{
+  const seen=new Set();
+  const fetchFn=async (url,opts)=>{
+    const key=url.split('?')[0];
+    if(opts.method==='PUT'){
+      if(seen.has(key))return {ok:false,status:422};
+      seen.add(key);return {ok:true,status:201};
+    }
+    return {ok:seen.has(key),status:seen.has(key)?200:404};
+  };
+  const a=await claimUkrenergoNotice('2026-10-17',{...opts,fetchFn});
+  const b=await claimUkrenergoNotice('2026-10-17',{...opts,fetchFn});
+  assert.equal(a.claimed,true);
+  assert.equal(b.claimed,false);
+  assert.equal(seen.size,1);
+  await assert.rejects(claimUkrenergoNotice('2026/10/17',{...opts,fetchFn}),/Unsafe/);
 });
