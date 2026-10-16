@@ -218,7 +218,9 @@ async function main() {
       // Upgrade existing two-part posts in place before deciding to send.
       if (!DRY_RUN && key.endsWith('/all')) {
         await consolidateLegacyPost({
-          state, fragment, hash, sender: sendTelegram, save: saveState
+          state, fragment, hash, sender: sendTelegram, save: saveState,
+          revision: revision.revision, headingState, advisory,
+          emergencyContextKey
         });
       }
       const action = decideDailyPublication(state.publications[key],hash,
