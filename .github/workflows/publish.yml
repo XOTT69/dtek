@@ -8,8 +8,8 @@ on:
       - 'tests/**'
       - '.github/workflows/publish.yml'
   schedule:
-    # Native GitHub schedule is best-effort. The Cloudflare botvoda Worker
-    # can additionally dispatch this workflow every 5 minutes when configured.
+    # GitHub-only polling, best effort: delayed or skipped runs are possible.
+    # No timed Telegram outage reminders are emitted by the bot.
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
