@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { claimReminder } from '../src/reminder-claim.mjs';
+import { claimReminder, claimScheduleUpdate } from '../src/reminder-claim.mjs';
 
 const opts = {
   token: 'TEST_ONLY_FAKE_TOKEN',
@@ -50,4 +50,33 @@ test('missing credentials or malformed keys fail closed without API request', as
     ...opts, token: '', fetchFn: fake
   }), /Missing GitHub credentials/);
   await assert.rejects(claimReminder('../danger', { ...opts, fetchFn: fake }), /Unsafe/);
+});
+
+test('same confirmed daily schedule hash is claimed exactly once across independent runs', async () => {
+  const existing = new Set();
+  const fetchFn = async (url, options) => {
+    const resource = url.split('?')[0];
+    if (options.method === 'PUT') {
+      if (existing.has(resource)) return {status: 422, ok: false};
+      existing.add(resource);
+      return {status: 201, ok: true};
+    }
+    return {status: existing.has(resource) ? 200 : 404, ok: existing.has(resource)};
+  };
+  const hash = 'a'.repeat(64);
+  const key = '2026-10-16/сьогодні/all';
+  const first = await claimScheduleUpdate(key, hash, {...opts, fetchFn});
+  const second = await claimScheduleUpdate(key, hash, {...opts, fetchFn});
+  assert.equal(first.claimed, true);
+  assert.equal(second.claimed, false);
+  assert.match(first.path, /state\/schedule-claims\/2026-10-16\/today-all-/);
+  assert.equal(existing.size, 1);
+  const changed = await claimScheduleUpdate(key, 'b'.repeat(64), {...opts, fetchFn});
+  assert.equal(changed.claimed, true);
+  assert.equal(existing.size, 2);
+});
+
+test('schedule claim rejects malicious keys and invalid fingerprints', async () => {
+  await assert.rejects(claimScheduleUpdate('../etc/passwords', 'c'.repeat(64)), /Unsafe/);
+  await assert.rejects(claimScheduleUpdate('2026-10-16/сьогодні/all', 'short'), /Unsafe/);
 });
