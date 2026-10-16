@@ -85,6 +85,41 @@ test('unconfirmed tomorrow never creates a revision baseline or notice',()=>{
   assert.equal(state.dailyRevisions,undefined);
 });
 
+test('legacy publisher migration detects genuine updates from complete old snapshot',()=>{
+  const date='2026-10-17',before=confirmed(540,660),
+    after=confirmed(600,720),state={publications:{}};
+  const baseline=Object.fromEntries(GROUPS.map(g=>[
+    g,before[g].confirmed.map(({start,end})=>[start,end])
+  ]));
+  state.scheduleSnapshots={[date]:baseline};
+  state.publications[date+'/завтра/all']={messageId:31};
+  const result=trackDailyRevision(state,date,after);
+  assert.equal(result.updated,true);
+  assert.equal(result.revision,1);
+  assert.equal(dailyIsUpdated(state,date),true);
+});
+
+test('legacy publisher migration never assumes metadata edits constitute a revision',()=>{
+  const date='2026-10-17',a=confirmed();
+  const state={publications:{[date+'/завтра/all']:{messageId:35}},
+    scheduleSnapshots:{[date]:Object.fromEntries(GROUPS.map(g=>[
+      g,a[g].confirmed.map(({start,end})=>[start,end])
+    ]))}};
+  const result=trackDailyRevision(state,date,a);
+  assert.equal(result.updated,false);
+  assert.equal(result.revision,0);
+});
+
+test('legacy migration without complete baseline does not guess at changes',()=>{
+  const date='2026-10-17',state={
+    publications:{[date+'/сьогодні/all']:{messageId:11}},
+    scheduleSnapshots:{[date]:{'1.2':[[540,660]]}}
+  };
+  const r=trackDailyRevision(state,date,confirmed(600,720));
+  assert.equal(r.updated,false);
+  assert.equal(r.revision,0);
+});
+
 test('restored or all-off schedules count as changes only after initial publication',()=>{
   const state={publications:{}},date='2026-10-17',initial=confirmed();
   trackDailyRevision(state,date,initial);
