@@ -41,5 +41,10 @@
       "formatVersion": 4,
       "publishedAt": "2026-10-16T08:07:34.050Z"
     }
-  }
+  },
+  "cleanedDuplicatePosts": [
+    12,
+    13,
+    15
+  ]
 }
