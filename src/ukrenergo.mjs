@@ -42,8 +42,8 @@ function decodeHtml(html) {
 export function extractOfficialPosts(html, channel = 'Ukrenergo') {
   if (!/^[A-Za-z0-9_]{3,40}$/.test(channel)) throw new Error('Invalid official Telegram channel');
   if (typeof html !== 'string') throw new Error('Official Telegram feed did not return HTML');
-  const marker = new RegExp('data-post=["\\\']' + channel + '\\/(\\d+)["\\\']', 'gi');
-  const markers = [...html.matchAll(marker)];
+  const markers = [...html.matchAll(/data-post=["']([A-Za-z0-9_]+)\/(\d+)["']/gi)]
+    .filter(match => match[1].toLowerCase() === channel.toLowerCase());
   if (!markers.length) throw new Error('Official Telegram posts are missing; layout or access may have changed');
   const posts = [];
   for (let i = 0; i < markers.length; i++) {
@@ -53,7 +53,7 @@ export function extractOfficialPosts(html, channel = 'Ukrenergo') {
     if (!date || !body) continue;
     const stamp = new Date(date[1]);
     if (!Number.isFinite(stamp.getTime())) continue;
-    const id = Number(markers[i][1]);
+    const id = Number(markers[i][2]);
     if (!Number.isSafeInteger(id)) continue;
     const text = decodeHtml(body[1]);
     if (!text) continue;
