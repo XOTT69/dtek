@@ -40,7 +40,7 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
     logger.log('✅ Telegram bot identity verified: @' + username);
   }
 
-  return async function sendTelegram(message) {
+  const sendTelegram = async function sendTelegram(message) {
     await verifyBot();
     let lastError = '';
     for (const chatId of [CHANNEL_ID, CHANNEL_USERNAME]) {
@@ -81,4 +81,34 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
     throw new Error('Telegram cannot publish to ' + CHANNEL_ID + ' / ' + CHANNEL_USERNAME +
       ': ' + lastError + '. Check @' + EXPECTED_BOT + ' is an administrator of the channel with permission to post.');
   };
+
+  // Edit an existing message after copy/layout updates without creating
+  // another Telegram notification. Only messages from our own bot are edited.
+  sendTelegram.edit = async (messageId, text) => {
+    await verifyBot();
+    if (!Number.isSafeInteger(messageId) || messageId < 1) {
+      throw new Error('Invalid Telegram message ID for edit');
+    }
+    let previousError = '';
+    for (const chatId of [CHANNEL_ID, CHANNEL_USERNAME]) {
+      try {
+        const { status, body } = await api('editMessageText', {
+          chat_id: chatId, message_id: messageId, text,
+          parse_mode: 'HTML', disable_web_page_preview: true
+        });
+        if (status === 200 && body?.ok) return true;
+        const error = String(body?.description || 'unknown error');
+        if (/message is not modified/i.test(error)) return true;
+        previousError = 'HTTP ' + status + ': ' + error;
+        if (status === 400 && /chat not found/i.test(error)) continue;
+        throw new Error(previousError);
+      } catch (error) {
+        previousError = String(error?.message || error);
+        if (chatId === CHANNEL_ID) continue;
+      }
+    }
+    throw new Error('Telegram editMessageText failed for #' + messageId + ': ' + previousError);
+  };
+
+  return sendTelegram;
 }
