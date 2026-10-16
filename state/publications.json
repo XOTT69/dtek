@@ -43,6 +43,13 @@
       "leadMinutes": 23,
       "formatVersion": 4,
       "publishedAt": "2026-10-16T08:07:34.050Z"
+    },
+    "2026-10-16@14:30#pre30": {
+      "messageId": 18,
+      "leadMinutes": 15,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-10-16T11:15:35.046Z"
     }
   },
   "cleanedDuplicatePosts": [
