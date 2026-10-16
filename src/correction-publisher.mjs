@@ -31,7 +31,7 @@ export async function publishScheduleCorrection({
   state, date, byGroup, nowMinute, sender, save,
   claim = claimCorrection, claimAdvance = claimReminder,
   dryRun = false, logger = console,
-  updateReminders = true, mergeNearby = true
+  updateReminders = true, mergeNearby = false
 }) {
   const current = snapshotGroups(byGroup);
   if (!current) return {status: 'unconfirmed'};
