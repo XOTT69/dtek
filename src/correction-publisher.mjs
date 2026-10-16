@@ -51,7 +51,10 @@ export async function publishScheduleCorrection({
     const m = /^(\d{4}-\d{2}-\d{2})@(\d{2}):(\d{2})#pre30$/.exec(eventKey);
     if (!m || m[1] !== date || !event?.messageId) continue;
     const minute = Number(m[2]) * 60 + Number(m[3]);
-    if (minute <= nowMinute || minute > nowMinute + 120) continue;
+    // An update may arrive shortly AFTER the scheduled switch. Correct
+    // recently passed announcements as well as upcoming ones so old
+    // "will switch" notices do not remain misleading in the channel.
+    if (minute < nowMinute - 45 || minute > nowMinute + 120) continue;
     const previousTransition = buildTransition(confirmedGroupSet(previous), minute);
     const nextTransition = buildTransition(byGroup, minute);
     const transitionSignature = transition => transition ? JSON.stringify({
@@ -64,8 +67,9 @@ export async function publishScheduleCorrection({
     if (event.correctedHash === fingerprint) continue;
 
     const text = nextTransition ?
+      (minute <= nowMinute ? '⚠️ <b>Уточнення після зміни графіка</b>\n' : '') +
       renderTransitionTelegram(date, nextTransition, '@svitlo_kyivshchyna',
-        minute - nowMinute) :
+        minute > nowMinute ? minute - nowMinute : null) :
       renderCancelledReminder(date, minute);
     if (dryRun) {
       logger.log('Correction preview for old reminder ' + eventKey + ':\n' + text);
