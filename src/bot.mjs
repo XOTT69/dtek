@@ -222,11 +222,11 @@ async function main() {
       }
       if (state.publications[key]?.hash === hash && !DRY_RUN) {
         const previous = state.publications[key];
-        if ((previous.formatVersion || 1) < 4 && previous.messageId) {
+        if ((previous.formatVersion || 1) < 6 && previous.messageId) {
           // Formatting-only change: update an existing graph in place without notifying again.
           // No new post, no duplicate Telegram notification.
           await sendTelegram.edit(previous.messageId, fragment.message);
-          previous.formatVersion = 4;
+          previous.formatVersion = 6;
           previous.editedAt = new Date().toISOString();
           await saveState(state);
           console.log('Edited published message without reposting: ' + key);
@@ -247,7 +247,7 @@ async function main() {
         continue;
       }
       const messageId = await sendTelegram(fragment.message);
-      state.publications[key] = { hash, messageId, formatVersion: 5, publishedAt: new Date().toISOString() };
+      state.publications[key] = { hash, messageId, formatVersion: 6, publishedAt: new Date().toISOString() };
       cleanOldState(state, today);
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
