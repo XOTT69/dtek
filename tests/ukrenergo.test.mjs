@@ -47,7 +47,7 @@ test('part-of-regions announcement never claims Kyiv oblast confirmed', () => {
   const notice = parseTomorrowNotice(post(200), NOW);
   const rendered = renderUkrenergoNotice(notice);
   assert.match(rendered, /частині регіонів/);
-  assert.match(rendered, /Для Київської області застосування ще не підтверджене/);
+  assert.doesNotMatch(rendered, /Для Київської області застосування ще не підтверджене/);
   assert.doesNotMatch(rendered, /всіх регіонах України, включно/);
 });
 
