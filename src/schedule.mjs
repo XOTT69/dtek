@@ -206,12 +206,53 @@ export function buildTransition(byGroup, minute) {
   return { minute, starting, restored, continuing };
 }
 
-export function renderTransitionTelegram(date, transition, channel = '') {
+/**
+ * Find the next half-hour boundary, up to 30 minutes in advance.
+ * Never send reminders after a boundary has already passed.
+ * GitHub Actions may run late: permit a reminder with 10–30 minutes'
+ * notice and show the actual remaining lead time.
+ */
+export function upcomingTransition(date, nowMinute, byGroup, tomorrowGroups = null) {
+  if (!Number.isFinite(nowMinute) || nowMinute < 0 || nowMinute >= 1440) return null;
+  const nextMinute = Math.floor(nowMinute / 30) * 30 + 30;
+  const leadMinutes = nextMinute - nowMinute;
+  if (leadMinutes < 10 || leadMinutes > 30) return null;
+  let eventDate = date;
+  let eventMinute = nextMinute;
+  let transition;
+  if (nextMinute === 1440) {
+    eventDate = addDays(date, 1);
+    eventMinute = 0;
+    if (!tomorrowGroups || !GROUPS.every(group =>
+      byGroup[group]?.mode === 'fact' && tomorrowGroups[group]?.mode === 'fact'
+    )) return null;
+    const starting = [], restored = [], continuing = [];
+    for (const group of GROUPS) {
+      const wasOff = inside(byGroup[group].confirmed, 1439);
+      const willBeOff = inside(tomorrowGroups[group].confirmed, 0);
+      if (!wasOff && willBeOff) starting.push(group);
+      if (wasOff && !willBeOff) restored.push(group);
+      if (wasOff && willBeOff) continuing.push(group);
+    }
+    if (!starting.length && !restored.length) return null;
+    transition = {minute: 0, starting, restored, continuing};
+  } else {
+    if (!GROUPS.every(group => byGroup[group]?.mode === 'fact')) return null;
+    transition = buildTransition(byGroup, eventMinute);
+    if (!transition) return null;
+  }
+  return {date: eventDate, minute: eventMinute, leadMinutes, transition};
+}
+
+export function renderTransitionTelegram(date, transition, channel = '', leadMinutes = null) {
   if (!transition) return null;
   const lines = [
-    '⏰ <b>' + time(transition.minute) + '</b>',
-    ''
+    '⏰ <b>' + time(transition.minute) + '</b>'
   ];
+  if (Number.isInteger(leadMinutes) && leadMinutes > 0) {
+    lines.push('🔔 До планового часу: ' + leadMinutes + ' хв');
+  }
+  lines.push('');
   if (transition.starting.length) {
     lines.push('🔴 <b>Початок відключення:</b>');
     for (const group of transition.starting) lines.push('🪫 Підгрупа ' + group);
