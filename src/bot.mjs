@@ -1,17 +1,16 @@
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, upcomingTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
+import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, GROUPS } from './schedule.mjs';
 import { fetchSourceJson, validateSource } from './source.mjs';
 import { fetchDtekDirect } from './dtek-direct.mjs';
 import { selectBestDtekSource, factUpdateKey } from './source-selection.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
-import { claimReminder, claimScheduleUpdate } from './reminder-claim.mjs';
+import { claimScheduleUpdate } from './reminder-claim.mjs';
 import { publishScheduleCorrection } from './correction-publisher.mjs';
 import { publishEmergencyUpdate } from './emergency-publisher.mjs';
-import { emergencyAdvisory } from './emergency.mjs';
-import { reconcileEmergencyReminders, reconcileEmergencyDaily } from './emergency-reminders.mjs';
+import { reconcileEmergencyDaily } from './emergency-reminders.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -155,77 +154,10 @@ async function main() {
   const source = await loadDocument();
   const todayGroups = allGroups(source, today);
 
-  // Refresh only very recent announcements after a display format upgrade.
-  // Edit them in place; never publish a second copy of an already sent alert.
-  if (!DRY_RUN) {
-    for (const [eventKey, event] of Object.entries(state.events)) {
-      if ((event.formatVersion || 1) >= 3 || !event.messageId) continue;
-      const match = /^(\d{4}-\d{2}-\d{2})@(\d{2}):(\d{2})$/.exec(eventKey);
-      if (!match || match[1] !== today) continue;
-      const eventMinute = Number(match[2]) * 60 + Number(match[3]);
-      if (minutesNow < eventMinute || minutesNow - eventMinute > 120) continue;
-      const transition = buildTransition(todayGroups, eventMinute);
-      if (!transition) continue;
-      const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
-      try {
-        await sendTelegram.edit(event.messageId, renderTransitionTelegram(today, transition, channel));
-        event.formatVersion = 3;
-        event.editedAt = new Date().toISOString();
-        await saveState(state);
-        console.log('Updated recent alert styling without reposting: ' + eventKey);
-      } catch (error) {
-        console.warn('Unable to update old Telegram alert ' + eventKey + ': ' + String(error?.message || error));
-      }
-    }
-  }
-
-  // Alerts go out BEFORE the scheduled switching time, never at/after it.
-  // The lead time depends on GitHub Actions launch delay (10-30 min).
+  // Daily confirmed schedule publications are change-driven.
+  // No HH:00 / HH:30 switching alerts or advance reminders are sent.
   const tomorrow = addDays(today, 1);
   const tomorrowGroups = allGroups(source, tomorrow);
-  const upcoming = upcomingTransition(today, minutesNow, todayGroups, tomorrowGroups);
-  if (upcoming) {
-    const eventHour = String(Math.floor(upcoming.minute / 60)).padStart(2, '0');
-    const eventMinute = String(upcoming.minute % 60).padStart(2, '0');
-    const key = upcoming.date + '@' + eventHour + ':' + eventMinute + '#pre30';
-    const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
-    const emergencyContext = state.emergency?.status;
-    const message = renderTransitionTelegram(
-      upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
-    ) + emergencyAdvisory(emergencyContext);
-    if (DRY_RUN) {
-      console.log('\n=== UPCOMING EVENT ' + key + ' ===\n' + message + '\n');
-    } else if (!state.events[key]) {
-      // State from this checkout can be stale if an earlier run sent
-      // a message but failed to push its state. The remote claim is atomic.
-      const claim = await claimReminder(key);
-      if (!claim.claimed) {
-        console.log('Advance reminder already reserved on GitHub, skipping duplicate: ' + key);
-        state.events[key] = {
-          claimed: true, formatVersion: 5,
-          recoveredAt: new Date().toISOString()
-        };
-        await saveState(state);
-      } else {
-        const messageId = await sendTelegram(message);
-        state.events[key] = {
-          messageId, leadMinutes: upcoming.leadMinutes, formatVersion: 5,
-          emergencyContextKey: JSON.stringify({
-            active:!!emergencyContext?.active,
-            kind:emergencyContext?.active ? emergencyContext.kind : '',
-            districts:emergencyContext?.active ? emergencyContext.districts : []
-          }),
-          publishedAt: new Date().toISOString()
-        };
-        await saveState(state);
-        console.log('Published advance reminder ' + key + ', ' +
-          upcoming.leadMinutes + ' minutes early, message ID ' + messageId);
-        sent++;
-      }
-    } else {
-      console.log('Advance reminder already sent: ' + key);
-    }
-  }
 
   const dates = [
     { date: today, day: 'сьогодні', byGroup: todayGroups },
@@ -277,27 +209,16 @@ async function main() {
       sent++;
     }
 
-    // A changed daily schedule can invalidate an earlier off/on alert.
-    // Notify about the corrected switching time as a separate post and
-    // edit already sent future reminders to avoid misleading subscribers.
+    // A confirmed DTEK timetable revision may warrant a separate
+    // change-triggered "Коригування" post. It is NOT a timed reminder.
     if (messages.length) {
       const correctionResult = await publishScheduleCorrection({
         state, date: item.date, byGroup, nowMinute: item.date === today ? minutesNow : 0,
-        sender: sendTelegram, save: saveState, dryRun: DRY_RUN
+        sender: sendTelegram, save: saveState, dryRun: DRY_RUN,
+        updateReminders: false
       });
       if (correctionResult.status === 'published') sent++;
     }
-  }
-  // A new emergency bulletin also needs to correct any *already sent*
-  // reminders for upcoming switch times, without an extra Telegram post.
-  try {
-    await reconcileEmergencyReminders({
-      state, source, allGroups, sender:sendTelegram, save:saveState,
-      now, dryRun:DRY_RUN
-    });
-  } catch (error) {
-    console.warn('Could not refresh earlier reminders with emergency warning: ' +
-      String(error?.message || error));
   }
   try {
     await reconcileEmergencyDaily({
