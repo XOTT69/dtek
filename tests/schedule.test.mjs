@@ -239,7 +239,7 @@ test('late cron execution never sends at or after schedule boundary', () => {
   assert.equal(onTime.minute, 570);
   assert.match(renderTransitionTelegram(onTime.date, onTime.transition, '', onTime.leadMinutes), /23 хв/);
   assert.equal(upcomingTransition('2026-10-16', 562, groups), null); // 8 minutes too late
-  assert.equal(upcomingTransition('2026-10-16', 570, groups), null); // no post at switch
+  assert.equal(upcomingTransition('2026-10-16', 570, groups)?.minute, 600); // at 09:30 only warn for 10:00
 });
 
 test("pre-warning for midnight compares today's last minute with tomorrow", () => {
