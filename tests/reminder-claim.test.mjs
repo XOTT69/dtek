@@ -76,6 +76,33 @@ test('same confirmed daily schedule hash is claimed exactly once across independ
   assert.equal(existing.size, 2);
 });
 
+test('legitimate graph reversal A→B→A can be announced again, never twice',async()=>{
+  const seen=new Set(),fetchFn=async(url,request)=>{
+    const key=url.split('?')[0];
+    if(request.method==='PUT') {
+      if(seen.has(key))return {status:422,ok:false};
+      seen.add(key);
+      return {status:201,ok:true};
+    }
+    return {status:seen.has(key)?200:404,ok:seen.has(key)};
+  };
+  const key='2026-10-17/сьогодні/all',a='a'.repeat(64),b='b'.repeat(64);
+  const first=await claimScheduleUpdate(key,a,{...opts,fetchFn,revision:0});
+  const change=await claimScheduleUpdate(key,b,{...opts,fetchFn,revision:1});
+  const restore=await claimScheduleUpdate(key,a,{...opts,fetchFn,revision:2});
+  const repeated=await claimScheduleUpdate(key,a,{...opts,fetchFn,revision:2});
+  assert.equal(first.claimed,true);
+  assert.equal(change.claimed,true);
+  assert.equal(restore.claimed,true);
+  assert.equal(repeated.claimed,false);
+  assert.equal(seen.size,3);
+  assert.equal(first.path.includes('-r0'),false);
+  assert.match(change.path,/-r1\.json$/);
+  assert.match(restore.path,/-r2\.json$/);
+  await assert.rejects(claimScheduleUpdate(key,a,{...opts,fetchFn,revision:-1}),
+    /Unsafe DTEK schedule revision/);
+});
+
 test('schedule claim rejects malicious keys and invalid fingerprints', async () => {
   await assert.rejects(claimScheduleUpdate('../etc/passwords', 'c'.repeat(64)), /Unsafe/);
   await assert.rejects(claimScheduleUpdate('2026-10-16/сьогодні/all', 'short'), /Unsafe/);
