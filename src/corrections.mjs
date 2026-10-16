@@ -107,6 +107,10 @@ export function renderCombinedCorrection(correction, leadMinutes) {
     '📆 ' + formatDate(correction.date),
     ''
   ];
+  if (!correction.starting.length && !correction.restored.length) {
+    lines.push('🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.');
+    lines.push('');
+  }
   if (correction.starting.length) {
     lines.push('🔴 <b>За графіком вимикаємо світло:</b>');
     for (const group of correction.starting) lines.push('🪫 Підгрупа ' + group);
