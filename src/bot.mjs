@@ -158,18 +158,6 @@ async function main() {
   const tomorrow = addDays(today, 1);
   const tomorrowGroups = allGroups(source, tomorrow);
 
-  // cron-job.org reliably dispatches the same workflow every five minutes.
-  // Send one advance alert 10–30 minutes before each *confirmed* switching
-  // boundary; remote claim prevents repeats across overlapping runs.
-  if (process.env.ADVANCE_REMINDERS !== 'off') {
-    const advance = await publishAdvanceReminder({
-      state, date:today, minutesNow, todayGroups, tomorrowGroups,
-      sender:sendTelegram, save:saveState, dryRun:DRY_RUN,
-      channel:process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna'
-    });
-    if (advance.status === 'published') sent++;
-  }
-
   const dates = [
     { date: today, day: 'сьогодні', byGroup: todayGroups },
     { date: tomorrow, day: 'завтра', byGroup: tomorrowGroups }
@@ -226,11 +214,27 @@ async function main() {
       const correctionResult = await publishScheduleCorrection({
         state, date: item.date, byGroup, nowMinute: item.date === today ? minutesNow : 0,
         sender: sendTelegram, save: saveState, dryRun: DRY_RUN,
-        updateReminders: process.env.ADVANCE_REMINDERS !== 'off'
+        updateReminders: process.env.ADVANCE_REMINDERS !== 'off',
+        mergeNearby: item.date === today && process.env.ADVANCE_REMINDERS !== 'off'
       });
       if (correctionResult.status === 'published') sent++;
     }
   }
+  // Publish corrections BEFORE advance reminders. A nearby correction
+  // either edits the existing reminder or occupies its remote reservation,
+  // so one half-hour boundary cannot produce two full duplicate posts.
+  // cron-job.org reliably dispatches the same workflow every five minutes.
+  // Send one advance alert 10–30 minutes before each *confirmed* switching
+  // boundary; remote claim prevents repeats across overlapping runs.
+  if (process.env.ADVANCE_REMINDERS !== 'off') {
+    const advance = await publishAdvanceReminder({
+      state, date:today, minutesNow, todayGroups, tomorrowGroups,
+      sender:sendTelegram, save:saveState, dryRun:DRY_RUN,
+      channel:process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna'
+    });
+    if (advance.status === 'published') sent++;
+  }
+
   // If DTEK officially introduces or cancels emergencies after an alert,
   // update the old message in place rather than publish misleading repeats.
   if (process.env.ADVANCE_REMINDERS !== 'off') {
