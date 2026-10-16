@@ -138,3 +138,45 @@ test('daily emergency annotation never replaces a graph with a mismatched conten
   }),0);
   assert.equal(edits,0);
 });
+
+test('emergency correction preserves an initially published plain schedule heading',async()=>{
+  const now=new Date('2026-10-16T10:00:00Z'),date='2026-10-16';
+  const groups=byGroup(['1.2'],19);
+  const [post]=renderDailyMessages(date,'сьогодні',groups,{});
+  const hash=createHash('sha256').update(post.fingerprint).digest('hex');
+  const state={dailyRevisions:{[date]:{hash:'confirmed-facts',revision:0}},
+    publications:{[post.key]:{messageId:31,hash}},emergency:{status}};
+  const edits=[];
+  const count=await reconcileEmergencyDaily({
+    state,source:{},allGroups:()=>groups,sender:{
+      edit:async(id,text)=>edits.push(text)
+    },save:async()=>{},now,logger
+  });
+  assert.equal(count,1);
+  assert.match(edits[0],/^💡<b>Графік відключення світла на сьогодні\./);
+  assert.doesNotMatch(edits[0],/Оновлений графік/);
+  assert.match(edits[0],/Графіки не діють/);
+});
+
+test('emergency cancellation preserves updated heading of an actually revised timetable',async()=>{
+  const now=new Date('2026-10-16T10:00:00Z'),date='2026-10-16';
+  const groups=byGroup(['1.2','2.2'],19);
+  const [post]=renderDailyMessages(date,'сьогодні',groups,{},{
+    updated:true
+  });
+  const hash=createHash('sha256').update(post.fingerprint).digest('hex');
+  const state={dailyRevisions:{[date]:{hash:'confirmed-facts-revised',revision:2}},
+    publications:{[post.key]:{
+      messageId:37,hash,emergencyContextKey:'previous-emergency'
+    }},emergency:{status:{active:false,kind:'екстрені',districts:[]}}};
+  const edits=[];
+  const count=await reconcileEmergencyDaily({
+    state,source:{},allGroups:()=>groups,sender:{
+      edit:async(id,text)=>edits.push(text)
+    },save:async()=>{},now,logger
+  });
+  assert.equal(count,1);
+  assert.match(edits[0],/^💡<b>Оновлений графік відключення світла на сьогодні\./);
+  assert.doesNotMatch(edits[0],/Графіки не діють/);
+  assert.match(edits[0],/❌з 18:00 до 19:00/);
+});
