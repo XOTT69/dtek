@@ -76,3 +76,31 @@ test('editing existing posts removes footers without creating new posts', async 
   assert.equal(edits[0].message_id, 5);
   assert.equal(posts.length, 0);
 });
+
+test('ambiguous Telegram network timeout does not repeat sendMessage', async () => {
+  let sends = 0;
+  const sender = createTelegramSender({
+    token:'dummy',logger:{log(){},warn(){}},
+    fetchFn:async url => {
+      if (url.endsWith('/getMe')) return ok({ok:true,result:{username:'svitlo_kyivshchyna_bot'}});
+      sends++;
+      throw new Error('socket timeout after request was submitted');
+    }
+  });
+  await assert.rejects(sender('test'),/delivery unknown; refusing a duplicate retry/);
+  assert.equal(sends,1);
+});
+
+test('Telegram 5xx also fails closed rather than retrying ambiguous deliveries', async () => {
+  let sends=0;
+  const sender=createTelegramSender({
+    token:'dummy',logger:{log(){},warn(){}},
+    fetchFn:async url=>{
+      if(url.endsWith('/getMe')) return ok({ok:true,result:{username:'svitlo_kyivshchyna_bot'}});
+      sends++;
+      return ok({ok:false,description:'Internal server error'},500);
+    }
+  });
+  await assert.rejects(sender('test'),/Refusing a duplicate retry/);
+  assert.equal(sends,1);
+});
