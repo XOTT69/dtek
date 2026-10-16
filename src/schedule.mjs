@@ -85,9 +85,9 @@ function time(minutes) {
   return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
 }
 
+// Water bot expects one decimal with a dot: 2.0 / 2.5 / 6.5.
 function duration(minutes) {
-  const hours = minutes / 60;
-  return Number.isInteger(hours) ? String(hours) : hours.toFixed(1).replace('.', ',');
+  return (minutes / 60).toFixed(1);
 }
 
 function total(periods) {
@@ -95,7 +95,7 @@ function total(periods) {
 }
 
 function renderPeriods(periods, marker) {
-  return periods.map(p => marker + ' <b>' + time(p.start) + '–' + time(p.end) + '</b> · ' + duration(p.minutes) + ' год').join('\n');
+  return periods.map(p => marker + 'з ' + time(p.start) + ' до ' + time(p.end) + ' (' + duration(p.minutes) + ' год)').join('\n');
 }
 
 function safe(text) {
@@ -108,19 +108,19 @@ export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROU
     throw new Error('Only confirmed daily DTEK fact schedules can be published');
   }
   const lines = [
-    '💡 <b>Оновлений графік відключення світла на ' + dayLabel + '</b>',
-    '📆 <b>' + safe(formatDate(date)) + '</b>',
-    '📍 Київська область',
+    '💡<b>Оновлений графік відключення світла на ' + dayLabel + '.</b>',
+    '📆<b>' + safe(formatDate(date)) + '</b>',
     ''
   ];
   for (const group of groups) {
     const schedule = byGroup[group];
-    lines.push('🔹 <b>Підгрупа ' + group + '</b>');
+    // The colon is intentional: botvoda's section parser relies on it.
+    lines.push('💡<b>Підгрупа ' + group + ' відключення:</b>');
     if (schedule.confirmed.length) {
-      lines.push(renderPeriods(schedule.confirmed, '🪫'));
-      lines.push('⏳ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
+      lines.push(renderPeriods(schedule.confirmed, '❌'));
+      lines.push('⚫ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
     } else {
-      lines.push('✅ Підтверджених відключень за графіком немає.');
+      lines.push('✅ Відключень за графіком немає.');
     }
     lines.push('');
   }
