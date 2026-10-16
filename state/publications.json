@@ -13,20 +13,22 @@
     "2026-10-16/сьогодні/all": {
       "hash": "62ba07edb279aa86a2fff138dfb9ca8c635d350b6e8d42d4efb78b18d581aeaf",
       "messageId": 5,
-      "formatVersion": 3,
-      "editedAt": "2026-10-16T06:36:38.458Z"
+      "formatVersion": 4,
+      "editedAt": "2026-10-16T07:00:42.904Z"
     }
   },
   "events": {
     "2026-10-16@09:30": {
       "messageId": 9,
       "publishedAt": "2026-10-16T06:36:38.224Z",
-      "formatVersion": 2,
-      "editedAt": "2026-10-16T06:52:44.536Z"
+      "formatVersion": 3,
+      "editedAt": "2026-10-16T07:00:42.588Z"
     },
     "2026-10-16@10:00": {
       "messageId": 10,
-      "publishedAt": "2026-10-16T07:00:18.930Z"
+      "publishedAt": "2026-10-16T07:00:18.930Z",
+      "formatVersion": 3,
+      "editedAt": "2026-10-16T07:00:42.736Z"
     }
   }
 }
