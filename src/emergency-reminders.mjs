@@ -4,6 +4,7 @@ import { emergencyAdvisory } from './emergency.mjs';
 import { renderCancelledReminder } from './corrections.mjs';
 import { renderDailyMessages } from './schedule.mjs';
 import { createHash } from 'node:crypto';
+import { dailyIsUpdated } from './daily-revision.mjs';
 
 /**
  * Emergency alerts invalidate confident reliance on planned switching times.
@@ -75,7 +76,8 @@ export async function reconcileEmergencyDaily({
 } = {}) {
   const day = kyivDate(now);
   const groups = allGroups(source,day);
-  const fragments = renderDailyMessages(day,'сьогодні',groups,source);
+  const fragments = renderDailyMessages(day,'сьогодні',groups,source,
+    {updated: dailyIsUpdated(state, day)});
   const notice = emergencyAdvisory(state.emergency?.status);
   const context = JSON.stringify({
     active:!!state.emergency?.status?.active,
