@@ -41,9 +41,14 @@ export async function reconcileEmergencyReminders({
       buildMidnightTransition(allGroups(source,addDays(date,-1)),groups) :
       buildTransition(groups,minute);
     if (minute === 0 && !transition) continue;
-    const text = transition ?
-      renderTransitionTelegram(date,transition,'@svitlo_kyivshchyna',remaining) + advisory :
-      renderCancelledReminder(date,minute) + advisory;
+    // Keep the merged correction header/group list when an emergency
+    // starts or ends. Replacing it with a plain reminder would undo the
+    // one-post design and could hide the important schedule change.
+    const text = event.combinedBaseText ?
+      event.combinedBaseText + advisory :
+      (transition ?
+        renderTransitionTelegram(date,transition,'@svitlo_kyivshchyna',remaining) :
+        renderCancelledReminder(date,minute)) + advisory;
     if (dryRun) {
       logger.log('Emergency reminder preview: '+key+' '+text);
       continue;
