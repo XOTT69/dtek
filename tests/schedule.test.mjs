@@ -82,6 +82,10 @@ test('confirmed post contains only schedules without source/footer/disclaimer', 
   for (const fragment of messages) {
     assert.match(fragment.message, /Оновлений графік/);
     assert.match(fragment.message, /Разом без світла/);
+    assert.match(fragment.message, /🔹 <b>Підгрупа 1\.1<\/b>/);
+    assert.match(fragment.message, /🪫 <b>09:00–10:00<\/b> · 1 год/);
+    assert.match(fragment.message, /⏳ <b>Разом без світла: 1 год<\/b>/);
+    assert.doesNotMatch(fragment.message, /1\.0 год|❌ з /);
     assert.doesNotMatch(fragment.message, /Можливі відключення|Разом можливих|🟠/);
     assert.doesNotMatch(fragment.message, /Дані ДТЕК:|Графік не гарантує|Джерело даних:|outage-data-ua/);
   }
@@ -144,7 +148,8 @@ test('half-hour transition alerts distinguish start, end and still off', () => {
   assert.match(message, /Завершення планового відключення/);
   assert.match(message, /⚫️ Підгрупа 2\.2/);
   assert.match(message, /залишаються без світла/);
-  assert.match(message, /Зміни за графіком о 09:30/);
+  assert.match(message, /^⏰ <b>09:30<\/b>/);
+  assert.doesNotMatch(message, /Зміни за графіком|📅|📍/);
   assert.doesNotMatch(message, /Це плановий графік|фактичного стану мережі|ℹ️/);
   assert.match(message, /https:\/\/t.me\/svitlo_kyivshchyna/);
   assert.equal(buildTransition(byGroup, 0), null);
@@ -178,9 +183,22 @@ test('only extreme confirmed schedules require the Telegram fallback split', () 
 test('transition layout contains only relevant blocks and never adds removed disclaimer', () => {
   const entry = { minute: 600, starting: ['1.2'], restored: [], continuing: [] };
   const rendered = renderTransitionTelegram('2026-10-16', entry);
+  assert.match(rendered, /^⏰ <b>10:00<\/b>/);
   assert.match(rendered, /🔴 <b>Початок відключення:/);
   assert.match(rendered, /🪫 Підгрупа 1\.2/);
   assert.doesNotMatch(rendered, /Завершення планового відключення|залишаються без світла/);
   assert.doesNotMatch(rendered, /Це плановий графік|фактичного стану мережі|ℹ️/);
   assert.doesNotMatch(rendered, /Поширте графік/);
+});
+
+test('compact duration uses a decimal comma only for half-hours', () => {
+  const data = slots('yes');
+  data['10'] = 'no'; data['11'] = 'first';
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, { mode: 'fact', ...windowsFromHours(data) }
+  ]));
+  const post = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {})[0].message;
+  assert.match(post, /🪫 <b>09:00–10:30<\/b> · 1,5 год/);
+  assert.match(post, /⏳ <b>Разом без світла: 1,5 год<\/b>/);
+  assert.doesNotMatch(post, /1\.5 год/);
 });
