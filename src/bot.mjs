@@ -1,31 +1,22 @@
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
+import { fetchSourceJson, validateSource } from './source.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
 const DRY_RUN = process.env.DRY_RUN === '1';
 
 async function loadDocument() {
-  const response = await fetch(DATA_URL, {
-    headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' },
-    signal: AbortSignal.timeout(20000)
-  });
-  if (!response.ok) throw new Error('Source HTTP ' + response.status);
-  const data = await response.json();
-  if (data?.regionId !== 'kyiv-region' || !data.fact?.data || !data.preset?.data) {
-    throw new Error('Unexpected source JSON schema');
+  const raw = await fetchSourceJson(DATA_URL);
+  const snapshot = validateSource(raw);
+  if (snapshot.isFallback) {
+    console.warn('⚠️ Upstream DTEK parser is temporarily failing. Using previously parsed snapshot (' +
+      snapshot.ageMinutes + ' minutes old; ' + snapshot.snapshotUpdatedAt + ').');
+  } else {
+    console.log('✅ Outage source OK; snapshot age: ' + snapshot.ageMinutes + ' minutes.');
   }
-  if (data.lastUpdateStatus?.ok === false) {
-    throw new Error('Upstream parser reports failure; publishing is paused');
-  }
-  const time = Date.parse(data.lastUpdated);
-  if (!Number.isFinite(time)) throw new Error('Missing source lastUpdated');
-  const age = Date.now() - time;
-  if (age > 48 * 3600 * 1000 || age < -10 * 60 * 1000) {
-    throw new Error('Source data is too old or has an invalid future timestamp');
-  }
-  return data;
+  return snapshot.data;
 }
 
 async function loadState() {
