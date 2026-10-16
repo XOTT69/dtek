@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { addDays, kyivDate, resolveSchedule, renderTelegram, publicationFingerprint, GROUPS } from './schedule.mjs';
+import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -83,36 +83,90 @@ async function sendTelegram(message) {
   throw new Error('Unable to publish Telegram message');
 }
 
+function hashText(text) {
+  return createHash('sha256').update(text).digest('hex');
+}
+
+function allGroups(document, date) {
+  return Object.fromEntries(GROUPS.map(group => [group, resolveSchedule(document, date, group)]));
+}
+
+function cleanOldState(state, today) {
+  for (const key of Object.keys(state.publications)) {
+    const oldDate = key.slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) && oldDate < addDays(today, -7)) {
+      delete state.publications[key];
+    }
+  }
+  for (const key of Object.keys(state.events)) {
+    const oldDate = key.slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) && oldDate < addDays(today, -2)) {
+      delete state.events[key];
+    }
+  }
+}
+
 async function main() {
   const source = await loadDocument();
   const state = await loadState();
-  const today = kyivDate();
-  const dates = [{ date: today, day: 'сьогодні' }, { date: addDays(today, 1), day: 'завтра' }];
+  state.events ??= {};
+  const now = new Date();
+  const today = kyivDate(now);
+  const minutesNow = kyivMinutes(now);
+  const todayGroups = allGroups(source, today);
   let sent = 0;
-  for (const item of dates) {
-    const byGroup = Object.fromEntries(GROUPS.map(group => [group, resolveSchedule(source, item.date, group)]));
-    const hash = createHash('sha256').update(publicationFingerprint(item.date, byGroup)).digest('hex');
-    const key = item.date + '/' + item.day;
-    if (state.publications[key]?.hash === hash && !DRY_RUN) {
-      console.log('Unchanged: ' + key);
-      continue;
-    }
-    const message = renderTelegram(item.date, item.day, byGroup, source);
-    if (DRY_RUN) {
-      console.log('\n=== ' + key + ' ===\n' + message + '\n');
-      continue;
-    }
-    const messageId = await sendTelegram(message);
-    state.publications[key] = { hash, messageId, publishedAt: new Date().toISOString() };
-    for (const oldKey of Object.keys(state.publications)) {
-      const oldDate = oldKey.slice(0, 10);
-      if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) && oldDate < addDays(today, -7)) {
-        delete state.publications[oldKey];
+
+  // An hourly/half-hour alert is sent only near the transition time, never
+  // based on tentative preset. No retrospective backlog when starting a bot.
+  const slotStart = Math.floor(minutesNow / 30) * 30;
+  const delayMinutes = minutesNow - slotStart;
+  if (slotStart > 0 && delayMinutes <= 17) {
+    const transition = buildTransition(todayGroups, slotStart);
+    if (transition) {
+      const key = today + '@' + String(Math.floor(slotStart / 60)).padStart(2, '0') +
+        ':' + String(slotStart % 60).padStart(2, '0');
+      const channel = process.env.TELEGRAM_CHANNEL_USERNAME ||
+        (process.env.TELEGRAM_CHAT_ID?.startsWith('@') ? process.env.TELEGRAM_CHAT_ID : '');
+      const message = renderTransitionTelegram(today, transition, channel);
+      if (DRY_RUN) {
+        console.log('\n=== EVENT ' + key + ' ===\n' + message + '\n');
+      } else if (!state.events[key]) {
+        const messageId = await sendTelegram(message);
+        state.events[key] = { messageId, publishedAt: new Date().toISOString() };
+        await saveState(state);
+        console.log('Published transition ' + key + ', message ID ' + messageId);
+        sent++;
+      } else {
+        console.log('Transition already sent: ' + key);
       }
     }
-    await saveState(state);
-    console.log('Published ' + key + ', Telegram message ID ' + messageId);
-    sent++;
+  }
+
+  const dates = [
+    { date: today, day: 'сьогодні', byGroup: todayGroups },
+    { date: addDays(today, 1), day: 'завтра', byGroup: null }
+  ];
+  for (const item of dates) {
+    const byGroup = item.byGroup || allGroups(source, item.date);
+    const messages = renderDailyMessages(item.date, item.day, byGroup, source);
+    for (const fragment of messages) {
+      const key = fragment.key;
+      const hash = hashText(fragment.fingerprint);
+      if (state.publications[key]?.hash === hash && !DRY_RUN) {
+        console.log('Unchanged: ' + key);
+        continue;
+      }
+      if (DRY_RUN) {
+        console.log('\n=== ' + key + ' ===\n' + fragment.message + '\n');
+        continue;
+      }
+      const messageId = await sendTelegram(fragment.message);
+      state.publications[key] = { hash, messageId, publishedAt: new Date().toISOString() };
+      cleanOldState(state, today);
+      await saveState(state);
+      console.log('Published ' + key + ', Telegram message ID ' + messageId);
+      sent++;
+    }
   }
   console.log('Finished. New messages: ' + sent);
 }
