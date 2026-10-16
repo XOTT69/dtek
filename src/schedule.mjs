@@ -208,27 +208,26 @@ export function buildTransition(byGroup, minute) {
 export function renderTransitionTelegram(date, transition, channel = '') {
   if (!transition) return null;
   const lines = [
-    '💡 <b>За графіком на ' + time(transition.minute) + '</b>',
-    '📆 ' + safe(formatDate(date)),
+    '⚡️ <b>Зміни за графіком о ' + time(transition.minute) + '</b>',
+    '📅 ' + safe(formatDate(date)),
     '📍 Київська область',
     ''
   ];
   if (transition.starting.length) {
-    lines.push('🪫 <b>Початок відключення:</b>');
-    for (const group of transition.starting) lines.push('❌ ' + group + ' підгрупа');
+    lines.push('🔴 <b>Початок відключення:</b>');
+    for (const group of transition.starting) lines.push('🪫 Підгрупа ' + group);
     lines.push('');
   }
   if (transition.restored.length) {
-    lines.push('🔋 <b>Завершення планового відключення:</b>');
-    for (const group of transition.restored) lines.push('✅ ' + group + ' підгрупа');
+    lines.push('🟢 <b>Завершення планового відключення:</b>');
+    for (const group of transition.restored) lines.push('🔋 Підгрупа ' + group);
     lines.push('');
   }
   if (transition.continuing.length) {
-    lines.push('⚠️ <b>За графіком залишаються без світла:</b>');
-    for (const group of transition.continuing) lines.push('▫️ ' + group + ' підгрупа');
+    lines.push('🌑 <b>За графіком залишаються без світла:</b>');
+    for (const group of transition.continuing) lines.push('⚫️ Підгрупа ' + group);
     lines.push('');
   }
-  lines.push('ℹ️ Це плановий графік, а не підтвердження фактичного стану мережі.');
   const tag = String(channel).trim().replace(/^@/, '');
   if (/^[A-Za-z0-9_]{5,32}$/.test(tag)) {
     lines.push('📣 <a href="https://t.me/' + tag + '">Поширте графік та підпишіться на канал</a>');
