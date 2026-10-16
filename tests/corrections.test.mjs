@@ -169,3 +169,26 @@ test('very old reminder is not silently edited after its switching time',async()
   });
   assert.equal(edited.length,0);
 });
+
+test('change-triggered correction warns when emergency outages suspend ordinary schedule',async()=>{
+  const state={
+    events:{},
+    scheduleSnapshots:{[DATE]:example()},
+    emergency:{status:{
+      active:true,kind:'екстрені',scope:'districts',
+      districts:['Бучанський','Обухівський','Фастівський']
+    }}
+  };
+  const messages=[];
+  const result=await publishScheduleCorrection({
+    state,date:DATE,byGroup:asByGroup(newExample()),nowMinute:680,
+    sender:async text=>{messages.push(text);return 50},
+    save:async()=>{},claim:async()=>({claimed:true}),
+    updateReminders:false,logger:silence
+  });
+  assert.equal(result.status,'published');
+  assert.equal(messages.length,1);
+  assert.match(messages[0],/⚠️ <b>Увага:<\/b>/);
+  assert.match(messages[0],/Графіки не діють/);
+  assert.match(messages[0],/11:30/);
+});
