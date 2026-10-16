@@ -22,8 +22,19 @@ export async function publishEmergencyUpdate({
 
   const signature = emergencySignature(event);
   const previousId = state.emergency?.lastId || 0;
-  if (previousId > event.id ||
-      (previousId === event.id && state.emergency?.lastSignature === signature)) {
+  if (previousId > event.id) return {status:'unchanged'};
+  if (previousId === event.id && state.emergency?.lastSignature === signature) {
+    // Formatting upgrades edit the already-published post, never send
+    // another emergency bulletin or a duplicate notification.
+    if (!dryRun && state.emergency?.messageId &&
+        (state.emergency.formatVersion || 1) < 2) {
+      await sender.edit(state.emergency.messageId, renderEmergencyNotice(event));
+      state.emergency.formatVersion = 2;
+      await save(state);
+      logger.log('DTEK emergency: restyled existing Telegram message #' +
+        state.emergency.messageId);
+      return {status:'restyled',event};
+    }
     return {status:'unchanged'};
   }
   const next = applyEmergencyStatus(state.emergency?.status, event);
@@ -40,11 +51,13 @@ export async function publishEmergencyUpdate({
     return {status:'preview', event, next};
   }
 
-  const remember = async () => {
+  const remember = async (messageId = state.emergency?.messageId) => {
     state.emergency = {
       status: next, lastId: event.id, lastSignature: signature,
       lastSourceUrl:event.sourceUrl, lastObservedAt:now.toISOString(),
-      lastSourcePublishedAt:event.publishedAt
+      lastSourcePublishedAt:event.publishedAt,
+      ...(messageId ? {messageId} : {}),
+      formatVersion:2
     };
     await save(state);
   };
@@ -65,7 +78,7 @@ export async function publishEmergencyUpdate({
   const text = renderEmergencyNotice(event,
     event.status === 'cancelled' && next.active ? next.districts : []);
   const messageId = await sender(text);
-  await remember();
+  await remember(messageId);
   logger.log('DTEK emergency: published ' + event.status + ' bulletin #' +
     event.id + ', Telegram #' + messageId);
   return {status:'published',event,next,messageId};
