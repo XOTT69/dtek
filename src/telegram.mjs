@@ -110,5 +110,27 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
     throw new Error('Telegram editMessageText failed for #' + messageId + ': ' + previousError);
   };
 
+  sendTelegram.delete = async (messageId) => {
+    await verifyBot();
+    if (!Number.isSafeInteger(messageId) || messageId < 1) {
+      throw new Error('Invalid Telegram message ID for deletion');
+    }
+    let previousError = '';
+    for (const chatId of [CHANNEL_ID, CHANNEL_USERNAME]) {
+      try {
+        const { status, body } = await api('deleteMessage', {
+          chat_id: chatId, message_id: messageId
+        });
+        if (status === 200 && body?.ok) return true;
+        const problem = String(body?.description || 'unknown');
+        if (/message to delete not found/i.test(problem)) return true;
+        previousError = 'HTTP ' + status + ': ' + problem;
+      } catch (error) {
+        previousError = String(error?.message || error);
+      }
+    }
+    throw new Error('Unable to delete old Telegram message #' + messageId + ': ' + previousError);
+  };
+
   return sendTelegram;
 }
