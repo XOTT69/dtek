@@ -112,7 +112,7 @@ export function renderTelegram(date, dayLabel, byGroup, document, groups = GROUP
     lines.push('⚠️ Помаранчеві періоди — лише можливі відключення за тижневим графіком.', '');
   }
   for (const group of groups) {
-    const schedule = byGroup[group];
+    const schedule = byGroup[group] ?? {mode: 'missing', confirmed: [], possible: []};
     lines.push('💡 <b>Підгрупа ' + group + '</b>');
     if (schedule.mode === 'missing') {
       lines.push('ℹ️ Інформації на цю дату поки немає.');
