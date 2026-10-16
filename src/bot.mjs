@@ -7,6 +7,7 @@ import { selectBestDtekSource, factUpdateKey } from './source-selection.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
+import { claimReminder } from './reminder-claim.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -176,15 +177,27 @@ async function main() {
     if (DRY_RUN) {
       console.log('\n=== UPCOMING EVENT ' + key + ' ===\n' + message + '\n');
     } else if (!state.events[key]) {
-      const messageId = await sendTelegram(message);
-      state.events[key] = {
-        messageId, leadMinutes: upcoming.leadMinutes, formatVersion: 4,
-        publishedAt: new Date().toISOString()
-      };
-      await saveState(state);
-      console.log('Published advance reminder ' + key + ', ' +
-        upcoming.leadMinutes + ' minutes early, message ID ' + messageId);
-      sent++;
+      // State from this checkout can be stale if an earlier run sent
+      // a message but failed to push its state. The remote claim is atomic.
+      const claim = await claimReminder(key);
+      if (!claim.claimed) {
+        console.log('Advance reminder already reserved on GitHub, skipping duplicate: ' + key);
+        state.events[key] = {
+          claimed: true, formatVersion: 5,
+          recoveredAt: new Date().toISOString()
+        };
+        await saveState(state);
+      } else {
+        const messageId = await sendTelegram(message);
+        state.events[key] = {
+          messageId, leadMinutes: upcoming.leadMinutes, formatVersion: 5,
+          publishedAt: new Date().toISOString()
+        };
+        await saveState(state);
+        console.log('Published advance reminder ' + key + ', ' +
+          upcoming.leadMinutes + ' minutes early, message ID ' + messageId);
+        sent++;
+      }
     } else {
       console.log('Advance reminder already sent: ' + key);
     }
