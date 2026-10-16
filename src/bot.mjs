@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
 import { fetchSourceJson, validateSource } from './source.mjs';
+import { fetchDtekDirect } from './dtek-direct.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 
@@ -10,13 +11,29 @@ const STATE_FILE = 'state/publications.json';
 const DRY_RUN = process.env.DRY_RUN === '1';
 
 async function loadDocument() {
+  // Default: official DTEK -> established outage-data-ua backup.
+  // To disable direct attempts, set SOURCE_MODE=fallback in Actions Variables.
+  const mode = process.env.SOURCE_MODE || 'auto';
+  if (mode !== 'fallback') {
+    try {
+      const direct = await fetchDtekDirect();
+      console.log('✅ DIRECT DTEK (' + direct.via + '): confirmed dates ' +
+        direct.validDates.join(', ') + '. Using official site as primary source.');
+      return direct.data;
+    } catch (error) {
+      if (mode === 'direct') throw error;
+      console.warn('⚠️ DIRECT DTEK could not be read. Using backup outage-data-ua: ' +
+        String(error?.message || error));
+    }
+  }
+
   const raw = await fetchSourceJson(DATA_URL);
   const snapshot = validateSource(raw);
   if (snapshot.isFallback) {
-    console.warn('⚠️ Upstream DTEK parser is temporarily failing. Using previously parsed snapshot (' +
-      snapshot.ageMinutes + ' minutes old; ' + snapshot.snapshotUpdatedAt + ').');
+    console.warn('⚠️ Backup parser error. Using its last recent parsed snapshot (' +
+      snapshot.ageMinutes + ' minutes old).');
   } else {
-    console.log('✅ Outage source OK; snapshot age: ' + snapshot.ageMinutes + ' minutes.');
+    console.log('✅ BACKUP outage-data-ua: snapshot age ' + snapshot.ageMinutes + ' minutes.');
   }
   return snapshot.data;
 }
