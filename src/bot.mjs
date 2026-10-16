@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { addDays, kyivDate, kyivMinutes, resolveSchedule, renderDailyMessages, buildTransition, renderTransitionTelegram, GROUPS } from './schedule.mjs';
 import { fetchSourceJson, validateSource } from './source.mjs';
+import { createTelegramSender } from './telegram.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -37,42 +38,10 @@ async function saveState(state) {
   await fs.rename(target, STATE_FILE);
 }
 
-function sleep(milliseconds) {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
-
-async function sendTelegram(message) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) throw new Error('Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in Actions secrets');
-  for (let attempt = 1; attempt <= 4; attempt++) {
-    let response;
-    let body;
-    try {
-      response = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: chatId, text: message, parse_mode: 'HTML',
-          disable_web_page_preview: true, disable_notification: false
-        }),
-        signal: AbortSignal.timeout(20000)
-      });
-      body = await response.json();
-    } catch (error) {
-      if (attempt === 4) throw new Error('Telegram connection failed: ' + error.message);
-      await sleep(1000 * attempt);
-      continue;
-    }
-    if (response.ok && body.ok && body.result?.message_id) return body.result.message_id;
-    const retryable = response.status === 429 || response.status >= 500;
-    if (!retryable || attempt === 4) {
-      throw new Error('Telegram API HTTP ' + response.status + ': ' + String(body?.description || 'unknown error'));
-    }
-    await sleep(Math.min(30000, Math.max(1000 * attempt, Number(body?.parameters?.retry_after || 0) * 1000)));
-  }
-  throw new Error('Unable to publish Telegram message');
-}
+const sendTelegram = createTelegramSender({
+  token: process.env.TELEGRAM_BOT_TOKEN,
+  configuredChatId: process.env.TELEGRAM_CHAT_ID
+});
 
 function hashText(text) {
   return createHash('sha256').update(text).digest('hex');
