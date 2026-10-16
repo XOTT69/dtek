@@ -54,11 +54,11 @@ async function reserveOnce(path, label, data, {
   fetchFn = fetch,
   now = new Date()
 } = {}) {
-  if (!token || !repo || !/^[\\w.-]+\\/[\\w.-]+$/.test(repo)) {
+  if (!token || !repo || !/^[\w.-]+\/[\w.-]+$/.test(repo)) {
     throw new Error('Missing GitHub credentials for atomic publication deduplication; skipping send');
   }
   const url = 'https://api.github.com/repos/' + repo + '/contents/' + path;
-  const content = Buffer.from(JSON.stringify({ ...data, reservedAt: now.toISOString() }, null, 2) + '\\n').toString('base64');
+  const content = Buffer.from(JSON.stringify({ ...data, reservedAt: now.toISOString() }, null, 2) + '\n').toString('base64');
   const response = await fetchFn(url, {
     method: 'PUT',
     headers: {
