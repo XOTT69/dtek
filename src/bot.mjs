@@ -5,7 +5,7 @@ import { fetchSourceJson, validateSource } from './source.mjs';
 import { fetchDtekDirect } from './dtek-direct.mjs';
 import { selectBestDtekSource, factUpdateKey } from './source-selection.mjs';
 import { createTelegramSender } from './telegram.mjs';
-import { consolidateLegacyPost } from './consolidate.mjs';
+import { consolidateLegacyPost, expandFullPostToSplit } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
 import { claimScheduleUpdate } from './reminder-claim.mjs';
 import { publishScheduleCorrection } from './correction-publisher.mjs';
@@ -212,6 +212,16 @@ async function main() {
       kind:status?.active ? status.kind : '',
       districts:status?.active ? status.districts : []
     }) : null;
+    // A genuine revision may grow beyond the Telegram limit. Reuse the
+    // prior one-part post as part 1; publish only the additional parts.
+    // Never leave the old complete post visible beside a revised split.
+    if (!DRY_RUN) {
+      await expandFullPostToSplit({
+        state, fragments:messages, sender:sendTelegram, save:saveState,
+        revision:revision.revision, headingState, advisory,
+        emergencyContextKey
+      });
+    }
     for (const fragment of messages) {
       const key = fragment.key;
       const hash = hashText(fragment.fingerprint);
