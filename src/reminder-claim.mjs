@@ -20,10 +20,19 @@ export async function claimScheduleUpdate(key, hash, options = {}) {
   if (!m || !/^[a-f0-9]{64}$/.test(hash)) {
     throw new Error('Unsafe schedule publication claim');
   }
+  const revision = options.revision ?? 0;
+  if (!Number.isSafeInteger(revision) || revision < 0 || revision > 10000) {
+    throw new Error('Unsafe DTEK schedule revision');
+  }
   const day = m[2] === 'сьогодні' ? 'today' : 'tomorrow';
+  // Keep the legacy revision-zero path stable. For real later timetable
+  // revisions include the monotonic number so A->B->A can be announced
+  // again without bypassing atomic duplicate suppression.
+  const suffix = revision ? '-r' + revision : '';
   const path = 'state/schedule-claims/' + m[1] + '/' + day + '-' +
-    m[3] + '-' + hash + '.json';
-  return reserveOnce(path, 'DTEK schedule ' + key, { key, hash }, options);
+    m[3] + '-' + hash + suffix + '.json';
+  return reserveOnce(path, 'DTEK schedule ' + key,
+    { key, hash, revision }, options);
 }
 
 // Every published timetable revision has its own immutable correction claim.
