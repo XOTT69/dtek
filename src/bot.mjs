@@ -8,6 +8,7 @@ import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
 import { publishTomorrowNotice } from './notice-publisher.mjs';
 import { claimReminder, claimScheduleUpdate } from './reminder-claim.mjs';
+import { publishScheduleCorrection } from './correction-publisher.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -252,6 +253,17 @@ async function main() {
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
       sent++;
+    }
+
+    // A changed daily schedule can invalidate an earlier off/on alert.
+    // Notify about the corrected switching time as a separate post and
+    // edit already sent future reminders to avoid misleading subscribers.
+    if (messages.length) {
+      const correctionResult = await publishScheduleCorrection({
+        state, date: item.date, byGroup, nowMinute: item.date === today ? minutesNow : 0,
+        sender: sendTelegram, save: saveState, dryRun: DRY_RUN
+      });
+      if (correctionResult.status === 'published') sent++;
     }
   }
   console.log('Finished. New messages: ' + sent);
