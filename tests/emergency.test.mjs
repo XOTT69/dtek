@@ -29,7 +29,7 @@ test('real DTEK announcement of Bucha/Obukhiv/Fastiv districts is correctly inte
   assert.equal(p.kind,'екстрені');
   assert.equal(p.scope,'districts');
   assert.deepEqual(p.districts,['Бучанський','Обухівський','Фастівський']);
-  assert.match(renderEmergencyNotice(p),/Графіки там тимчасово не діють|Погодинні графіки там тимчасово не діють/);
+  assert.match(renderEmergencyNotice(p),/Погодинні графіки тимчасово не діють/);
   assert.match(renderEmergencyNotice(p),/t\.me\/dtek_ua\/4637/);
 });
 
@@ -79,8 +79,8 @@ test('unscheduled accident is distinguished from emergency and never claims ETA'
   assert.equal(p.kind,'аварійні');
   const text=renderEmergencyNotice(p);
   assert.match(text,/Аварійні відключення/);
-  assert.match(text,/не відповідати плановому графіку/);
-  assert.match(text,/Точний час відновлення не підтверджено/);
+  assert.match(text,/Можливі відключення поза графіком/);
+  assert.match(text,/Точний час відновлення невідомий/);
   assert.doesNotMatch(text,/тимчасово не діють/);
 });
 
@@ -164,6 +164,44 @@ test('scheduled reminders get a clear district-scoped warning, not fabricated ti
   const status=applyEmergencyStatus(null,parseDtekEmergency(post(4637),NOW));
   const note=emergencyAdvisory(status);
   assert.match(note,/Обухівський район/);
-  assert.match(note,/Планові години можуть не виконуватися/);
+  assert.match(note,/Графіки не діють/);
   assert.doesNotMatch(note,/\d\d:\d\d/);
+});
+
+test('human emergency layout exactly matches subscriber-friendly channel format', () => {
+  const event = parseDtekEmergency(post(4637), NOW);
+  const rendered = renderEmergencyNotice(event);
+  assert.equal(rendered, [
+    '🚨 <b>Екстрені відключення на Київщині</b>',
+    '📍 Бучанський район, Обухівський район, Фастівський район',
+    '⚠️ Погодинні графіки тимчасово не діють.',
+    '🕒 Точний час відновлення невідомий.',
+    '🔗 <a href="https://t.me/dtek_ua/4637">Офіційне повідомлення ДТЕК</a>'
+  ].join('\n'));
+  assert.doesNotMatch(rendered, /utm_source|ДТЕК повідомляє|не підтверджено/);
+});
+
+test('human cancellation only promises return to plan on explicit official confirmation', () => {
+  const confirmed = parseDtekEmergency(post(4640, END), NOW);
+  assert.equal(renderEmergencyNotice(confirmed), [
+    '✅ <b>Скасування екстрених відключень на Київщині</b>',
+    '📍 Окремі території Київської області',
+    '💡Повертаємося до погодинних графіків.',
+    '🔗 <a href="https://t.me/dtek_ua/4640">Офіційне повідомлення ДТЕК</a>'
+  ].join('\n'));
+  const noPromise = parseDtekEmergency(post(4641,
+    'Київщина, Бучанський район: екстрені відключення скасовано'), NOW);
+  const body = renderEmergencyNotice(noPromise);
+  assert.match(body, /💡Обмеження скасовано\. Перевіряйте актуальний графік ДТЕК/);
+  assert.doesNotMatch(body, /Повертаємося до погодинних/);
+});
+
+test('plain, specific one-line emergency advisory is readable and scoped', () => {
+  const status = applyEmergencyStatus(null, parseDtekEmergency(post(4637),NOW));
+  assert.equal(emergencyAdvisory(status),
+    '\n\n⚠️ <b>Увага:</b> на Київщині діють екстрені відключення ' +
+    '(Бучанський район, Обухівський район, Фастівський район). Графіки не діють.');
+  const accident = applyEmergencyStatus(null, parseDtekEmergency(post(4915,
+    'Київщина, Бучанський район: фіксуються аварійні відключення'),NOW));
+  assert.match(emergencyAdvisory(accident), /Можливі відключення поза графіком\./);
 });
