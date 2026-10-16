@@ -13,8 +13,9 @@
     "2026-10-16/сьогодні/all": {
       "hash": "5cfd5add1fb296e40306461c374c0b68a4d33dcd3905d86e3b098a14295c67be",
       "messageId": 16,
-      "formatVersion": 4,
-      "publishedAt": "2026-10-16T08:37:48.987Z"
+      "formatVersion": 6,
+      "publishedAt": "2026-10-16T08:37:48.987Z",
+      "editedAt": "2026-10-16T08:46:53.557Z"
     }
   },
   "events": {
