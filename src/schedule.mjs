@@ -103,12 +103,12 @@ function safe(text) {
 }
 
 /** Only confirmed DTEK daily schedules are eligible for public posts. */
-export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROUPS) {
+export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROUPS, {updated = false} = {}) {
   if (groups.some(group => byGroup[group]?.mode !== 'fact')) {
     throw new Error('Only confirmed daily DTEK fact schedules can be published');
   }
   const lines = [
-    '💡<b>Оновлений графік відключення світла на ' + dayLabel + '.</b>',
+    '💡<b>' + (updated ? 'Оновлений графік' : 'Графік') + ' відключення світла на ' + dayLabel + '.</b>',
     '📆<b>' + safe(formatDate(date)) + '</b>',
     ''
   ];
@@ -137,10 +137,10 @@ export function publicationFingerprint(date, byGroup, groups = GROUPS) {
 export { GROUPS };
 
 /** Usually all 12 confirmed groups fit in one Telegram message. */
-export function renderDailyMessages(date, dayLabel, byGroup, document) {
+export function renderDailyMessages(date, dayLabel, byGroup, document, {updated = false} = {}) {
   if (!GROUPS.every(group => byGroup[group]?.mode === 'fact')) return [];
   const maxLength = 3500;
-  const full = renderTelegram(date, dayLabel, byGroup, document, GROUPS);
+  const full = renderTelegram(date, dayLabel, byGroup, document, GROUPS, {updated});
   if (full.length <= maxLength) {
     return [{
       key: date + '/' + dayLabel + '/all',
@@ -153,7 +153,7 @@ export function renderDailyMessages(date, dayLabel, byGroup, document) {
   let current = [];
   for (const group of GROUPS) {
     const next = [...current, group];
-    const text = renderTelegram(date, dayLabel, byGroup, document, next);
+    const text = renderTelegram(date, dayLabel, byGroup, document, next, {updated});
     if (text.length > maxLength && current.length) {
       chunks.push(current);
       current = [group];
@@ -164,7 +164,7 @@ export function renderDailyMessages(date, dayLabel, byGroup, document) {
   }
   if (current.length) chunks.push(current);
   return chunks.map((groups, index) => {
-    const text = renderTelegram(date, dayLabel, byGroup, document, groups);
+    const text = renderTelegram(date, dayLabel, byGroup, document, groups, {updated});
     const message = text + '\n📄 Частина ' + (index + 1) + '/' + chunks.length;
     if (message.length > 3900) throw new Error('Telegram message is too long');
     return {
