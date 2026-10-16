@@ -2,6 +2,8 @@ import { addDays, buildTransition, buildMidnightTransition, kyivDate, kyivMinute
   renderTransitionTelegram } from './schedule.mjs';
 import { emergencyAdvisory } from './emergency.mjs';
 import { renderCancelledReminder } from './corrections.mjs';
+import { renderDailyMessages } from './schedule.mjs';
+import { createHash } from 'node:crypto';
 
 /**
  * Emergency alerts invalidate confident reliance on planned switching times.
@@ -52,6 +54,54 @@ export async function reconcileEmergencyReminders({
     await save(state);
     edited++;
     logger.log('Adjusted scheduled reminder for emergency conditions: '+key);
+  }
+  return edited;
+}
+
+/**
+ * Annotate the *existing* confirmed daily schedule during a local emergency.
+ * Do not alter the water bot's established "💡Підгрупа ... / ❌з ..." syntax.
+ * If the emergency is officially cancelled, edit the old schedule to remove
+ * the warning. Do not re-publish the whole schedule or reset its content hash.
+ */
+export async function reconcileEmergencyDaily({
+  state, source, allGroups, sender, save,
+  now = new Date(), dryRun = false, logger = console
+} = {}) {
+  const day = kyivDate(now);
+  const groups = allGroups(source,day);
+  const fragments = renderDailyMessages(day,'сьогодні',groups,source);
+  const notice = emergencyAdvisory(state.emergency?.status);
+  const context = JSON.stringify({
+    active:!!state.emergency?.status?.active,
+    kind:state.emergency?.status?.active ? state.emergency.status.kind : '',
+    districts:state.emergency?.status?.active ? state.emergency.status.districts : []
+  });
+  let edited = 0;
+  for (const fragment of fragments) {
+    const existing = state.publications?.[fragment.key];
+    if (!existing?.messageId) continue;
+    // A source change may have been reserved but not yet posted. Never
+    // overwrite a newer/older schedule with unrelated text.
+    const hash = createHash('sha256').update(fragment.fingerprint).digest('hex');
+    if (existing.hash !== hash) continue;
+    if (!notice && !existing.emergencyContextKey) continue;
+    if (existing.emergencyContextKey === context) continue;
+    const text = fragment.message + notice;
+    if (text.length > 4096) {
+      logger.warn('DTEK emergency schedule annotation too long: ' + fragment.key);
+      continue;
+    }
+    if (dryRun) {
+      logger.log('Daily emergency annotation preview: ' + fragment.key);
+      continue;
+    }
+    await sender.edit(existing.messageId,text);
+    existing.emergencyContextKey = context;
+    existing.emergencyEditedAt = now.toISOString();
+    await save(state);
+    edited++;
+    logger.log('Updated existing DTEK daily schedule for emergency state: ' + fragment.key);
   }
   return edited;
 }
