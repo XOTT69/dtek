@@ -128,9 +128,15 @@ export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROU
 }
 
 export function publicationFingerprint(date, byGroup, groups = GROUPS) {
+  // Only the facts actually shown in the Telegram schedule belong in
+  // publication deduplication. Source timestamps, tentative intervals
+  // and transient metadata must not trigger phantom updated graphs.
   return JSON.stringify({
     date,
-    groups: groups.map(group => ({ group, schedule: byGroup[group] }))
+    groups: groups.map(group => ({
+      group, intervals: (byGroup[group]?.confirmed ?? []).map(
+        ({start,end}) => [start,end])
+    }))
   });
 }
 
