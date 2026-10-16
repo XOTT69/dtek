@@ -15,6 +15,7 @@ import { publishAdvanceReminder } from './reminder-publisher.mjs';
 import { recordConfirmedDay } from './confirmed-feed.mjs';
 import { trackDailyRevision } from './daily-revision.mjs';
 import { emergencyAdvisory } from './emergency.mjs';
+import { decideDailyPublication } from './daily-publication.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -220,22 +221,23 @@ async function main() {
           state, fragment, hash, sender: sendTelegram, save: saveState
         });
       }
-      if (state.publications[key]?.hash === hash && !DRY_RUN) {
-        const previous = state.publications[key];
-        if (previous.messageId && ((previous.formatVersion || 1) < 7 ||
-          previous.headingState !== headingState)) {
-          // Title-only corrections MUST edit the existing post, never create
-          // an extra notification. Preserve the emergency caveat immediately.
-          const correctedText = fragment.message + advisory;
-          await sendTelegram.edit(previous.messageId, correctedText);
-          previous.formatVersion = 7;
-          previous.headingState = headingState;
-          if (item.date === today) previous.emergencyContextKey = emergencyContextKey;
-          previous.editedAt = new Date().toISOString();
+      const action = decideDailyPublication(state.publications[key],hash,
+        revision.revision,headingState);
+      if (action !== 'publish' && !DRY_RUN) {
+        if (action === 'edit') {
+          const previous = state.publications[key];
+          // Same confirmed fact revision: reformat this existing Telegram
+          // message, never create a second schedule notification.
+          await sendTelegram.edit(previous.messageId,fragment.message + advisory);
+          Object.assign(previous,{
+            hash, revision:revision.revision, formatVersion:7, headingState,
+            editedAt:new Date().toISOString(),
+            ...(item.date===today ? { emergencyContextKey } : {})
+          });
           await saveState(state);
-          console.log('Reformatted existing schedule without reposting: ' + key);
+          console.log('Edited existing schedule without reposting: '+key);
         } else {
-          console.log('Unchanged: ' + key);
+          console.log('Unchanged: '+key);
         }
         continue;
       }
@@ -245,14 +247,15 @@ async function main() {
       }
       // Atomic, remote create-only claim. Checkout state may be stale after
       // a successful Telegram send followed by a failed GitHub state push.
-      const claim = await claimScheduleUpdate(key, hash);
+      const claim = await claimScheduleUpdate(key, hash,
+        {revision:revision.revision});
       if (!claim.claimed) {
         console.log('Schedule content already reserved on GitHub; no duplicate: ' + key);
         continue;
       }
       const messageId = await sendTelegram(fragment.message + advisory);
       state.publications[key] = {
-        hash, messageId, formatVersion: 7, headingState,
+        hash, messageId, revision:revision.revision, formatVersion:7, headingState,
         ...(item.date === today ? { emergencyContextKey } : {}),
         publishedAt: new Date().toISOString()
       };
