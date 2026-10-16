@@ -26,6 +26,21 @@ export async function claimScheduleUpdate(key, hash, options = {}) {
   return reserveOnce(path, 'DTEK schedule ' + key, { key, hash }, options);
 }
 
+// Every published timetable revision has its own immutable correction claim.
+// A failed Git state push cannot cause that correction to be sent again.
+export async function claimCorrection(date, minute, hash, options = {}) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+      !Number.isInteger(minute) || minute <= 0 || minute >= 1440 ||
+      minute % 30 !== 0 || !/^[a-f0-9]{64}$/.test(hash)) {
+    throw new Error('Unsafe correction reservation');
+  }
+  const time = String(Math.floor(minute / 60)).padStart(2, '0') + '-' +
+    String(minute % 60).padStart(2, '0');
+  const path = 'state/correction-claims/' + date + '/' + time + '-' + hash + '.json';
+  return reserveOnce(path, 'DTEK correction ' + date + '@' + time,
+    {date, minute, hash}, options);
+}
+
 export async function claimReminder(
   key,
   {
