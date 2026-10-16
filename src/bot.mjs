@@ -12,6 +12,7 @@ import { publishScheduleCorrection } from './correction-publisher.mjs';
 import { publishEmergencyUpdate } from './emergency-publisher.mjs';
 import { reconcileEmergencyReminders, reconcileEmergencyDaily } from './emergency-reminders.mjs';
 import { publishAdvanceReminder } from './reminder-publisher.mjs';
+import { recordConfirmedDay } from './confirmed-feed.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -114,7 +115,7 @@ function cleanOldState(state, today) {
   // The public confirmed snapshots are consumed by the Chabany water bot.
   // Keep a full week, including tomorrow, without letting the GitHub JSON
   // grow indefinitely and eventually exceed the Worker's fetch size limit.
-  for (const collection of ['scheduleSnapshots', 'corrections']) {
+  for (const collection of ['scheduleSnapshots', 'confirmedSchedules', 'corrections']) {
     for (const key of Object.keys(state[collection] || {})) {
       const oldDate = key.slice(0, 10);
       if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) &&
@@ -169,6 +170,19 @@ async function main() {
 
   const tomorrow = addDays(today, 1);
   const tomorrowGroups = allGroups(source, tomorrow);
+
+  // Save a verified public data feed BEFORE trying Telegram publications.
+  // Even if Telegram's API is temporarily unreachable, the water bot can
+  // still import the latest confirmed DTEK 1.2/2.2 schedule after state sync.
+  const confirmedFeedChanged = [
+    recordConfirmedDay(state,today,todayGroups),
+    recordConfirmedDay(state,tomorrow,tomorrowGroups)
+  ].some(Boolean);
+  if(confirmedFeedChanged && !DRY_RUN) {
+    cleanOldState(state,today);
+    await saveState(state);
+    console.log('Saved confirmed schedule data feed for Chabany water bot.');
+  }
 
   const dates = [
     { date: today, day: 'сьогодні', byGroup: todayGroups },
