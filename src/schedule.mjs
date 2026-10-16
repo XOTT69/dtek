@@ -86,7 +86,8 @@ function time(minutes) {
 }
 
 function duration(minutes) {
-  return (minutes / 60).toFixed(1);
+  const hours = minutes / 60;
+  return Number.isInteger(hours) ? String(hours) : hours.toFixed(1).replace('.', ',');
 }
 
 function total(periods) {
@@ -94,7 +95,7 @@ function total(periods) {
 }
 
 function renderPeriods(periods, marker) {
-  return periods.map(p => marker + ' з ' + time(p.start) + ' до ' + time(p.end) + ' (' + duration(p.minutes) + ' год)').join('\n');
+  return periods.map(p => marker + ' <b>' + time(p.start) + '–' + time(p.end) + '</b> · ' + duration(p.minutes) + ' год').join('\n');
 }
 
 function safe(text) {
@@ -114,10 +115,10 @@ export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROU
   ];
   for (const group of groups) {
     const schedule = byGroup[group];
-    lines.push('💡 <b>Підгрупа ' + group + '</b>');
+    lines.push('🔹 <b>Підгрупа ' + group + '</b>');
     if (schedule.confirmed.length) {
-      lines.push(renderPeriods(schedule.confirmed, '❌'));
-      lines.push('⚫ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
+      lines.push(renderPeriods(schedule.confirmed, '🪫'));
+      lines.push('⏳ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
     } else {
       lines.push('✅ Підтверджених відключень за графіком немає.');
     }
@@ -208,9 +209,7 @@ export function buildTransition(byGroup, minute) {
 export function renderTransitionTelegram(date, transition, channel = '') {
   if (!transition) return null;
   const lines = [
-    '⚡️ <b>Зміни за графіком о ' + time(transition.minute) + '</b>',
-    '📅 ' + safe(formatDate(date)),
-    '📍 Київська область',
+    '⏰ <b>' + time(transition.minute) + '</b>',
     ''
   ];
   if (transition.starting.length) {
