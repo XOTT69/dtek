@@ -89,8 +89,12 @@ test('revised older correction can be updated in place when within 30 minutes',a
   const state=make();
   state.corrections['2026-10-16@690']={messageId:65,updatedAt:'2026-10-16T09:30:00Z'};
   const {sender,sends,edits}=senderPair();
-  const result=await publishScheduleCorrection(settings(state,sender));
+  const keys=[];
+  const result=await publishScheduleCorrection(settings(state,sender,{
+    claimAdvance:async key=>{keys.push(key);return {claimed:true}}
+  }));
   assert.equal(result.status,'merged');
+  assert.deepEqual(keys,['2026-10-16@11:30#pre30']);
   assert.equal(edits.length,1);
   assert.equal(edits[0].id,65);
   assert.equal(sends.length,0);
