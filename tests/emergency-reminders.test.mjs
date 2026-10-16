@@ -33,7 +33,7 @@ test('previously sent future reminder is edited with emergency warning, not repo
   assert.match(edits[0].text,/18:00/);
   assert.match(edits[0].text,/25 хв/);
   assert.match(edits[0].text,/діють екстрені відключення/);
-  assert.match(edits[0].text,/Планові години можуть не виконуватися/);
+  assert.match(edits[0].text,/Графіки не діють/);
   assert.equal(sends.length,0);
   assert.equal(await reconcileEmergencyReminders(args),0);
   assert.equal(edits.length,1);
