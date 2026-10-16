@@ -242,7 +242,7 @@ test('late cron execution never sends at or after schedule boundary', () => {
   assert.equal(upcomingTransition('2026-10-16', 570, groups), null); // no post at switch
 });
 
-test('pre-warning for midnight compares today's last minute with tomorrow', () => {
+test("pre-warning for midnight compares today's last minute with tomorrow", () => {
   const old = slots(); old['24'] = 'second';
   const clear = slots('yes');
   const today = Object.fromEntries(GROUPS.map(group => [
