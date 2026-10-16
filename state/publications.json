@@ -590,5 +590,14 @@
       "hash": "f7a57757a4f82a867d71182584f8e5f8bda12e548a777e9082715615b65c07bf",
       "revision": 1
     }
+  },
+  "pinnedGraphic": {
+    "messageId": 31,
+    "date": "2026-10-17",
+    "hash": "e946c5ec8c11446949579b76adfd1d2a2d970d410180ce057158ed7c74363503",
+    "formatVersion": 1,
+    "pinned": true,
+    "publishedAt": "2026-10-16T22:38:16.079Z",
+    "pinnedAt": "2026-10-16T22:38:16.257Z"
   }
 }
