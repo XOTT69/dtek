@@ -5,12 +5,11 @@ import { readFileSync } from 'node:fs';
 const bot = readFileSync(new URL('../src/bot.mjs', import.meta.url), 'utf8');
 const workflow = readFileSync(new URL('../.github/workflows/publish.yml', import.meta.url), 'utf8');
 
-test('main publisher does not send scheduled HH:00/HH:30 or pre-30-minute reminders', () => {
-  assert.doesNotMatch(bot, /\bupcomingTransition\s*\(/);
-  assert.doesNotMatch(bot, /\bclaimReminder\s*\(/);
-  assert.doesNotMatch(bot, /\breconcileEmergencyReminders\s*\(/);
-  assert.doesNotMatch(bot, /\brenderTransitionTelegram\s*\(/);
-  assert.match(bot, /updateReminders:\s*false/);
+test('main publisher restores safe advance switching reminders', () => {
+  assert.match(bot, /publishAdvanceReminder\(/);
+  assert.match(bot, /reconcileEmergencyReminders\(/);
+  assert.match(bot, /updateReminders:\s*process\.env\.ADVANCE_REMINDERS\s*!==\s*'off'/);
+  assert.match(workflow, /ADVANCE_REMINDERS:\s*\$\{\{ vars\.ADVANCE_REMINDERS \}\}/);
 });
 
 test('main publisher still posts changed full DTEK schedules and corrections', () => {
