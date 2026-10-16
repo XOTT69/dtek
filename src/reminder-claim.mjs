@@ -51,6 +51,20 @@ export async function claimUkrenergoNotice(date, options = {}) {
   return reserveOnce(path, 'Ukrenergo notice ' + date, {date}, options);
 }
 
+// Each official announcement or correction is published at most once,
+ // even if Telegram accepted it and GitHub failed to persist the message ID.
+export async function claimEmergency(sourceId, status, fingerprint, options = {}) {
+  if (!Number.isSafeInteger(sourceId) || sourceId <= 0 ||
+      !['active','cancelled'].includes(status) ||
+      !/^[a-f0-9]{64}$/.test(fingerprint)) {
+    throw new Error('Unsafe emergency claim');
+  }
+  return reserveOnce('state/emergency-claims/dtek_ua/' + sourceId +
+    '-' + status + '-' + fingerprint + '.json',
+    'DTEK emergency ' + sourceId + ' ' + status,
+    {sourceId,status,fingerprint},options);
+}
+
 export async function claimReminder(
   key,
   {
