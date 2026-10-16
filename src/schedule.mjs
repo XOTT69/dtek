@@ -8,7 +8,7 @@ export function kyivDate(instant = new Date()) {
     timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit'
   }).formatToParts(instant);
   const read = key => parts.find(p => p.type === key)?.value;
-  return ${read('year')}-${read('month')}-${read('day')};
+  return [read('year'), read('month'), read('day')].join('-');
 }
 
 export function addDays(date, count) {
@@ -24,7 +24,7 @@ export function weekdayIndex(date) {
 export function formatDate(date) {
   const [y, m, d] = date.split('-').map(Number);
   const weekday = DISPLAY_WEEKDAYS[weekdayIndex(date)];
-  return ${weekday}, ${String(d).padStart(2, '0')}.${String(m).padStart(2, '0')}.${y};
+  return weekday + ', ' + String(d).padStart(2, '0') + '.' + String(m).padStart(2, '0') + '.' + y;
 }
 
 export function keyToKyivDate(timestampSeconds) {
@@ -38,7 +38,7 @@ export function windowsFromHours(hours, isPreset = false) {
   const halves = new Array(48).fill('on');
   for (let hour = 1; hour <= 24; hour++) {
     const state = hours[String(hour)];
-    if (!OK_STATES.has(state)) throw new Error(`Unknown/missing schedule state at hour ${hour}: ${state}`);
+    if (!OK_STATES.has(state)) throw new Error('Unknown/missing schedule state at hour ' + hour + ': ' + state);
     const start = (hour - 1) * 2;
     const mark = (slot, definite) => { halves[slot] = isPreset || !definite ? 'possible' : 'off'; };
     if (state === 'no' || state === 'maybe') {
@@ -66,7 +66,7 @@ export function windowsFromHours(hours, isPreset = false) {
 export function resolveSchedule(document, date, group) {
   if (!GROUPS.includes(group)) throw new Error('Unsupported group');
   if (!document || document.regionId !== 'kyiv-region') throw new Error('Unexpected data region');
-  const groupId = `GPV${group}`;
+  const groupId = 'GPV' + group;
   const fact = document.fact?.data ?? {};
   for (const [timestamp, byGroup] of Object.entries(fact)) {
     if (keyToKyivDate(timestamp) === date && byGroup?.[groupId]) {
@@ -82,7 +82,7 @@ export function resolveSchedule(document, date, group) {
 function time(minutes) {
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
-  return ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')};
+  return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
 }
 
 function duration(minutes) {
@@ -94,7 +94,7 @@ function total(periods) {
 }
 
 function renderPeriods(periods, marker) {
-  return periods.map(p => ${marker} з ${time(p.start)} до ${time(p.end)} (${duration(p.minutes)} год)).join('\n');
+  return periods.map(p => marker + ' з ' + time(p.start) + ' до ' + time(p.end) + ' (' + duration(p.minutes) + ' год)').join('\n');
 }
 
 function safe(text) {
@@ -105,27 +105,27 @@ export function renderTelegram(date, dayLabel, byGroup, document) {
   const allModes = GROUPS.map(group => byGroup[group]?.mode);
   const preliminary = allModes.every(mode => mode === 'preset');
   const heading = preliminary
-    ? `🔶 <b>Можливі відключення на ${dayLabel}</b>`
-    : `💡 <b>Графік відключення світла на ${dayLabel}</b>`;
-  const lines = [heading, `📆 <b>${safe(formatDate(date))}</b>`, '📍 Київська область', ''];
+    ? '🔶 <b>Можливі відключення на ' + dayLabel + '</b>'
+    : '💡 <b>Графік відключення світла на ' + dayLabel + '</b>';
+  const lines = [heading, '📆 <b>' + safe(formatDate(date)) + '</b>', '📍 Київська область', ''];
   if (allModes.includes('preset')) {
     lines.push('⚠️ Помаранчеві періоди — лише можливі відключення за тижневим графіком.', '');
   }
   for (const group of GROUPS) {
     const schedule = byGroup[group];
-    lines.push(`💡 <b>Підгрупа ${group}</b>`);
+    lines.push('💡 <b>Підгрупа ' + group + '</b>');
     if (schedule.mode === 'missing') {
       lines.push('ℹ️ Інформації на цю дату поки немає.');
     } else {
       if (schedule.confirmed.length) {
         lines.push(renderPeriods(schedule.confirmed, '❌'));
-        lines.push(`⚫ <b>Разом без світла: ${total(schedule.confirmed)} год</b>`);
+        lines.push('⚫ <b>Разом без світла: ' + total(schedule.confirmed) + ' год</b>');
       } else if (schedule.mode === 'fact') {
         lines.push('✅ Підтверджених відключень за графіком немає.');
       }
       if (schedule.possible.length) {
         lines.push(renderPeriods(schedule.possible, '🟠'));
-        lines.push(`🟠 Разом можливих: ${total(schedule.possible)} год`);
+        lines.push('🟠 Разом можливих: ' + total(schedule.possible) + ' год');
       } else if (schedule.mode === 'preset') {
         lines.push('✅ За тижневим шаблоном відключень немає.');
       }
@@ -133,7 +133,7 @@ export function renderTelegram(date, dayLabel, byGroup, document) {
     lines.push('');
   }
   const updated = document.fact?.update || document.preset?.updateFact || document.lastUpdated;
-  lines.push(`🕒 Дані ДТЕК: ${safe(updated || 'час не вказано')}`);
+  lines.push('🕒 Дані ДТЕК: ' + safe(updated || 'час не вказано'));
   lines.push('ℹ️ Графік не гарантує фактичну наявність електроенергії.');
   lines.push('🔗 <a href="https://github.com/Baskerville42/outage-data-ua">Джерело даних: outage-data-ua</a>');
   return lines.join('\n').trim();
