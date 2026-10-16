@@ -51,4 +51,15 @@ jobs:
           git add state/publications.json
           if git diff --cached --quiet; then exit 0; fi
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'chore: remember Telegram publications [skip ci]'
-          git push
+          # Main can advance while the bot is fetching schedules.
+          # Retry safe fast-forward via rebase; never force-push publication state.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'Failed to persist Telegram publication state after retries' >&2
+          exit 1
