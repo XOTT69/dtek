@@ -159,3 +159,22 @@ test('emergency announcement edit keeps the merged correction content',async()=>
   assert.match(changes[0].text,/Коригування графіка на 11:30/);
   assert.match(changes[0].text,/Графіки не діють/);
 });
+
+test('when DTEK cancels a previously expected switch, combined notice says so clearly', async()=>{
+  const previous=empty(), current=empty();
+  previous['1.1']=[[690,750]];
+  current['1.1']=[[750,810]];
+  const state={events:{},scheduleSnapshots:{[DATE]:previous},corrections:{}};
+  const {sender,sends}=senderPair();
+  const r=await publishScheduleCorrection({
+    state,date:DATE,byGroup:groups(current),nowMinute:670,
+    sender,save:async()=>{},
+    claim:async()=>({claimed:true}),claimAdvance:async()=>({claimed:true}),
+    mergeNearby:true,logger
+  });
+  assert.equal(r.status,'published');
+  assert.equal(sends.length,1);
+  assert.match(sends[0],/Коригування графіка на 11:30/);
+  assert.match(sends[0],/Раніше заплановане перемикання на цей час скасовано або перенесено/);
+  assert.doesNotMatch(sends[0],/🔴 <b>За графіком вимикаємо|🟢 <b>За графіком вмикаємо/);
+});
