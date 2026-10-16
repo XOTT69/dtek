@@ -135,31 +135,41 @@ export function publicationFingerprint(date, byGroup, groups = GROUPS) {
 
 export { GROUPS };
 
-/** Each Telegram message stays below 4096 characters, with one to six groups. */
+/** Usually all 12 confirmed groups fit in one Telegram message. */
 export function renderDailyMessages(date, dayLabel, byGroup, document) {
-  // Do not publish a day until DTEK has actual daily data for every subgroup.
-  // In particular never post the broad weekly preset as a daily forecast.
   if (!GROUPS.every(group => byGroup[group]?.mode === 'fact')) return [];
+  const maxLength = 3500;
+  const full = renderTelegram(date, dayLabel, byGroup, document, GROUPS);
+  if (full.length <= maxLength) {
+    return [{
+      key: date + '/' + dayLabel + '/all',
+      fingerprint: publicationFingerprint(date, byGroup),
+      message: full
+    }];
+  }
+  // Only unusually long schedules are split to stay below the Telegram limit.
   const chunks = [];
   let current = [];
   for (const group of GROUPS) {
-    const candidate = [...current, group];
-    const message = renderTelegram(date, dayLabel, byGroup, document, candidate);
-    if (current.length && (candidate.length > 6 || message.length > 3500)) {
+    const next = [...current, group];
+    const text = renderTelegram(date, dayLabel, byGroup, document, next);
+    if (text.length > maxLength && current.length) {
       chunks.push(current);
       current = [group];
     } else {
-      current = candidate;
+      if (text.length > maxLength) throw new Error('Single group exceeds safe Telegram limit');
+      current = next;
     }
   }
   if (current.length) chunks.push(current);
   return chunks.map((groups, index) => {
-    const message = renderTelegram(date, dayLabel, byGroup, document, groups);
-    if (message.length > 3900) throw new Error('Telegram message exceeds safe limit');
+    const text = renderTelegram(date, dayLabel, byGroup, document, groups);
+    const message = text + '\n📄 Частина ' + (index + 1) + '/' + chunks.length;
+    if (message.length > 3900) throw new Error('Telegram message is too long');
     return {
       key: date + '/' + dayLabel + '/' + groups[0] + '-' + groups[groups.length - 1],
       fingerprint: publicationFingerprint(date, byGroup, groups),
-      message: message + '\n📄 Частина ' + (index + 1) + '/' + chunks.length
+      message
     };
   });
 }
