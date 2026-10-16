@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   kyivDate, addDays, weekdayIndex, formatDate, keyToKyivDate,
-  windowsFromHours, resolveSchedule, renderTelegram, renderDailyMessages, buildTransition,
+  windowsFromHours, resolveSchedule, renderTelegram, renderDailyMessages, buildTransition, upcomingTransition,
   renderTransitionTelegram, kyivMinutes, GROUPS, publicationFingerprint
 } from '../src/schedule.mjs';
 
@@ -201,4 +201,70 @@ test('compact duration uses a decimal comma only for half-hours', () => {
   assert.match(post, /🪫 <b>09:00–10:30<\/b> · 1,5 год/);
   assert.match(post, /⏳ <b>Разом без світла: 1,5 год<\/b>/);
   assert.doesNotMatch(post, /1\.5 год/);
+});
+
+test('30-minute early warning includes starts, endings and continuing outages', () => {
+  const empty = slots();
+  const starts = slots(); starts['10'] = 'second'; // turns off at 09:30
+  const ends = slots(); ends['10'] = 'first'; // turns on at 09:30
+  const continued = slots(); continued['10'] = 'no';
+  const groups = Object.fromEntries(GROUPS.map(group => [group, {
+    mode: 'fact', ...windowsFromHours(empty)
+  }]));
+  groups['1.1'] = {mode: 'fact', ...windowsFromHours(starts)};
+  groups['2.2'] = {mode: 'fact', ...windowsFromHours(ends)};
+  groups['3.1'] = {mode: 'fact', ...windowsFromHours(continued)};
+  const advance = upcomingTransition('2026-10-16', 540, groups);
+  assert.equal(advance.minute, 570);
+  assert.equal(advance.date, '2026-10-16');
+  assert.equal(advance.leadMinutes, 30);
+  assert.deepEqual(advance.transition.starting, ['1.1']);
+  assert.deepEqual(advance.transition.restored, ['2.2']);
+  assert.deepEqual(advance.transition.continuing, ['3.1']);
+  const preview = renderTransitionTelegram(advance.date, advance.transition, '', advance.leadMinutes);
+  assert.match(preview, /^⏰ <b>09:30<\/b>/);
+  assert.match(preview, /До планового часу: 30 хв/);
+  assert.match(preview, /🪫 Підгрупа 1\.1/);
+  assert.match(preview, /🔋 Підгрупа 2\.2/);
+  assert.match(preview, /⚫️ Підгрупа 3\.1/);
+});
+
+test('late cron execution never sends at or after schedule boundary', () => {
+  const starts = slots(); starts['10'] = 'second';
+  const groups = Object.fromEntries(GROUPS.map(group => [
+    group, {mode:'fact', ...windowsFromHours(starts)}
+  ]));
+  const onTime = upcomingTransition('2026-10-16', 547, groups);
+  assert.equal(onTime.leadMinutes, 23);
+  assert.equal(onTime.minute, 570);
+  assert.match(renderTransitionTelegram(onTime.date, onTime.transition, '', onTime.leadMinutes), /23 хв/);
+  assert.equal(upcomingTransition('2026-10-16', 562, groups), null); // 8 minutes too late
+  assert.equal(upcomingTransition('2026-10-16', 570, groups), null); // no post at switch
+});
+
+test('pre-warning for midnight compares today's last minute with tomorrow', () => {
+  const old = slots(); old['24'] = 'second';
+  const clear = slots('yes');
+  const today = Object.fromEntries(GROUPS.map(group => [
+    group, {mode:'fact',...windowsFromHours(clear)}
+  ]));
+  const tomorrow = Object.fromEntries(GROUPS.map(group => [
+    group, {mode:'fact',...windowsFromHours(clear)}
+  ]));
+  today['1.2'] = {mode:'fact', ...windowsFromHours(old)};
+  const reminder = upcomingTransition('2026-10-16', 1410, today, tomorrow);
+  assert.equal(reminder.date, '2026-10-17');
+  assert.equal(reminder.minute, 0);
+  assert.equal(reminder.leadMinutes, 30);
+  assert.deepEqual(reminder.transition.restored, ['1.2']);
+  assert.equal(upcomingTransition('2026-10-16', 1410, today), null);
+});
+
+test('no early warning from tentative or incomplete DTEK schedules', () => {
+  const starts = slots(); starts['10'] = 'second';
+  const groups = Object.fromEntries(GROUPS.map(group => [
+    group, {mode:'fact', ...windowsFromHours(starts)}
+  ]));
+  groups['6.2'] = {mode:'preset', ...windowsFromHours(starts,true)};
+  assert.equal(upcomingTransition('2026-10-16', 540, groups), null);
 });
