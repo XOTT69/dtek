@@ -52,28 +52,50 @@ test('Ukraine local date and DST changes', () => {
   assert.equal(formatDate('2026-10-16'), "П'ятниця, 16.10.2026");
 });
 
-test('actual daily fact overrides weekly forecast, tomorrow is tentative', () => {
+test('forecast can be parsed but is NEVER eligible for publishing', () => {
   const fact = slots(); fact['10'] = 'no';
   const forecast = slots('maybe');
   const doc = {
     regionId: 'kyiv-region', lastUpdated: '2026-10-16T05:35:58Z',
-    fact: { update: '16.10.2026 07:50', data: { '1792098000': { 'GPV1.2': fact, 'GPV2.2': fact } } },
-    preset: { data: { 'GPV1.2': { '6': forecast }, 'GPV2.2': { '6': forecast } } }
+    fact: { update: '16.10.2026 07:50', data: {
+      '1792098000': Object.fromEntries(GROUPS.map(group => ['GPV' + group, fact]))
+    } },
+    preset: { data: Object.fromEntries(GROUPS.map(group => ['GPV' + group, { '6': forecast }])) }
   };
-  const current = resolveSchedule(doc, '2026-10-16', '2.2');
-  const next = resolveSchedule(doc, '2026-10-17', '2.2');
-  assert.equal(current.mode, 'fact');
-  assert.equal(current.confirmed[0].start, 540);
-  assert.equal(next.mode, 'preset');
-  assert.equal(next.confirmed.length, 0);
-  assert.equal(next.possible[0].minutes, 1440);
-  const message = renderTelegram('2026-10-17', 'завтра', { '1.2': next, '2.2': next }, doc);
-  assert.match(message, /Можливі відключення/);
-  assert.match(message, /Підгрупа 1\.2/);
-  assert.match(message, /Підгрупа 2\.2/);
-  assert.match(message, /24\.0 год/);
-  assert.equal(publicationFingerprint('2026-10-17', { '1.2': next, '2.2': next }),
-    publicationFingerprint('2026-10-17', { '1.2': next, '2.2': next }));
+  const todayGroups = Object.fromEntries(GROUPS.map(group => [group, resolveSchedule(doc, '2026-10-16', group)]));
+  const tomorrowGroups = Object.fromEntries(GROUPS.map(group => [group, resolveSchedule(doc, '2026-10-17', group)]));
+  assert.equal(todayGroups['1.2'].mode, 'fact');
+  assert.equal(tomorrowGroups['1.2'].mode, 'preset');
+  assert.deepEqual(renderDailyMessages('2026-10-17', 'завтра', tomorrowGroups, doc), []);
+  assert.throws(() => renderTelegram('2026-10-17', 'завтра', tomorrowGroups, doc), /Only confirmed/);
+  assert.equal(renderDailyMessages('2026-10-16', 'сьогодні', todayGroups, doc).length, 2);
+});
+
+test('confirmed post contains only schedules without source/footer/disclaimer', () => {
+  const hours = slots('yes');
+  hours['10'] = 'no';
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, { mode: 'fact', ...windowsFromHours(hours) }
+  ]));
+  const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {});
+  assert.equal(messages.length, 2);
+  for (const fragment of messages) {
+    assert.match(fragment.message, /Оновлений графік/);
+    assert.match(fragment.message, /Разом без світла/);
+    assert.doesNotMatch(fragment.message, /Можливі відключення|Разом можливих|🟠/);
+    assert.doesNotMatch(fragment.message, /Дані ДТЕК:|Графік не гарантує|Джерело даних:|outage-data-ua/);
+  }
+  assert.equal(publicationFingerprint('2026-10-16', byGroup),
+    publicationFingerprint('2026-10-16', byGroup));
+});
+
+test('incomplete confirmed data do not produce partial or misleading broadcasts', () => {
+  const hours = slots();
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, { mode: 'fact', ...windowsFromHours(hours) }
+  ]));
+  byGroup['6.2'] = { mode: 'preset', ...windowsFromHours(slots('maybe'), true) };
+  assert.deepEqual(renderDailyMessages('2026-10-17', 'завтра', byGroup, {}), []);
 });
 
 test('reject malformed or unknown states, never invent a confirmed plan', () => {
