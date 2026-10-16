@@ -113,25 +113,6 @@ async function main() {
   const state = await loadState();
   state.events ??= {};
 
-  // These exact IDs were confirmed in successful Telegram send logs to be
-  // duplicate posts from failed GitHub state pushes on 2026-10-16.
-  // Keep the current schedule #16 and the first successful reminder #14.
-  // Only remove the two redundant reminders #12, #13 and schedule #15.
-  if (!DRY_RUN) {
-    state.cleanedDuplicatePosts ??= [];
-    for (const id of [12, 13, 15]) {
-      if (state.cleanedDuplicatePosts.includes(id)) continue;
-      try {
-        await sendTelegram.delete(id);
-        state.cleanedDuplicatePosts.push(id);
-        await saveState(state);
-        console.log('Removed confirmed duplicate Telegram message #' + id);
-      } catch (error) {
-        console.warn('Duplicate Telegram message #' + id + ' could not be deleted: ' +
-          String(error?.message || error));
-      }
-    }
-  }
   const now = new Date();
   const today = kyivDate(now);
   const minutesNow = kyivMinutes(now);
