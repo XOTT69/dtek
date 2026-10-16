@@ -43,7 +43,8 @@ export function trackDailyRevision(state, date, byGroup) {
     const oldFacts=state.scheduleSnapshots?.[date];
     const revised=hasPublishedDate(state,date) &&
       hasComparableSnapshot(state,date,confirmed) &&
-      digest(oldFacts)!==hash;
+      digest(Object.fromEntries(Object.keys(confirmed).map(group =>
+        [group,oldFacts[group]])))!==hash;
     const revision=revised?1:0;
     state.dailyRevisions[date] = { hash, revision };
     return { eligible: true, updated: revised, changed: true, revision };
