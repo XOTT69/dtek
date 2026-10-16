@@ -179,6 +179,7 @@ test('human emergency layout exactly matches subscriber-friendly channel format'
     '🔗 <a href="https://t.me/dtek_ua/4637">Офіційне повідомлення ДТЕК</a>'
   ].join('\n'));
   assert.doesNotMatch(rendered, /utm_source|ДТЕК повідомляє|не підтверджено/);
+  assert.equal(rendered.split('\n').length,5,'Short emergency message must fit five compact lines');
 });
 
 test('human cancellation only promises return to plan on explicit official confirmation', () => {
