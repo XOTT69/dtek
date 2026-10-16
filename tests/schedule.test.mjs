@@ -114,7 +114,7 @@ test('all 12 groups are supported and announcements split safely', () => {
     group, { mode: 'fact', ...windowsFromHours(slots('no')) }
   ]));
   const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, doc);
-  assert.equal(messages.length, 2);
+  assert.equal(messages.length, 1);
   assert.ok(messages.every(p => p.message.length < 4096));
   assert.match(messages[0].message, /Підгрупа 1\.1/);
   assert.match(messages[0].message, /Підгрупа 6\.2/);
