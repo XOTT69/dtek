@@ -54,3 +54,25 @@ test('wrong Telegram bot token fails safely before publishing', async () => {
   await assert.rejects(sender('hello'), /belongs to/);
   assert.equal(sendAttempts, 0);
 });
+
+test('editing existing posts removes footers without creating new posts', async () => {
+  const edits = [], posts = [];
+  const sender = createTelegramSender({
+    token: 'dummy',
+    logger: { log() {}, warn() {} },
+    fetchFn: async (url, options) => {
+      if (url.endsWith('/getMe')) return ok({ ok: true, result: { username: 'svitlo_kyivshchyna_bot' } });
+      if (url.endsWith('/editMessageText')) {
+        edits.push(JSON.parse(options.body));
+        return ok({ ok: true, result: { message_id: 5 } });
+      }
+      posts.push(JSON.parse(options.body));
+      return ok({ ok: true, result: { message_id: 99 } });
+    }
+  });
+  assert.equal(await sender.edit(5, '💡 Чистий графік'), true);
+  assert.equal(edits.length, 1);
+  assert.equal(edits[0].chat_id, CHANNEL_ID);
+  assert.equal(edits[0].message_id, 5);
+  assert.equal(posts.length, 0);
+});
