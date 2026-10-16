@@ -137,5 +137,79 @@ export function createTelegramSender({ token, configuredChatId, fetchFn = fetch,
     throw new Error('Unable to delete old Telegram message #' + messageId + ': ' + previousError);
   };
 
+
+  // Photo APIs use multipart upload. Telegram cannot edit an image with
+  // editMessageText; editMessageMedia preserves its original message ID/pin.
+  async function photoApi(method, image, extras) {
+    await verifyBot();
+    if (!Buffer.isBuffer(image) || image.length === 0) {
+      throw new Error('Expected nonempty PNG buffer');
+    }
+    let errorMessage='';
+    for (const chatId of [CHANNEL_ID,CHANNEL_USERNAME]) {
+      const form=new FormData();
+      form.set('chat_id',chatId);
+      if(method==='editMessageMedia') {
+        form.set('message_id',String(extras.messageId));
+        form.set('media',JSON.stringify({
+          type:'photo',media:'attach://graphic',
+          caption:extras.caption,parse_mode:'HTML'
+        }));
+        form.set('graphic',new Blob([image],{type:'image/png'}),'schedule.png');
+      } else {
+        form.set('photo',new Blob([image],{type:'image/png'}),'schedule.png');
+        form.set('caption',extras.caption);
+        form.set('parse_mode','HTML');
+        form.set('disable_notification','true');
+      }
+      let response,body;
+      try {
+        response=await fetchFn('https://api.telegram.org/bot'+token+'/'+method,{
+          method:'POST',body:form,signal:AbortSignal.timeout(30000)
+        });
+        body=await response.json();
+      } catch(e) {
+        // A sendPhoto request may have reached Telegram: never retry it
+        // blindly, even with the alternative chat ID.
+        throw new Error(method+' delivery result unknown: '+String(e?.message||e));
+      }
+      if(response.status===200 && body?.ok) {
+        const id=body.result?.message_id;
+        if(!Number.isSafeInteger(id)) throw new Error(method+' returned no message ID');
+        return id;
+      }
+      errorMessage=String(body?.description||'Unknown Telegram API error');
+      if(method==='editMessageMedia' && /message is not modified/i.test(errorMessage)) {
+        return extras.messageId;
+      }
+      if(response.status===400 && /chat not found/i.test(errorMessage)) continue;
+      throw new Error(method+' HTTP '+response.status+': '+errorMessage);
+    }
+    throw new Error(method+' failed: '+errorMessage);
+  }
+
+  sendTelegram.photo=(image,caption)=>photoApi('sendPhoto',image,{caption});
+  sendTelegram.editPhoto=(messageId,image,caption)=>{
+    if(!Number.isSafeInteger(messageId)||messageId<1) throw new Error('Invalid photo message ID');
+    return photoApi('editMessageMedia',image,{messageId,caption});
+  };
+  sendTelegram.pin=async messageId=>{
+    await verifyBot();
+    if(!Number.isSafeInteger(messageId)||messageId<1) throw new Error('Invalid message ID to pin');
+    let last='';
+    for(const chatId of [CHANNEL_ID,CHANNEL_USERNAME]) {
+      const {status,body}=await api('pinChatMessage',{
+        chat_id:chatId,message_id:messageId,disable_notification:true
+      });
+      if(status===200 && body?.ok) return true;
+      last=String(body?.description||'Unknown Telegram API error');
+      if(/already pinned/i.test(last)) return true;
+      if(status===400 && /chat not found/i.test(last)) continue;
+      throw new Error('pinChatMessage HTTP '+status+': '+last+
+        '. Ensure the channel bot has permission to edit/pin messages.');
+    }
+    throw new Error('pinChatMessage failed: '+last);
+  };
+
   return sendTelegram;
 }
