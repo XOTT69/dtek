@@ -40,6 +40,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Show scheduler event diagnostics
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Start UTC: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          echo "Commit: ${{ github.sha }}"
       - name: Validate schedule conversion
         run: npm test
       - name: Publish updated schedules
