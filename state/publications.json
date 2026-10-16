@@ -1,0 +1,25 @@
+{
+  "publications": {
+    "2026-10-16/сьогодні/1.1-3.2": {
+      "hash": "7311ee68f056e59204f9f77438fba989dd6f29b7e6e7bcfb166eaf480ab912f7",
+      "messageId": 5,
+      "publishedAt": "2026-10-16T06:23:50.197Z"
+    },
+    "2026-10-16/сьогодні/4.1-6.2": {
+      "hash": "af335497b62b51087c35159e3959602ec0a22f9dff1338477e061eac3c18909e",
+      "messageId": 6,
+      "publishedAt": "2026-10-16T06:23:50.470Z"
+    },
+    "2026-10-17/завтра/1.1-3.2": {
+      "hash": "4e539d9fbc79b0e0178a4c3865ce734b3f2681dd66bd4a1ccb0435f6773a7cba",
+      "messageId": 7,
+      "publishedAt": "2026-10-16T06:23:50.659Z"
+    },
+    "2026-10-17/завтра/4.1-6.2": {
+      "hash": "8dad36f6b2dc1e8050d91ec937308799e7aa8663bb942b44518a8ea681b0e310",
+      "messageId": 8,
+      "publishedAt": "2026-10-16T06:23:50.850Z"
+    }
+  },
+  "events": {}
+}
