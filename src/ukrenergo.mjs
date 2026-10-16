@@ -39,9 +39,11 @@ function decodeHtml(html) {
     .trim();
 }
 
-export function extractOfficialPosts(html) {
+export function extractOfficialPosts(html, channel = 'Ukrenergo') {
+  if (!/^[A-Za-z0-9_]{3,40}$/.test(channel)) throw new Error('Invalid official Telegram channel');
   if (typeof html !== 'string') throw new Error('Official Telegram feed did not return HTML');
-  const markers = [...html.matchAll(/data-post=["']Ukrenergo\/(\d+)["']/gi)];
+  const marker = new RegExp('data-post=["\\\']' + channel + '\\/(\\d+)["\\\']', 'gi');
+  const markers = [...html.matchAll(marker)];
   if (!markers.length) throw new Error('Official Telegram posts are missing; layout or access may have changed');
   const posts = [];
   for (let i = 0; i < markers.length; i++) {
@@ -57,7 +59,7 @@ export function extractOfficialPosts(html) {
     if (!text) continue;
     posts.push({
       id, text, publishedAt: stamp,
-      url: 'https://t.me/Ukrenergo/' + id
+      url: 'https://t.me/' + channel + '/' + id
     });
   }
   if (!posts.length) throw new Error('Official Telegram posts have no readable timestamps/text');
