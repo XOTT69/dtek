@@ -34,6 +34,10 @@ test('first 5-minute dispatch sends one accurate 18:00 pre-switch message',async
   assert.deepEqual(claimed,['2026-10-16@18:00#pre30']);
   assert.equal(sent.length,1);
   assert.match(sent[0],/⏰ <b>18:00<\/b>/);
+  assert.match(sent[0],/🔴 <b>За графіком вимикаємо світло:<\/b>/);
+  assert.match(sent[0],/🟢 <b>За графіком вмикаємо світло:<\/b>/);
+  assert.match(sent[0],/🌑 <b>Залишаються без світла:<\/b>/);
+  assert.doesNotMatch(sent[0],/Початок відключення:|Завершення планового відключення:/);
   assert.match(sent[0],/До планового часу: 25 хв/);
   assert.match(sent[0],/🪫 Підгрупа 1\.2/);
   assert.match(sent[0],/🪫 Підгрупа 2\.2/);
