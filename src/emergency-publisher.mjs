@@ -32,7 +32,8 @@ export async function publishEmergencyUpdate({
   const noChange = !!prior && previousId !== 0 &&
     prior.active === next.active && prior.kind === next.kind &&
     prior.scope === next.scope &&
-    JSON.stringify(prior.districts) === JSON.stringify(next.districts);
+    JSON.stringify(prior.districts) === JSON.stringify(next.districts) &&
+    !(event.status === 'cancelled' && prior.active);
   if (dryRun) {
     logger.log('DTEK emergency preview: ' + renderEmergencyNotice(event,
       next.active ? next.districts : []));
