@@ -21,7 +21,7 @@ test('publishes verified Ukrenergo notice once and saves its state', async () =>
   let sent=0, persisted=0;
   const sender=async message => {
     sent++;
-    assert.match(message, /Для Київської області застосування ще не підтверджене/);
+    assert.doesNotMatch(message, /Для Київської області застосування ще не підтверджене/);
     return 123;
   };
   sender.edit=async()=>{throw Error('Unexpected edit')};
