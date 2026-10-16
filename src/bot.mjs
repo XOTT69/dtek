@@ -82,7 +82,7 @@ async function main() {
   if (!DRY_RUN) {
     for (const [eventKey, event] of Object.entries(state.events)) {
       if ((event.formatVersion || 1) >= 2 || !event.messageId) continue;
-      const match = /^(\\d{4}-\\d{2}-\\d{2})@(\\d{2}):(\\d{2})$/.exec(eventKey);
+      const match = /^(\d{4}-\d{2}-\d{2})@(\d{2}):(\d{2})$/.exec(eventKey);
       if (!match || match[1] !== today) continue;
       const eventMinute = Number(match[2]) * 60 + Number(match[3]);
       if (minutesNow < eventMinute || minutesNow - eventMinute > 120) continue;
