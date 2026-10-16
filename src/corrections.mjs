@@ -96,6 +96,36 @@ export function renderCorrectionTelegram(correction) {
   return lines.join('\n').trim();
 }
 
+// A nearby schedule correction takes the place of the ordinary half-hour
+// reminder. One text contains both the correction and the useful countdown.
+export function renderCombinedCorrection(correction, leadMinutes) {
+  if (!correction || !Number.isInteger(leadMinutes) ||
+      leadMinutes < 10 || leadMinutes > 30) return null;
+  const lines = [
+    '⚠️ <b>Коригування графіка на ' + hhmm(correction.minute) + '</b>',
+    '🔔 До планового часу: ' + leadMinutes + ' хв',
+    '📆 ' + formatDate(correction.date),
+    ''
+  ];
+  if (correction.starting.length) {
+    lines.push('🔴 <b>За графіком вимикаємо світло:</b>');
+    for (const group of correction.starting) lines.push('🪫 Підгрупа ' + group);
+    lines.push('');
+  }
+  if (correction.restored.length) {
+    lines.push('🟢 <b>За графіком вмикаємо світло:</b>');
+    for (const group of correction.restored) lines.push('🔋 Підгрупа ' + group);
+    lines.push('');
+  }
+  if (correction.continuing.length) {
+    lines.push('🌑 <b>Залишаються без світла:</b>');
+    for (const group of correction.continuing) lines.push('⚫️ Підгрупа ' + group);
+    lines.push('');
+  }
+  lines.push('🔄 Змінено підгрупи: ' + correction.changed.join(', '));
+  return lines.join('\n').trim();
+}
+
 export function renderCancelledReminder(date, minute) {
   return [
     '⚠️ <b>Коригування графіка</b>',
