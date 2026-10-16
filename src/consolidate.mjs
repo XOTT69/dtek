@@ -2,7 +2,11 @@
  * When switching to one full-day message, reuse the first legacy Telegram post.
  * Save the new state before deleting the spare part so this is safe to retry.
  */
-export async function consolidateLegacyPost({state, fragment, hash, sender, save, log = console}) {
+export async function consolidateLegacyPost({
+  state, fragment, hash, sender, save, log = console,
+  revision = 0, headingState = 'initial', advisory = '',
+  emergencyContextKey = null
+}) {
   if (!fragment.key.endsWith('/all')) return false;
   state.publications ??= {};
   const prefix = fragment.key.slice(0, -3);
@@ -15,9 +19,15 @@ export async function consolidateLegacyPost({state, fragment, hash, sender, save
     const legacy = oldEntries();
     if (!legacy.length) return false;
     const [oldKey, old] = legacy[0];
-    await sender.edit(old.messageId, fragment.message);
+    // Reuse the old post as the canonical full timetable. Store the
+    // current revision as already published so the main loop doesn't
+    // subsequently create a second, duplicate full timetable post.
+    await sender.edit(old.messageId, fragment.message + advisory);
     state.publications[fragment.key] = {
-      hash, messageId: old.messageId, formatVersion: 3, editedAt: new Date().toISOString()
+      ...old, hash, messageId: old.messageId,
+      revision, formatVersion: 7, headingState,
+      ...(emergencyContextKey !== null ? {emergencyContextKey} : {}),
+      editedAt: new Date().toISOString()
     };
     delete state.publications[oldKey];
     await save(state);
