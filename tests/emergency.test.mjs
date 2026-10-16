@@ -205,3 +205,27 @@ test('plain, specific one-line emergency advisory is readable and scoped', () =>
     'Київщина, Бучанський район: фіксуються аварійні відключення'),NOW));
   assert.match(emergencyAdvisory(accident), /Можливі відключення поза графіком\./);
 });
+
+test('format upgrade edits an existing emergency post without sending another',async()=>{
+  const event = parseDtekEmergency(post(4637),NOW);
+  const state={emergency:{
+    status:applyEmergencyStatus(null,event),
+    lastId:4637,
+    lastSignature:(await import('../src/emergency-publisher.mjs')).emergencySignature(event),
+    messageId:17
+  }};
+  const edits=[],posts=[];
+  const sender=async text=>{posts.push(text);return 99};
+  sender.edit=async(id,text)=>edits.push({id,text});
+  const opts={state,sender,save:async()=>{},now:NOW,logger,
+    fetchFn:async()=>({ok:true,text:async()=>htmlPost(4637)})};
+  const result=await publishEmergencyUpdate(opts);
+  assert.equal(result.status,'restyled');
+  assert.equal(edits.length,1);
+  assert.equal(edits[0].id,17);
+  assert.match(edits[0].text,/⚠️ Погодинні графіки тимчасово не діють/);
+  assert.equal(posts.length,0);
+  assert.equal(state.emergency.formatVersion,2);
+  assert.equal((await publishEmergencyUpdate(opts)).status,'unchanged');
+  assert.equal(edits.length,1);
+});
