@@ -1,4 +1,4 @@
-import { addDays, buildTransition, kyivDate, kyivMinutes,
+import { addDays, buildTransition, buildMidnightTransition, kyivDate, kyivMinutes,
   renderTransitionTelegram } from './schedule.mjs';
 import { emergencyAdvisory } from './emergency.mjs';
 import { renderCancelledReminder } from './corrections.mjs';
@@ -33,7 +33,12 @@ export async function reconcileEmergencyReminders({
     if (!advisory && !event.emergencyContextKey) continue;
     if (event.emergencyContextKey === contextKey) continue;
     const groups = allGroups(source,date);
-    const transition = buildTransition(groups,minute);
+    // A 00:00 event compares two dates; buildTransition() intentionally
+    // rejects minute zero. Do not falsely call a real midnight switch cancelled.
+    const transition = minute === 0 ?
+      buildMidnightTransition(allGroups(source,addDays(date,-1)),groups) :
+      buildTransition(groups,minute);
+    if (minute === 0 && !transition) continue;
     const text = transition ?
       renderTransitionTelegram(date,transition,'@svitlo_kyivshchyna',remaining) + advisory :
       renderCancelledReminder(date,minute) + advisory;
