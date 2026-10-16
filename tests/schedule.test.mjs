@@ -145,9 +145,9 @@ test('half-hour transition alerts distinguish start, end and still off', () => {
   assert.match(message, /09:30/);
   assert.match(message, /🪫 Підгрупа 1\.2/);
   assert.match(message, /🔋 Підгрупа 3\.1/);
-  assert.match(message, /Завершення планового відключення/);
+  assert.match(message, /🟢 <b>За графіком вмикаємо світло:<\/b>/);
   assert.match(message, /⚫️ Підгрупа 2\.2/);
-  assert.match(message, /залишаються без світла/);
+  assert.match(message, /🌑 <b>Залишаються без світла:<\/b>/);
   assert.match(message, /^⏰ <b>09:30<\/b>/);
   assert.doesNotMatch(message, /Зміни за графіком|📅|📍/);
   assert.doesNotMatch(message, /Це плановий графік|фактичного стану мережі|ℹ️/);
@@ -184,9 +184,9 @@ test('transition layout contains only relevant blocks and never adds removed dis
   const entry = { minute: 600, starting: ['1.2'], restored: [], continuing: [] };
   const rendered = renderTransitionTelegram('2026-10-16', entry);
   assert.match(rendered, /^⏰ <b>10:00<\/b>/);
-  assert.match(rendered, /🔴 <b>Початок відключення:/);
+  assert.match(rendered, /🔴 <b>За графіком вимикаємо світло:/);
   assert.match(rendered, /🪫 Підгрупа 1\.2/);
-  assert.doesNotMatch(rendered, /Завершення планового відключення|залишаються без світла/);
+  assert.doesNotMatch(rendered, /За графіком вмикаємо світло|Залишаються без світла/);
   assert.doesNotMatch(rendered, /Це плановий графік|фактичного стану мережі|ℹ️/);
   assert.doesNotMatch(rendered, /Поширте графік/);
 });
