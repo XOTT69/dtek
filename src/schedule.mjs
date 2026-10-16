@@ -212,6 +212,22 @@ export function buildTransition(byGroup, minute) {
  * GitHub Actions may run late: permit a reminder with 10–30 minutes'
  * notice and show the actual remaining lead time.
  */
+export function buildMidnightTransition(todayGroups, tomorrowGroups) {
+  if (!todayGroups || !tomorrowGroups ||
+      !GROUPS.every(group => todayGroups[group]?.mode === 'fact' &&
+        tomorrowGroups[group]?.mode === 'fact')) return null;
+  const starting = [], restored = [], continuing = [];
+  for (const group of GROUPS) {
+    const wasOff = inside(todayGroups[group].confirmed, 1439);
+    const willBeOff = inside(tomorrowGroups[group].confirmed, 0);
+    if (!wasOff && willBeOff) starting.push(group);
+    if (wasOff && !willBeOff) restored.push(group);
+    if (wasOff && willBeOff) continuing.push(group);
+  }
+  if (!starting.length && !restored.length) return null;
+  return {minute: 0, starting, restored, continuing};
+}
+
 export function upcomingTransition(date, nowMinute, byGroup, tomorrowGroups = null) {
   if (!Number.isFinite(nowMinute) || nowMinute < 0 || nowMinute >= 1440) return null;
   const nextMinute = Math.floor(nowMinute / 30) * 30 + 30;
@@ -223,19 +239,8 @@ export function upcomingTransition(date, nowMinute, byGroup, tomorrowGroups = nu
   if (nextMinute === 1440) {
     eventDate = addDays(date, 1);
     eventMinute = 0;
-    if (!tomorrowGroups || !GROUPS.every(group =>
-      byGroup[group]?.mode === 'fact' && tomorrowGroups[group]?.mode === 'fact'
-    )) return null;
-    const starting = [], restored = [], continuing = [];
-    for (const group of GROUPS) {
-      const wasOff = inside(byGroup[group].confirmed, 1439);
-      const willBeOff = inside(tomorrowGroups[group].confirmed, 0);
-      if (!wasOff && willBeOff) starting.push(group);
-      if (wasOff && !willBeOff) restored.push(group);
-      if (wasOff && willBeOff) continuing.push(group);
-    }
-    if (!starting.length && !restored.length) return null;
-    transition = {minute: 0, starting, restored, continuing};
+    transition = buildMidnightTransition(byGroup, tomorrowGroups);
+    if (!transition) return null;
   } else {
     if (!GROUPS.every(group => byGroup[group]?.mode === 'fact')) return null;
     transition = buildTransition(byGroup, eventMinute);
