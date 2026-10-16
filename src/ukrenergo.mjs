@@ -64,7 +64,7 @@ export function extractOfficialPosts(html) {
   return posts;
 }
 
-const HOUR_RANGE = /\b([01]\d|2[0-4]):([0-5]\d)\s*(?:[–—−-]|\bдо\b)\s*([01]\d|2[0-4]):([0-5]\d)\b/gi;
+const HOUR_RANGE = /\b([01]\d|2[0-4]):([0-5]\d)\s*(?:[–—−-]|до)\s*([01]\d|2[0-4]):([0-5]\d)\b/gi;
 
 function hourlyWindows(text) {
   const lines = text.split(/\n+/).map(line => line.trim()).filter(Boolean);
