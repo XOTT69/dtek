@@ -111,6 +111,18 @@ function cleanOldState(state, today) {
       delete state.events[key];
     }
   }
+  // The public confirmed snapshots are consumed by the Chabany water bot.
+  // Keep a full week, including tomorrow, without letting the GitHub JSON
+  // grow indefinitely and eventually exceed the Worker's fetch size limit.
+  for (const collection of ['scheduleSnapshots', 'corrections']) {
+    for (const key of Object.keys(state[collection] || {})) {
+      const oldDate = key.slice(0, 10);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(oldDate) &&
+          oldDate < addDays(today, -7)) {
+        delete state[collection][key];
+      }
+    }
+  }
 }
 
 async function main() {
