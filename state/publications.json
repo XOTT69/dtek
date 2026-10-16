@@ -19,14 +19,15 @@
       "emergencyEditedAt": "2026-10-16T18:10:40.049Z"
     },
     "2026-10-17/сьогодні/all": {
-      "hash": "38db35e18be66390425dcc4c0baa8b35bed48941b1ef6fcfa83753368e2eee0f",
+      "hash": "4d527166d995c1cf41f29c77bfb8eb46b5dba3373275ed9d2d7fa2d900ebc7f7",
       "messageId": 28,
       "formatVersion": 7,
       "publishedAt": "2026-10-16T21:40:48.376Z",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "emergencyEditedAt": "2026-10-16T21:40:41.928Z",
       "headingState": "initial",
-      "editedAt": "2026-10-16T21:49:40.989Z"
+      "editedAt": "2026-10-16T22:07:11.911Z",
+      "revision": 0
     }
   },
   "events": {
