@@ -139,9 +139,13 @@ test('half-hour transition alerts distinguish start, end and still off', () => {
   assert.deepEqual(transition.restored, ['3.1']);
   const message = renderTransitionTelegram('2026-10-16', transition, '@svitlo_kyivshchyna');
   assert.match(message, /09:30/);
-  assert.match(message, /1\.2 підгрупа/);
+  assert.match(message, /🪫 Підгрупа 1\.2/);
+  assert.match(message, /🔋 Підгрупа 3\.1/);
   assert.match(message, /Завершення планового відключення/);
+  assert.match(message, /⚫️ Підгрупа 2\.2/);
   assert.match(message, /залишаються без світла/);
+  assert.match(message, /Зміни за графіком о 09:30/);
+  assert.doesNotMatch(message, /Це плановий графік|фактичного стану мережі|ℹ️/);
   assert.match(message, /https:\/\/t.me\/svitlo_kyivshchyna/);
   assert.equal(buildTransition(byGroup, 0), null);
   assert.equal(buildTransition(byGroup, 585), null);
@@ -169,4 +173,14 @@ test('only extreme confirmed schedules require the Telegram fallback split', () 
   for (const group of GROUPS) {
     assert.equal(combined.split('<b>Підгрупа ' + group + '</b>').length - 1, 1);
   }
+});
+
+test('transition layout contains only relevant blocks and never adds removed disclaimer', () => {
+  const entry = { minute: 600, starting: ['1.2'], restored: [], continuing: [] };
+  const rendered = renderTransitionTelegram('2026-10-16', entry);
+  assert.match(rendered, /🔴 <b>Початок відключення:/);
+  assert.match(rendered, /🪫 Підгрупа 1\.2/);
+  assert.doesNotMatch(rendered, /Завершення планового відключення|залишаються без світла/);
+  assert.doesNotMatch(rendered, /Це плановий графік|фактичного стану мережі|ℹ️/);
+  assert.doesNotMatch(rendered, /Поширте графік/);
 });
