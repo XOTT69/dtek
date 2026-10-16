@@ -81,7 +81,7 @@ async function main() {
   // Edit them in place; never publish a second copy of an already sent alert.
   if (!DRY_RUN) {
     for (const [eventKey, event] of Object.entries(state.events)) {
-      if ((event.formatVersion || 1) >= 2 || !event.messageId) continue;
+      if ((event.formatVersion || 1) >= 3 || !event.messageId) continue;
       const match = /^(\d{4}-\d{2}-\d{2})@(\d{2}):(\d{2})$/.exec(eventKey);
       if (!match || match[1] !== today) continue;
       const eventMinute = Number(match[2]) * 60 + Number(match[3]);
@@ -91,7 +91,7 @@ async function main() {
       const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
       try {
         await sendTelegram.edit(event.messageId, renderTransitionTelegram(today, transition, channel));
-        event.formatVersion = 2;
+        event.formatVersion = 3;
         event.editedAt = new Date().toISOString();
         await saveState(state);
         console.log('Updated recent alert styling without reposting: ' + eventKey);
@@ -110,14 +110,13 @@ async function main() {
     if (transition) {
       const key = today + '@' + String(Math.floor(slotStart / 60)).padStart(2, '0') +
         ':' + String(slotStart % 60).padStart(2, '0');
-      const channel = process.env.TELEGRAM_CHANNEL_USERNAME ||
-        (process.env.TELEGRAM_CHAT_ID?.startsWith('@') ? process.env.TELEGRAM_CHAT_ID : '');
+      const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
       const message = renderTransitionTelegram(today, transition, channel);
       if (DRY_RUN) {
         console.log('\n=== EVENT ' + key + ' ===\n' + message + '\n');
       } else if (!state.events[key]) {
         const messageId = await sendTelegram(message);
-        state.events[key] = { messageId, publishedAt: new Date().toISOString() };
+        state.events[key] = { messageId, formatVersion: 3, publishedAt: new Date().toISOString() };
         await saveState(state);
         console.log('Published transition ' + key + ', message ID ' + messageId);
         sent++;
@@ -145,11 +144,11 @@ async function main() {
       }
       if (state.publications[key]?.hash === hash && !DRY_RUN) {
         const previous = state.publications[key];
-        if ((previous.formatVersion || 1) < 2 && previous.messageId) {
-          // Formatting-only change: remove unwanted footers in place.
+        if ((previous.formatVersion || 1) < 4 && previous.messageId) {
+          // Formatting-only change: update an existing graph in place without notifying again.
           // No new post, no duplicate Telegram notification.
           await sendTelegram.edit(previous.messageId, fragment.message);
-          previous.formatVersion = 2;
+          previous.formatVersion = 4;
           previous.editedAt = new Date().toISOString();
           await saveState(state);
           console.log('Edited published message without reposting: ' + key);
@@ -163,7 +162,7 @@ async function main() {
         continue;
       }
       const messageId = await sendTelegram(fragment.message);
-      state.publications[key] = { hash, messageId, formatVersion: 2, publishedAt: new Date().toISOString() };
+      state.publications[key] = { hash, messageId, formatVersion: 4, publishedAt: new Date().toISOString() };
       cleanOldState(state, today);
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
