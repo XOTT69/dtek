@@ -134,12 +134,10 @@ export async function publishScheduleCorrection({
     // If the early reminder was sent first, edit THAT message, rather
     // than posting the whole list of groups again.
     const existingId = existingReminder?.messageId || existingCorrection?.messageId;
-    let messageId = existingId;
-    if (existingId) {
-      await sender.edit(existingId,text);
-    } else {
-      // Reserve the ordinary reminder key before sending the combined post.
-      // This protects against retries even if Git fails to save the ID.
+    // Even when editing an older correction, claim the reminder slot.
+    // Otherwise a failed state push could let the next cron send a
+    // second full reminder because no remote pre30 claim exists.
+    if (!existingReminder?.messageId && !existingReminder?.claimed) {
       const reminderReservation = await claimAdvance(mergedEventKey);
       if (!reminderReservation.claimed) {
         state.events[mergedEventKey] = {
@@ -151,6 +149,11 @@ export async function publishScheduleCorrection({
         logger.log('Merged correction reminder already reserved: ' + mergedEventKey);
         return {status:'already-reserved',correction};
       }
+    }
+    let messageId = existingId;
+    if (existingId) {
+      await sender.edit(existingId,text);
+    } else {
       messageId = await sender(text);
     }
     const emergency = state.emergency?.status;
