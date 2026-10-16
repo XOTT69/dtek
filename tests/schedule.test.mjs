@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   kyivDate, addDays, weekdayIndex, formatDate, keyToKyivDate,
-  windowsFromHours, resolveSchedule, renderTelegram, publicationFingerprint
+  windowsFromHours, resolveSchedule, renderTelegram, renderDailyMessages, buildTransition,
+  renderTransitionTelegram, kyivMinutes, GROUPS, publicationFingerprint
 } from '../src/schedule.mjs';
 
 function slots(defaultValue = 'yes') {
@@ -80,4 +81,54 @@ test('reject malformed or unknown states, never invent a confirmed plan', () => 
   assert.throws(() => windowsFromHours(bad), /Unknown/);
   const doc = { regionId: 'kyiv-region', fact: { data: {} }, preset: { data: {} } };
   assert.equal(resolveSchedule(doc, '2026-10-17', '1.2').mode, 'missing');
+});
+
+
+test('all 12 groups are supported and announcements split safely', () => {
+  assert.deepEqual(GROUPS, ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2',
+    '4.1', '4.2', '5.1', '5.2', '6.1', '6.2']);
+  const doc = { regionId: 'kyiv-region', fact: { update: '16.10.2026 09:00', data: {} }, preset: { data: {} } };
+  const byGroup = Object.fromEntries(GROUPS.map(group => [
+    group, { mode: 'fact', ...windowsFromHours(slots('no')) }
+  ]));
+  const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, doc);
+  assert.equal(messages.length, 2);
+  assert.ok(messages.every(p => p.message.length < 4096));
+  assert.match(messages[0].message, /Підгрупа 1\.1/);
+  assert.match(messages[1].message, /Підгрупа 6\.2/);
+  assert.doesNotMatch(messages[0].message, /Підгрупа 6\.2/);
+});
+
+test('half-hour transition alerts distinguish start, end and still off', () => {
+  const alwaysOn = slots();
+  const starts = slots(); starts['10'] = 'second';
+  const ends = slots(); ends['10'] = 'first';
+  const continuing = slots(); continuing['10'] = 'no';
+  const byGroup = Object.fromEntries(GROUPS.map(g => [g, {
+    mode: 'fact', ...windowsFromHours(alwaysOn)
+  }]));
+  byGroup['1.2'] = { mode: 'fact', ...windowsFromHours(starts) };
+  byGroup['2.2'] = { mode: 'fact', ...windowsFromHours(continuing) };
+  byGroup['3.1'] = { mode: 'fact', ...windowsFromHours(ends) };
+  const transition = buildTransition(byGroup, 570);
+  assert.deepEqual(transition.starting, ['1.2']);
+  assert.deepEqual(transition.continuing, ['2.2']);
+  assert.deepEqual(transition.restored, ['3.1']);
+  const message = renderTransitionTelegram('2026-10-16', transition, '@svitlo_kyivshchyna');
+  assert.match(message, /09:30/);
+  assert.match(message, /1\.2 підгрупа/);
+  assert.match(message, /Завершення планового відключення/);
+  assert.match(message, /залишаються без світла/);
+  assert.match(message, /https:\/\/t.me\/svitlo_kyivshchyna/);
+  assert.equal(buildTransition(byGroup, 0), null);
+  assert.equal(buildTransition(byGroup, 585), null);
+});
+
+test('tentative forecast must never trigger half-hour change alerts', () => {
+  const forecast = slots('maybe');
+  const byGroup = Object.fromEntries(GROUPS.map(g => [g, {
+    mode: 'preset', ...windowsFromHours(forecast, true)
+  }]));
+  assert.equal(buildTransition(byGroup, 570), null);
+  assert.equal(kyivMinutes(new Date('2026-10-16T06:30:00Z')), 570);
 });
