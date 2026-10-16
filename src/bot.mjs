@@ -5,6 +5,7 @@ import { fetchSourceJson, validateSource } from './source.mjs';
 import { fetchDtekDirect } from './dtek-direct.mjs';
 import { createTelegramSender } from './telegram.mjs';
 import { consolidateLegacyPost } from './consolidate.mjs';
+import { publishTomorrowNotice } from './notice-publisher.mjs';
 
 const DATA_URL = 'https://raw.githubusercontent.com/Baskerville42/outage-data-ua/main/data/kyiv-region.json';
 const STATE_FILE = 'state/publications.json';
@@ -85,14 +86,32 @@ function cleanOldState(state, today) {
 }
 
 async function main() {
-  const source = await loadDocument();
   const state = await loadState();
   state.events ??= {};
   const now = new Date();
   const today = kyivDate(now);
   const minutesNow = kyivMinutes(now);
-  const todayGroups = allGroups(source, today);
   let sent = 0;
+
+  // Official Ukrenergo announces national/region-wide restrictions.
+  // Keep this separate from DTEK's subgroup schedules: the two sources
+  // represent different facts and have independent deduplication state.
+  if (process.env.UKRENERGO_NOTICES !== 'off') {
+    try {
+      const result = await publishTomorrowNotice({
+        state, sender: sendTelegram, save: saveState, now, dryRun: DRY_RUN
+      });
+      if (result.status === 'published') sent++;
+    } catch (error) {
+      // Official Telegram's public web layout may change; never allow a
+      // fetch/parsing issue to stop the main DTEK schedules.
+      console.warn('Ukrenergo notice skipped (main DTEK bot unaffected): ' +
+        String(error?.message || error));
+    }
+  }
+
+  const source = await loadDocument();
+  const todayGroups = allGroups(source, today);
 
   // Refresh only very recent announcements after a display format upgrade.
   // Edit them in place; never publish a second copy of an already sent alert.
