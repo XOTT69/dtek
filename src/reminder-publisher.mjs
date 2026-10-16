@@ -40,7 +40,7 @@ export async function publishAdvanceReminder({
     '',
     '📌 Нагадуємо про зміни за оновленим графіком.',
     ...(link ? [link] : [])
-  ].join('\\n') :
+  ].join('\n') :
     renderTransitionTelegram(
       upcoming.date, upcoming.transition, channel, upcoming.leadMinutes
     );
