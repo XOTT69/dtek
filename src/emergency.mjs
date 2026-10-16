@@ -57,35 +57,31 @@ function names(districts) {
 }
 
 export function renderEmergencyNotice(event, remaining = []) {
+  const emergency = event.kind === 'екстрені';
   const lines = [];
   if (event.status === 'active') {
-    lines.push('🚨 <b>' + (event.kind === 'екстрені' ? 'Екстрені' : 'Аварійні') +
+    lines.push('🚨 <b>' + (emergency ? 'Екстрені' : 'Аварійні') +
       ' відключення на Київщині</b>');
-    lines.push('');
     lines.push('📍 ' + names(event.districts));
-    lines.push('⚠️ ДТЕК повідомляє про ' + event.kind + ' відключення на зазначених територіях.');
-    if (event.kind === 'екстрені' || event.explicitSchedulesSuspended) {
-      lines.push('📅 Погодинні графіки там тимчасово не діють.');
+    if (emergency || event.explicitSchedulesSuspended) {
+      lines.push('⚠️ Погодинні графіки тимчасово не діють.');
     } else {
-      lines.push('📅 Електропостачання може не відповідати плановому графіку.');
+      lines.push('⚠️ Можливі відключення поза графіком.');
     }
-    lines.push('🕒 Точний час відновлення не підтверджено.');
+    lines.push('🕒 Точний час відновлення невідомий.');
   } else {
-    lines.push('✅ <b>Скасування ' + (event.kind === 'екстрені' ? 'екстрених' : 'аварійних') +
+    lines.push('✅ <b>Скасування ' + (emergency ? 'екстрених' : 'аварійних') +
       ' відключень на Київщині</b>');
-    lines.push('');
     lines.push('📍 ' + names(event.districts));
-    lines.push('💡 ДТЕК повідомив про скасування обмежень на зазначеній території.');
-    if (event.explicitReturnToPlan) {
-      lines.push('📅 Повертаємося до погодинних графіків.');
-    } else {
-      lines.push('📅 Актуальні планові години перевіряйте за графіком ДТЕК.');
-    }
+    // Only claim the return to hourly schedules when DTEK says so.
+    lines.push(event.explicitReturnToPlan ?
+      '💡Повертаємося до погодинних графіків.' :
+      '💡Обмеження скасовано. Перевіряйте актуальний графік ДТЕК.');
     if (remaining.length) {
-      lines.push('⚠️ Обмеження ще зазначені для: ' + names(remaining));
+      lines.push('⚠️ В інших районах обмеження ще діють: ' + names(remaining));
     }
   }
-  lines.push('', '🔗 <a href="' + event.sourceUrl + '">Офіційне повідомлення ДТЕК</a>');
+  lines.push('🔗 <a href="' + event.sourceUrl + '">Офіційне повідомлення ДТЕК</a>');
   return lines.join('\n');
 }
 
@@ -116,8 +112,9 @@ export function emergencyAdvisory(status) {
   if (!status?.active) return '';
   const kind = status.kind === 'екстрені' ? 'екстрені' : 'аварійні';
   return '\n\n⚠️ <b>Увага:</b> на Київщині діють ' + kind +
-    ' відключення (' + names(status.districts) +
-    '). Планові години можуть не виконуватися на зазначених територіях.';
+    ' відключення (' + names(status.districts) + '). ' +
+    (kind === 'екстрені' ? 'Графіки не діють.' :
+      'Можливі відключення поза графіком.');
 }
 
 export async function fetchDtekEmergencies({fetchFn = fetch, now = new Date()} = {}) {
