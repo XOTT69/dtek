@@ -113,7 +113,18 @@ async function main() {
       const key = fragment.key;
       const hash = hashText(fragment.fingerprint);
       if (state.publications[key]?.hash === hash && !DRY_RUN) {
-        console.log('Unchanged: ' + key);
+        const previous = state.publications[key];
+        if ((previous.formatVersion || 1) < 2 && previous.messageId) {
+          // Formatting-only change: remove unwanted footers in place.
+          // No new post, no duplicate Telegram notification.
+          await sendTelegram.edit(previous.messageId, fragment.message);
+          previous.formatVersion = 2;
+          previous.editedAt = new Date().toISOString();
+          await saveState(state);
+          console.log('Edited published message without reposting: ' + key);
+        } else {
+          console.log('Unchanged: ' + key);
+        }
         continue;
       }
       if (DRY_RUN) {
@@ -121,7 +132,7 @@ async function main() {
         continue;
       }
       const messageId = await sendTelegram(fragment.message);
-      state.publications[key] = { hash, messageId, publishedAt: new Date().toISOString() };
+      state.publications[key] = { hash, messageId, formatVersion: 2, publishedAt: new Date().toISOString() };
       cleanOldState(state, today);
       await saveState(state);
       console.log('Published ' + key + ', Telegram message ID ' + messageId);
