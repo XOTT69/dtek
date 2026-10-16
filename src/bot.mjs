@@ -77,6 +77,30 @@ async function main() {
   const todayGroups = allGroups(source, today);
   let sent = 0;
 
+  // Refresh only very recent announcements after a display format upgrade.
+  // Edit them in place; never publish a second copy of an already sent alert.
+  if (!DRY_RUN) {
+    for (const [eventKey, event] of Object.entries(state.events)) {
+      if ((event.formatVersion || 1) >= 2 || !event.messageId) continue;
+      const match = /^(\\d{4}-\\d{2}-\\d{2})@(\\d{2}):(\\d{2})$/.exec(eventKey);
+      if (!match || match[1] !== today) continue;
+      const eventMinute = Number(match[2]) * 60 + Number(match[3]);
+      if (minutesNow < eventMinute || minutesNow - eventMinute > 120) continue;
+      const transition = buildTransition(todayGroups, eventMinute);
+      if (!transition) continue;
+      const channel = process.env.TELEGRAM_CHANNEL_USERNAME || '@svitlo_kyivshchyna';
+      try {
+        await sendTelegram.edit(event.messageId, renderTransitionTelegram(today, transition, channel));
+        event.formatVersion = 2;
+        event.editedAt = new Date().toISOString();
+        await saveState(state);
+        console.log('Updated recent alert styling without reposting: ' + eventKey);
+      } catch (error) {
+        console.warn('Unable to update old Telegram alert ' + eventKey + ': ' + String(error?.message || error));
+      }
+    }
+  }
+
   // An hourly/half-hour alert is sent only near the transition time, never
   // based on tentative preset. No retrospective backlog when starting a bot.
   const slotStart = Math.floor(minutesNow / 30) * 30;
