@@ -205,5 +205,14 @@
       "hash": "31691be5998476372ced54aabc2568c4445b15a718083bc8dc7ef29312e271ad",
       "updatedAt": "2026-10-16T14:50:50.037Z"
     }
+  },
+  "announcements": {
+    "2026-10-17": {
+      "hash": "0a0a393c15b5f74c5eb26dd4dcab86d30bae6246011a5a0cad369b2b9288e029",
+      "messageId": 22,
+      "sourcePostId": 5549,
+      "sourceUrl": "https://t.me/Ukrenergo/5549",
+      "publishedAt": "2026-10-16T18:05:34.812Z"
+    }
   }
 }
