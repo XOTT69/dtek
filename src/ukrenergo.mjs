@@ -164,7 +164,7 @@ export function renderUkrenergoNotice(notice) {
   } else if (notice.scope === 'kyiv') {
     lines.push('📍 Київська область згадана в оголошенні.');
   } else {
-    lines.push('📍 У частині регіонів України. Для Київської області застосування ще не підтверджене цим повідомленням.');
+    lines.push('📍 У частині регіонів України.');
   }
   lines.push('', '💡 Точні години для підгруп 1.1–6.2 повідомимо після публікації графіка ДТЕК.');
   lines.push('📢 <a href="' + escapeHtml(notice.sourceUrl) + '">Офіційне повідомлення Укренерго</a>');
