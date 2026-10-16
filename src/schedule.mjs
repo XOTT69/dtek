@@ -103,7 +103,7 @@ function safe(text) {
 
 export function renderTelegram(date, dayLabel, byGroup, document, groups = GROUPS) {
   const allModes = groups.map(group => byGroup[group]?.mode);
-  const preliminary = allModes.every(mode => mode === 'preset');
+  const preliminary = allModes.includes('preset') && allModes.every(mode => mode === 'preset' || mode === 'missing');
   const heading = preliminary
     ? '🔶 <b>Можливі відключення на ' + dayLabel + '</b>'
     : '💡 <b>Оновлений графік відключення світла на ' + dayLabel + '</b>';
