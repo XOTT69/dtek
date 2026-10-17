@@ -26,7 +26,7 @@ test('first daily fact is initial, repeated polls never increment versions',()=>
   assert.equal(dailyIsUpdated(state,'2026-10-17'),false);
   assert.match(renderDailyMessages('2026-10-17','завтра',groups,{},{
     updated:dailyIsUpdated(state,'2026-10-17')
-  })[0].message,/^💡<b>Графік відключення світла на завтра\./);
+  })[0].message,/^📅<b>Графік відключення світла на завтра<\/b>/);
 });
 
 test('real interval correction after prior publication produces updated message',()=>{
@@ -39,7 +39,7 @@ test('real interval correction after prior publication produces updated message'
   assert.equal(changedResult.revision,1);
   assert.match(renderDailyMessages(date,'сьогодні',changed,{},{
     updated:dailyIsUpdated(state,date)
-  })[0].message,/^💡<b>Оновлений графік відключення світла на сьогодні\./);
+  })[0].message,/^🔄<b>Оновлений графік відключення світла<\/b>/);
   assert.equal(trackDailyRevision(state,date,changed).revision,1);
   const secondChange=trackDailyRevision(state,date,confirmed(600,720));
   assert.equal(secondChange.revision,2);
@@ -55,7 +55,7 @@ test('tomorrow-to-today rollover is not itself a revised timetable',()=>{
   assert.equal(newDay.updated,false);
   assert.match(renderDailyMessages(date,'сьогодні',groups,{},{
     updated:newDay.updated
-  })[0].message,/^💡<b>Графік відключення світла на сьогодні\./);
+  })[0].message,/^💡<b>Графік відключення світла<\/b>/);
 });
 
 test('source correction before first successful announcement remains initial',()=>{
