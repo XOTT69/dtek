@@ -153,7 +153,7 @@ test('emergency correction preserves an initially published plain schedule headi
     },save:async()=>{},now,logger
   });
   assert.equal(count,1);
-  assert.match(edits[0],/^💡<b>Графік відключення світла на сьогодні\./);
+  assert.match(edits[0],/^💡<b>Графік відключення світла<\/b>/);
   assert.doesNotMatch(edits[0],/Оновлений графік/);
   assert.match(edits[0],/Графіки не діють/);
 });
@@ -176,7 +176,7 @@ test('emergency cancellation preserves updated heading of an actually revised ti
     },save:async()=>{},now,logger
   });
   assert.equal(count,1);
-  assert.match(edits[0],/^💡<b>Оновлений графік відключення світла на сьогодні\./);
+  assert.match(edits[0],/^🔄<b>Оновлений графік відключення світла<\/b>/);
   assert.doesNotMatch(edits[0],/Графіки не діють/);
   assert.match(edits[0],/❌з 18:00 до 19:00/);
 });
