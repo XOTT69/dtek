@@ -24,8 +24,9 @@
       "revision": 8,
       "formatVersion": 7,
       "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T11:25:39.816Z"
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-17T11:25:39.816Z",
+      "emergencyEditedAt": "2026-10-17T12:52:51.705Z"
     }
   },
   "events": {
@@ -465,22 +466,18 @@
   },
   "emergency": {
     "status": {
-      "active": true,
+      "active": false,
       "kind": "екстрені",
-      "scope": "districts",
-      "districts": [
-        "Бучанський",
-        "Обухівський",
-        "Фастівський"
-      ],
-      "sourceUrl": "https://t.me/dtek_ua/4637"
+      "scope": "oblast-unspecified",
+      "districts": [],
+      "sourceUrl": "https://t.me/dtek_ua/4643"
     },
-    "lastId": 4637,
-    "lastSignature": "28f84f1d0f0cae72de89a751ee3ab85ff79d3f4b03ad9e65cb6c7ec999ae639e",
-    "lastSourceUrl": "https://t.me/dtek_ua/4637",
-    "lastObservedAt": "2026-10-16T09:57:14.815Z",
-    "lastSourcePublishedAt": "2026-10-16T08:42:22.000Z",
-    "messageId": 17,
+    "lastId": 4643,
+    "lastSignature": "e9f439a8ddcf6e13f15849487659045a88d86fa27851485fc81dc0f027a71d71",
+    "lastSourceUrl": "https://t.me/dtek_ua/4643",
+    "lastObservedAt": "2026-10-17T12:52:51.705Z",
+    "lastSourcePublishedAt": "2026-10-17T07:58:34.000Z",
+    "messageId": 55,
     "formatVersion": 2
   },
   "corrections": {
@@ -713,11 +710,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-17",
-    "hash": "569e4bdb92dbc70228bff489effd398ed0cca97108144a51c7fbd342b6d0e77b",
+    "hash": "8125c32035cf282761a873b3621b4a73e252fa2a97e85a837100369f7543242e",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T11:25:38.521Z"
+    "editedAt": "2026-10-17T12:52:57.793Z"
   }
 }
