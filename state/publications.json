@@ -188,6 +188,13 @@
       "combinedCorrectionHash": "5fc5a29810586185c9b8a356b04499b952b035080276c91a0e2da20a647cea2b",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 17:00</b>\n🔔 До планового часу: 25 хв\n📆 Субота, 17.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 6.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 1.2\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n\n🔄 Змінено підгрупи: 1.2, 2.2, 3.1, 6.1",
       "editedAt": "2026-10-17T13:35:41.382Z"
+    },
+    "2026-10-17@18:30#pre30": {
+      "messageId": 58,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-17T15:01:23.515Z"
     }
   },
   "cleanedDuplicatePosts": [
