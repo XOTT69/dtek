@@ -51,7 +51,7 @@ test('corrected hours edit existing notice without sending a second message',asy
   assert.equal(calls.length,2);
   assert.deepEqual(calls.map(x=>x[0]),['send','edit']);
   assert.equal(calls[1][1],77);
-  assert.match(calls[1][2],/08:00–22:00/);
+  assert.match(calls[1][2],/з 08:00 до 22:00/);
   assert.equal(state.announcements[DATE].sourcePostId,113);
 });
 
