@@ -80,7 +80,7 @@ test('confirmed post contains only schedules without source/footer/disclaimer', 
   const messages = renderDailyMessages('2026-10-16', 'сьогодні', byGroup, {});
   assert.equal(messages.length, 1);
   for (const fragment of messages) {
-    assert.match(fragment.message, /^💡<b>Графік відключення світла на сьогодні\.<\/b>/);
+    assert.match(fragment.message, /^💡<b>Графік відключення світла<\/b>/);
     assert.doesNotMatch(fragment.message, /Оновлений графік/);
     assert.match(fragment.message, /Разом без світла/);
     assert.match(fragment.message, /💡<b>Підгрупа 1\.1 відключення:<\/b>/);
@@ -107,15 +107,19 @@ test('initial and updated titles differ, but group formatting and dedup fingerpr
   });
   assert.equal(first.length,1);
   assert.equal(changed.length,1);
-  assert.match(first[0].message,/^💡<b>Графік відключення світла на сьогодні\.<\/b>/);
-  assert.match(changed[0].message,/^💡<b>Оновлений графік відключення світла на сьогодні\.<\/b>/);
+  assert.match(first[0].message,/^💡<b>Графік відключення світла<\/b>/);
+  assert.match(changed[0].message,/^🔄<b>Оновлений графік відключення світла<\/b>/);
   assert.equal(first[0].fingerprint,changed[0].fingerprint);
   assert.equal(first[0].key,changed[0].key);
   assert.equal(first[0].message.includes('❌з 07:00 до 09:00'),true);
   assert.equal(changed[0].message.includes('❌з 07:00 до 09:00'),true);
 
   const tomorrow = renderDailyMessages('2026-10-18','завтра',byGroup,{});
-  assert.match(tomorrow[0].message,/Графік відключення світла на завтра/);
+  const tomorrowUpdated = renderDailyMessages('2026-10-18','завтра',byGroup,{}, {updated:true});
+  assert.match(tomorrow[0].message,/^📅<b>Графік відключення світла на завтра<\/b>/);
+  assert.match(tomorrowUpdated[0].message,/^🔄<b>Оновлений графік відключення світла на завтра<\/b>/);
+  assert.equal(tomorrow[0].fingerprint,tomorrowUpdated[0].fingerprint);
+  assert.equal(tomorrow[0].key,tomorrowUpdated[0].key);
   assert.doesNotMatch(tomorrow[0].message,/Оновлений графік/);
 });
 
@@ -132,7 +136,7 @@ test('long schedules split safely with the correct initial/updated heading on ev
   assert.ok(first.length>1);
   assert.equal(first.length,revised.length);
   assert.ok(first.every(x=>x.message.startsWith('💡<b>Графік відключення')));
-  assert.ok(revised.every(x=>x.message.startsWith('💡<b>Оновлений графік відключення')));
+  assert.ok(revised.every(x=>x.message.startsWith('🔄<b>Оновлений графік відключення')));
   assert.deepEqual(first.map(x=>x.fingerprint),revised.map(x=>x.fingerprint));
 });
 
@@ -327,7 +331,7 @@ test('water bot can read both 1.2 and 2.2 sections from the daily Telegram text'
   const posts = renderDailyMessages('2026-10-16','сьогодні',byGroup,{});
   assert.equal(posts.length, 1, 'all groups must be in the forwarded Telegram post');
   const plain = posts[0].message.replace(/<[^>]*>/g, '');
-  assert.match(plain, /^💡Графік відключення світла на сьогодні\./);
+  assert.match(plain, /^💡Графік відключення світла/);
   assert.match(plain, /📆П'ятниця, 16\.10\.2026/);
   assert.match(plain, /💡Підгрупа 2\.2 відключення:\n❌з 09:00 до 15:00 \(6\.0 год\)\n❌з 18:00 до 22:00 \(4\.0 год\)\n⚫ Разом без світла: 10\.0 год/);
 
