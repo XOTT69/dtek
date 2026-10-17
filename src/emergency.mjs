@@ -24,7 +24,20 @@ export function parseDtekEmergency(post, now = new Date()) {
   // "Київ" alone means the city, not the oblast.
   if (!/(?:київщин|київськ[а-яіїєґ]*\s+област)/iu.test(text)) return null;
   const hasEmergency = /(?:екстрен[а-яіїєґ]*|аварійн[а-яіїєґ]*)\s+відключен|відключен[а-яіїєґ]*\s+(?:через\s+)?аварі/iu.test(text);
-  const returnToPlan = /(?:повертаємось|повертаємося|повернулись|повернулися)\s+до\s+графік|(?:відновлен|відновил)[а-яіїєґ]*\s+(?:планов[а-яіїєґ]*\s+)?графік/iu.test(text);
+  // DTEK also announces the END of an emergency by explicitly resuming
+  // hourly outages, e.g. official post 4643 on 17.10.2026:
+  // "Київщина: за командою Укренерго застосовано графіки відключень".
+  // Ordinary day-ahead schedules ("графіки на завтра") must NOT clear alerts.
+  const officialReturn = /(?:повертаємось|повертаємося|повернулись|повернулися)\s+до\s+графік|(?:відновлен|відновил)[а-яіїєґ]*\s+(?:планов[а-яіїєґ]*\s+)?графік/iu.test(text);
+  const scheduleActivated = /(?:застосовано|застосовуються|запроваджено|відновлено|введено)\s+(?:погодинні\s+|стабілізаційні\s+)?графік[а-яіїєґ]*\s+(?:(?:погодинн[а-яіїєґ]*|стабілізаційн[а-яіїєґ]*)\s+)?відключен[а-яіїєґ]*/iu.test(text);
+  const negated = /(?:не|досі\s+не|поки\s+не)\s+(?:застосовано|застосовуються|запроваджено|відновлено|введено)\s+графік/iu.test(text);
+  const dayAhead = /(?:на\s+завтра|завтра\s*[,.:]|на\s+наступн[а-яіїєґ]*\s+день)/iu.test(text);
+  const excludedAreas = /(?:крім|окрім|за\s+винятком)/iu.test(text);
+  const partialWithoutDistricts = /(?:частин[іиа]|деяких|окремих|не\s+(?:у|на)\s+всій)/iu.test(text) &&
+    !DISTRICTS.some(([,re])=>re.test(text));
+  const resumedSchedules = scheduleActivated && !negated && !dayAhead &&
+    !excludedAreas && !partialWithoutDistricts && !/графік[а-яіїєґ]*\s+не\s+діють/iu.test(text);
+  const returnToPlan = officialReturn || resumedSchedules;
   if (!hasEmergency && !returnToPlan) return null;
   const districts = DISTRICTS.filter(([, re]) => re.test(text)).map(([name]) => name);
   const cancellation = /(?:відключен[^.!?\n]{0,40}(?:скасован|скасуван|припинен|завершен)|скасован[а-яіїєґ]*\s+(?:екстрен|аварійн)|скасуван[а-яіїєґ]*\s+(?:екстрен|аварійн)|екстрен[а-яіїєґ]*\s+відключен[а-яіїєґ]*\s+(?:більше\s+не|не\s+діють))/iu.test(text) ||
@@ -32,7 +45,10 @@ export function parseDtekEmergency(post, now = new Date()) {
   const introduction = /(?:застосов|запроваджен|введен|діють|тривають|фіксують|фіксуються|відбуваються|наявн[а-яіїєґ]*|залишаються)/iu.test(text) ||
     /(?:через\s+атак|внаслідок\s+атак|через\s+аварі)/iu.test(text);
   if (!cancellation && (!hasEmergency || !introduction)) return null;
-  const kind = /екстрен/iu.test(text) ? 'екстрені' : 'аварійні';
+  // The "hourly schedules resumed" bulletin does not name the previous
+  // outage type. The publisher resolves it from the known active incident.
+  const kind = /екстрен/iu.test(text) ? 'екстрені' :
+    /аварійн/iu.test(text) ? 'аварійні' : null;
   // Some DTEK posts include Kyiv city *and* specific oblast districts.
   // A bare "Київщина" statement is NOT silently interpreted as every district.
   const scope = districts.length ? 'districts' : 'oblast-unspecified';
@@ -95,7 +111,7 @@ export function applyEmergencyStatus(previous, event) {
     // lifted everywhere. Only a non-qualified oblast-wide cancellation is.
     const partial = /(?:частин[іиа]|деяких|окремих)\s+(?:район[а-яіїєґ]*|територі[а-яіїєґ]*|київщин[а-яіїєґ]*)/iu.test(event.sourceText);
     if (partial && previous?.active) return {...previous};
-    return {active: false, kind: event.kind, scope: 'oblast-unspecified',
+    return {active: false, kind: previous?.kind || event.kind || 'екстрені', scope: 'oblast-unspecified',
       districts: [], sourceUrl: event.sourceUrl};
   }
   if (previous?.scope === 'oblast-unspecified' && previous.active) {
