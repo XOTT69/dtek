@@ -19,13 +19,13 @@
       "emergencyEditedAt": "2026-10-16T18:10:40.049Z"
     },
     "2026-10-17/сьогодні/all": {
-      "hash": "a2fcb64f2f0d3526c4a54d1967fd05fa9caae5c722cfe11e48f68a43f49fffb3",
-      "messageId": 60,
-      "revision": 10,
+      "hash": "9cc23482abf08bd61ced5d4fdb513355c32c0ec4cb94a94f52ce6e553a2e720d",
+      "messageId": 61,
+      "revision": 11,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T15:45:49.047Z"
+      "publishedAt": "2026-10-17T16:01:19.765Z"
     }
   },
   "events": {
@@ -204,7 +204,8 @@
       "publishedAt": "2026-10-17T15:31:09.286Z",
       "combinedCorrectionHash": "bfdce6a780a25203e2339ffee4bfb8fb9d2f0e5b7b549bdc9b858a85d10d1e91",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 19:00</b>\n🔔 До планового часу: 15 хв\n📆 Субота, 17.10.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 1.1\n🔋 Підгрупа 1.2\n🔋 Підгрупа 2.1\n🔋 Підгрупа 2.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 4.1\n⚫️ Підгрупа 4.2\n\n🔄 Змінено підгрупи: 1.2",
-      "editedAt": "2026-10-17T15:45:50.096Z"
+      "editedAt": "2026-10-17T16:01:19.901Z",
+      "correctedHash": "f239b257a5da555df4e511476ab93be0a1a87f30aa586a7f65299bcbb73ec088"
     }
   },
   "cleanedDuplicatePosts": [
@@ -387,6 +388,10 @@
         ],
         [
           1110,
+          1140
+        ],
+        [
+          1320,
           1350
         ]
       ],
@@ -572,10 +577,9 @@
       "updatedAt": "2026-10-17T13:35:41.382Z"
     },
     "2026-10-17@1140": {
-      "messageId": 59,
-      "hash": "bfdce6a780a25203e2339ffee4bfb8fb9d2f0e5b7b549bdc9b858a85d10d1e91",
-      "combined": true,
-      "updatedAt": "2026-10-17T15:45:50.096Z"
+      "messageId": 62,
+      "hash": "3fee3fcc12b3fbd5cdca485f6d016622b3efe0e8e9d2030f806b414b839129de",
+      "updatedAt": "2026-10-17T16:01:20.969Z"
     }
   },
   "announcements": {
@@ -640,6 +644,10 @@
         ],
         [
           1110,
+          1140
+        ],
+        [
+          1320,
           1350
         ]
       ],
@@ -749,18 +757,18 @@
   },
   "dailyRevisions": {
     "2026-10-17": {
-      "hash": "dd663e786ccb83f08334b4c0999295237376a68c58ecabd0603490f9da19261d",
-      "revision": 10
+      "hash": "65326cff021804d0d575b0d2d6fb48efb637360c61ce06175725f143b08a9390",
+      "revision": 11
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-17",
-    "hash": "ac94a578c5d62683349ba528bbc496c0d6330a983b97c453b9de7ebbf026c377",
+    "hash": "13802293c3362bdf403cfee9afcf8d61062d45b268e6cabe4be568f2bcd063aa",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T15:45:47.440Z"
+    "editedAt": "2026-10-17T16:01:18.734Z"
   }
 }
