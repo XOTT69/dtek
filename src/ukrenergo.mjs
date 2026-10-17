@@ -153,24 +153,27 @@ export function pickLatestTomorrowNotice(posts, now = new Date()) {
   return candidates[0] ?? null;
 }
 
-function escapeHtml(value) {
-  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+const MONTH_NAMES=[
+  'січня','лютого','березня','квітня','травня','червня',
+  'липня','серпня','вересня','жовтня','листопада','грудня'
+];
 
+/**
+ * Compact, single-line notice for the channel. The scope is deliberately
+ * preserved: a partial-region announcement never promises Kyiv oblast
+ * outages, and times here are NATIONAL restrictions, not subgroup hours.
+ */
 export function renderUkrenergoNotice(notice) {
-  const [, mm, dd] = notice.date.split('-');
-  const heading = '⚡️ <b>Завтра, ' + Number(dd) + '.' + mm + ', можливі погодинні відключення</b>';
-  const lines = [heading, '🕒 <b>' + notice.windows.join(', ') + '</b>', ''];
-  if (notice.scope === 'national') {
-    lines.push('📍 У всіх регіонах України, включно з Київською областю.');
-  } else if (notice.scope === 'kyiv') {
-    lines.push('📍 Київська область згадана в оголошенні.');
-  } else {
-    lines.push('📍 У частині регіонів України.');
-  }
-  lines.push('', '💡 Точні години для підгруп 1.1–6.2 повідомимо після публікації графіка ДТЕК.');
-  lines.push('📢 <a href="' + escapeHtml(notice.sourceUrl) + '">Офіційне повідомлення Укренерго</a>');
-  return lines.join('\n');
+  const [, month, day] = notice.date.split('-').map(Number);
+  const date = Number(day)+' '+MONTH_NAMES[month-1];
+  const times = notice.windows.map(window=>{
+    const [start,end]=window.split('–');
+    return 'з '+start+' до '+end;
+  }).join(' та ');
+  const location = notice.scope==='kyiv' ? 'у Київській області ' :
+    notice.scope==='partial' ? 'у частині регіонів України ' : '';
+  return '💡<b>Завтра, '+date+', '+location+
+    'будуть діяти графіки погодинних відключень світла '+times+'.</b>';
 }
 
 export async function fetchTomorrowNotice({fetchFn = fetch, now = new Date()} = {}) {
