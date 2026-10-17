@@ -19,14 +19,13 @@
       "emergencyEditedAt": "2026-10-16T18:10:40.049Z"
     },
     "2026-10-17/сьогодні/all": {
-      "hash": "0220235a9f02f435e405042cfce3375719bab10f560b4af1676aa728d747d526",
-      "messageId": 51,
-      "revision": 8,
+      "hash": "da8f15116486af9abf87e32d4062a8af0ad14168d9d81c36873a50637f5ac516",
+      "messageId": 57,
+      "revision": 9,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T11:25:39.816Z",
-      "emergencyEditedAt": "2026-10-17T12:52:51.705Z"
+      "publishedAt": "2026-10-17T13:35:40.393Z"
     }
   },
   "events": {
@@ -182,10 +181,13 @@
     },
     "2026-10-17@17:00#pre30": {
       "messageId": 56,
-      "leadMinutes": 29,
-      "formatVersion": 5,
+      "leadMinutes": 25,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T13:31:07.875Z"
+      "publishedAt": "2026-10-17T13:31:07.875Z",
+      "combinedCorrectionHash": "5fc5a29810586185c9b8a356b04499b952b035080276c91a0e2da20a647cea2b",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 17:00</b>\n🔔 До планового часу: 25 хв\n📆 Субота, 17.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 6.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 1.2\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n\n🔄 Змінено підгрупи: 1.2, 2.2, 3.1, 6.1",
+      "editedAt": "2026-10-17T13:35:41.382Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -334,7 +336,7 @@
         ],
         [
           900,
-          1140
+          1320
         ]
       ],
       "2.1": [
@@ -354,7 +356,7 @@
         ],
         [
           900,
-          1020
+          1140
         ]
       ],
       "3.1": [
@@ -367,7 +369,7 @@
           720
         ],
         [
-          1320,
+          1110,
           1350
         ]
       ],
@@ -449,6 +451,10 @@
         [
           690,
           930
+        ],
+        [
+          1020,
+          1110
         ],
         [
           1320,
@@ -541,6 +547,12 @@
       "messageId": 52,
       "hash": "e0eb96fc757ed8b8b4e038a5d6729e9d0ae95f1b0f8c8afea67d3e7849cb55df",
       "updatedAt": "2026-10-17T11:25:40.924Z"
+    },
+    "2026-10-17@1020": {
+      "messageId": 56,
+      "hash": "5fc5a29810586185c9b8a356b04499b952b035080276c91a0e2da20a647cea2b",
+      "combined": true,
+      "updatedAt": "2026-10-17T13:35:41.382Z"
     }
   },
   "announcements": {
@@ -571,7 +583,7 @@
         ],
         [
           900,
-          1140
+          1320
         ]
       ],
       "2.1": [
@@ -591,7 +603,7 @@
         ],
         [
           900,
-          1020
+          1140
         ]
       ],
       "3.1": [
@@ -604,7 +616,7 @@
           720
         ],
         [
-          1320,
+          1110,
           1350
         ]
       ],
@@ -688,6 +700,10 @@
           930
         ],
         [
+          1020,
+          1110
+        ],
+        [
           1320,
           1440
         ]
@@ -710,18 +726,18 @@
   },
   "dailyRevisions": {
     "2026-10-17": {
-      "hash": "c659796999e468e15b65c5b21449cb6dc7fdd23393e992a59a97ae6cdb23ff1c",
-      "revision": 8
+      "hash": "6e430d7f38bd4b1cb0c66309e3cd17b2b940d073a1971f186358c0db8d0ecba3",
+      "revision": 9
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-17",
-    "hash": "8125c32035cf282761a873b3621b4a73e252fa2a97e85a837100369f7543242e",
+    "hash": "a5c9d583b62c8f66cee0f2fc1f42fe2e0eb11b897e5dd2a5433b466726d76ff8",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T12:52:57.793Z"
+    "editedAt": "2026-10-17T13:35:39.280Z"
   }
 }
