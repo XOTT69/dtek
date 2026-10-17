@@ -19,13 +19,13 @@
       "emergencyEditedAt": "2026-10-16T18:10:40.049Z"
     },
     "2026-10-17/сьогодні/all": {
-      "hash": "6a2cdb8795bb99914dac502962fa1ac74926648f6195eb53e2f675421d40cce3",
-      "messageId": 66,
-      "revision": 13,
+      "hash": "5d20e80cd2c00eb3d796239bd005c7726ae868de202badf33edf04f1241fd8d2",
+      "messageId": 73,
+      "revision": 14,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T17:55:40.102Z"
+      "publishedAt": "2026-10-17T20:10:50.269Z"
     },
     "2026-10-18/завтра/all": {
       "hash": "bfa377da470d3cd55d441eed45d6aa9be40f2767f73654aa1e81dbe4b74392a1",
@@ -494,7 +494,7 @@
         ],
         [
           1320,
-          1440
+          1380
         ]
       ],
       "6.2": [
@@ -508,7 +508,7 @@
         ],
         [
           1320,
-          1440
+          1380
         ]
       ]
     },
@@ -691,6 +691,11 @@
       "messageId": 70,
       "hash": "3877bea21f8f58c0a2cac89d713641251546f5972b226ca44a7db8088b7efece",
       "updatedAt": "2026-10-17T18:15:51.951Z"
+    },
+    "2026-10-17@1380": {
+      "messageId": 74,
+      "hash": "3fcc7583ce82664ea73d2e9cb200a7e9f9357b2a6754beb10735d36f2e355015",
+      "updatedAt": "2026-10-17T20:10:51.672Z"
     }
   },
   "announcements": {
@@ -847,7 +852,7 @@
         ],
         [
           1320,
-          1440
+          1380
         ]
       ],
       "6.2": [
@@ -861,7 +866,7 @@
         ],
         [
           1320,
-          1440
+          1380
         ]
       ]
     },
@@ -950,8 +955,8 @@
   },
   "dailyRevisions": {
     "2026-10-17": {
-      "hash": "800f2a5563fc4aceb1165854206d55b042efec63da41368a756dc4bd7c348733",
-      "revision": 13
+      "hash": "e60e6162a7db6992a3725315b2f1e53c9521a8f46fe9b7853ff0e9addef5e488",
+      "revision": 14
     },
     "2026-10-18": {
       "hash": "df3aafc0f023307e2810713f98b14f67d19d3ad7cbd734cdcbb00d9f99cf8791",
@@ -961,11 +966,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-17",
-    "hash": "1a4f584790ff3442395b724f51e55869ba41c97b5f0423f459fecc3713778b8f",
+    "hash": "eb097d883a83f0cf414b352a3904a63f9fdd3b7a8c9b79aefbf63f0366ad6398",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T17:55:38.653Z"
+    "editedAt": "2026-10-17T20:10:49.048Z"
   }
 }
