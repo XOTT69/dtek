@@ -105,3 +105,42 @@ test('first Ukrenergo send is not duplicated if GitHub state was lost', async ()
   assert.equal(sent,1);
 });
 
+
+test('existing multi-line announcement is rewritten in place once, never reposted',async()=>{
+  const state={},calls=[];
+  const sender=async message=>{calls.push(['send',message]);return 101;};
+  sender.edit=async(id,message)=>{calls.push(['edit',id,message]);};
+  const common={state,sender,now:NOW,logger,
+    fetchFn:fetchFn(html(5554)),save:async()=>{},
+    claim:async()=>({claimed:true})};
+  assert.equal((await publishTomorrowNotice(common)).status,'published');
+  const existing=state.announcements[DATE];
+  assert.equal(existing.formatVersion,2);
+  delete existing.formatVersion; // Represent a post made by the old renderer
+  assert.equal((await publishTomorrowNotice(common)).status,'restyled');
+  assert.equal(calls.length,2);
+  assert.equal(calls[0][0],'send');
+  assert.equal(calls[1][0],'edit');
+  assert.equal(calls[1][1],101);
+  assert.equal(calls[1][2],calls[0][1]);
+  assert.equal(existing.formatVersion,2);
+  assert.equal((await publishTomorrowNotice(common)).status,'unchanged');
+  assert.equal(calls.length,2);
+});
+
+test('formatting migration does not claim, send or duplicate an existing day-ahead post',async()=>{
+  const state={announcements:{[DATE]:{
+    hash:'placeholder',messageId:88,sourcePostId:222,publishedAt:'2026-10-15T13:10:00Z'
+  }}};
+  const first={state,now:NOW,logger,fetchFn:fetchFn(html(5554)),
+    save:async()=>{},sender:async()=>{throw Error('Must not send');},
+    claim:async()=>{throw Error('Must not claim');}};
+  first.sender.edit=async(id,text)=>{
+    assert.equal(id,88);
+    assert.match(text,/Завтра, 16 жовтня/);
+  };
+  // A correction of the source fact with a saved post must edit rather than send.
+  assert.equal((await publishTomorrowNotice(first)).status,'edited');
+  assert.equal(state.announcements[DATE].messageId,88);
+  assert.equal(state.announcements[DATE].formatVersion,2);
+});
