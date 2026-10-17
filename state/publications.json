@@ -155,6 +155,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-10-17T08:01:19.092Z"
+    },
+    "2026-10-17@12:00#pre30": {
+      "messageId": 48,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-10-17T08:31:07.764Z"
     }
   },
   "cleanedDuplicatePosts": [
