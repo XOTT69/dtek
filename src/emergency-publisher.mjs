@@ -14,11 +14,16 @@ export async function publishEmergencyUpdate({
   state, sender, save, fetchFn = fetch, now = new Date(),
   claim = claimEmergency, dryRun = false, logger = console
 } = {}) {
-  const event = await fetchDtekEmergencies({fetchFn,now});
-  if (!event) {
+  const observed = await fetchDtekEmergencies({fetchFn,now});
+  if (!observed) {
     logger.log('DTEK emergency: no fresh official Kyiv oblast bulletin');
     return {status:'none'};
   }
+  // A generic "hourly schedules resumed" bulletin does not distinguish
+  // emergency from аварійні. Keep the type of the PREVIOUS incident.
+  const prior = state.emergency?.status;
+  const event = observed.status==='cancelled' && !observed.kind ?
+    {...observed,kind:prior?.kind || 'екстрені'} : observed;
 
   const signature = emergencySignature(event);
   const previousId = state.emergency?.lastId || 0;
@@ -37,14 +42,13 @@ export async function publishEmergencyUpdate({
     }
     return {status:'unchanged'};
   }
-  const next = applyEmergencyStatus(state.emergency?.status, event);
-  // Follow-up reminders of the SAME known status are not new incidents.
-  const prior = state.emergency?.status;
+  const next = applyEmergencyStatus(prior, event);
+  // No new broadcast if an unrelated district's cancellation leaves the
+  // tracked status unchanged; also avoid retroactive "cancelled" notices.
   const noChange = !!prior && previousId !== 0 &&
     prior.active === next.active && prior.kind === next.kind &&
     prior.scope === next.scope &&
-    JSON.stringify(prior.districts) === JSON.stringify(next.districts) &&
-    !(event.status === 'cancelled' && prior.active);
+    JSON.stringify(prior.districts) === JSON.stringify(next.districts);
   if (dryRun) {
     logger.log('DTEK emergency preview: ' + renderEmergencyNotice(event,
       next.active ? next.districts : []));
@@ -61,6 +65,14 @@ export async function publishEmergencyUpdate({
     };
     await save(state);
   };
+
+  if (event.status === 'cancelled' && !prior?.active) {
+    // A normal plan announcement is not proof that this bot previously
+    // reported an emergency; remember the bulletin without a fake alert.
+    await remember();
+    logger.log('DTEK emergency: return to plan observed with no tracked active incident');
+    return {status:'already-clear',event,next};
+  }
 
   if (noChange) {
     await remember();
