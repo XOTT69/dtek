@@ -107,8 +107,13 @@ export function renderTelegram(date, dayLabel, byGroup, _document, groups = GROU
   if (groups.some(group => byGroup[group]?.mode !== 'fact')) {
     throw new Error('Only confirmed daily DTEK fact schedules can be published');
   }
+  // Four contextual titles; only the heading changes, never group data.
+  const tomorrow = dayLabel === 'завтра';
+  const headline = (updated ? 'Оновлений графік' : 'Графік') +
+    ' відключення світла' + (tomorrow ? ' на завтра' : '');
+  const icon = updated ? '🔄' : tomorrow ? '📅' : '💡';
   const lines = [
-    '💡<b>' + (updated ? 'Оновлений графік' : 'Графік') + ' відключення світла на ' + dayLabel + '.</b>',
+    icon + '<b>' + headline + '</b>',
     '📆<b>' + safe(formatDate(date)) + '</b>',
     ''
   ];
