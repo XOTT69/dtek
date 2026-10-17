@@ -46,16 +46,18 @@ test('reads exact official channel posts, dates, hours and source links', () => 
 test('part-of-regions announcement never claims Kyiv oblast confirmed', () => {
   const notice = parseTomorrowNotice(post(200), NOW);
   const rendered = renderUkrenergoNotice(notice);
-  assert.match(rendered, /частині регіонів/);
-  assert.doesNotMatch(rendered, /Для Київської області застосування ще не підтверджене/);
-  assert.doesNotMatch(rendered, /всіх регіонах України, включно/);
+  assert.equal(rendered,
+    '💡<b>Завтра, 16 жовтня, у частині регіонів України будуть діяти графіки погодинних відключень світла з 06:00 до 23:59.</b>');
+  assert.doesNotMatch(rendered, /Київськ|<a href|Точні години|📍|⚡️/);
 });
 
 test('all-regions announcement includes Kyiv oblast', () => {
   const content = BASE.replace('у частині регіонів України', 'в усіх регіонах України');
   const notice = parseTomorrowNotice(post(201, content), NOW);
   assert.equal(notice.scope, 'national');
-  assert.match(renderUkrenergoNotice(notice), /включно з Київською областю/);
+  assert.equal(renderUkrenergoNotice(notice),
+    '💡<b>Завтра, 16 жовтня, будуть діяти графіки погодинних відключень світла з 06:00 до 23:59.</b>');
+  assert.equal(renderUkrenergoNotice(notice).split('\\n').length,1);
 });
 
 test('only Kyiv city is not mistakenly treated as Kyiv oblast', () => {
@@ -111,4 +113,22 @@ test('fetches tomorrow notice from public channel with no secrets', async () => 
   });
   assert.equal(called, 1);
   assert.equal(result.date, '2026-10-16');
+});
+
+test('requested 18 October format and explicit Kyiv oblast remain concise',()=>{
+  const national={
+    date:'2026-10-18',scope:'national',windows:['06:00–23:59'],
+    sourcePostId:5554,sourceUrl:'https://t.me/Ukrenergo/5554'
+  };
+  assert.equal(renderUkrenergoNotice(national),
+    '💡<b>Завтра, 18 жовтня, будуть діяти графіки погодинних відключень світла з 06:00 до 23:59.</b>');
+  assert.equal(renderUkrenergoNotice({...national,scope:'kyiv'}),
+    '💡<b>Завтра, 18 жовтня, у Київській області будуть діяти графіки погодинних відключень світла з 06:00 до 23:59.</b>');
+});
+
+test('several time windows retain every interval within a single Telegram line',()=>{
+  const result=renderUkrenergoNotice({
+    date:'2026-12-01',scope:'national',windows:['06:00–10:00','16:00–23:59']
+  });
+  assert.equal(result,'💡<b>Завтра, 1 грудня, будуть діяти графіки погодинних відключень світла з 06:00 до 10:00 та з 16:00 до 23:59.</b>');
 });

@@ -27,6 +27,17 @@ export async function publishTomorrowNotice({
     return {status: 'older'};
   }
   if (previous?.hash === hash) {
+    // Formatting-only release: replace the previous multi-line message
+    // in place, keeping the same Telegram ID and fact fingerprint.
+    // Never create a new notification just to change the wording.
+    if (previous.messageId && (previous.formatVersion || 1) < 2) {
+      if (dryRun) return {status:'dry-run',notice};
+      await sender.edit(previous.messageId,text);
+      previous.formatVersion=2;
+      await save(state);
+      logger.log('Ukrenergo: compacted existing announcement in place for '+notice.date);
+      return {status:'restyled',notice,messageId:previous.messageId};
+    }
     logger.log('Ukrenergo: unchanged notice for ' + notice.date);
     return {status: 'unchanged'};
   }
@@ -55,7 +66,7 @@ export async function publishTomorrowNotice({
   }
   state.announcements ??= {};
   state.announcements[notice.date] = {
-    hash, messageId,
+    hash, messageId, formatVersion:2,
     sourcePostId: notice.sourcePostId,
     sourceUrl: notice.sourceUrl,
     publishedAt: new Date().toISOString()
