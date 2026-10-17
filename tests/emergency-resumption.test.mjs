@@ -40,11 +40,13 @@ test('normal schedules and non-oblast messages never invent cancellation',()=>{
     'Київщина: завтра застосовано графіки відключень',
     'Київщина: поки не застосовано графіки відключень',
     'Київщина: у частині районів застосовано графіки відключень',
-    'Київщина: застосовано графіки відключень, крім Бучанського району',
-    'Київщина: екстрені відключення тривають, графіки відключень не діють'
+    'Київщина: застосовано графіки відключень, крім Бучанського району'
   ];
   for(const body of samples)
     assert.equal(parseDtekEmergency(post(4643,body),NOW),null,body);
+  const stillEmergency=parseDtekEmergency(post(4643,
+    'Київщина: екстрені відключення тривають, графіки відключень не діють'),NOW);
+  assert.equal(stillEmergency.status,'active');
   assert.equal(selectLatestDtekEmergency([
     post(4637,ACTIVATION,EARLIER),
     post(4641,'Київщина: графіки відключень на 17 жовтня')
