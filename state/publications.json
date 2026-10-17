@@ -34,6 +34,15 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-10-17T18:15:50.691Z"
+    },
+    "2026-10-18/сьогодні/all": {
+      "hash": "bfa377da470d3cd55d441eed45d6aa9be40f2767f73654aa1e81dbe4b74392a1",
+      "messageId": 75,
+      "revision": 1,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-17T21:01:17.550Z"
     }
   },
   "events": {
@@ -965,12 +974,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-17",
-    "hash": "eb097d883a83f0cf414b352a3904a63f9fdd3b7a8c9b79aefbf63f0366ad6398",
+    "date": "2026-10-18",
+    "hash": "9fd02b617818454395431bff3d25612b6cb7a5b1535fb6a40364a631791a69af",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T20:10:49.048Z"
+    "editedAt": "2026-10-17T21:01:16.356Z"
   }
 }
