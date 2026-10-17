@@ -19,13 +19,13 @@
       "emergencyEditedAt": "2026-10-16T18:10:40.049Z"
     },
     "2026-10-17/сьогодні/all": {
-      "hash": "dbe25ecf6f800a8e18dcb30af939469b4e83d5af211887ce96f7dc5d059e4712",
-      "messageId": 49,
-      "revision": 7,
+      "hash": "0220235a9f02f435e405042cfce3375719bab10f560b4af1676aa728d747d526",
+      "messageId": 51,
+      "revision": 8,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T09:01:23.774Z"
+      "publishedAt": "2026-10-17T11:25:39.816Z"
     }
   },
   "events": {
@@ -329,6 +329,10 @@
         [
           0,
           60
+        ],
+        [
+          900,
+          1020
         ]
       ],
       "3.1": [
@@ -395,6 +399,10 @@
         [
           690,
           720
+        ],
+        [
+          870,
+          930
         ],
         [
           1320,
@@ -510,6 +518,11 @@
       "messageId": 50,
       "hash": "5091f3e85086a40eb302f7e2ab62cc1afd9e400f8e60c19e18beeab76594d971",
       "updatedAt": "2026-10-17T09:01:24.974Z"
+    },
+    "2026-10-17@870": {
+      "messageId": 52,
+      "hash": "e0eb96fc757ed8b8b4e038a5d6729e9d0ae95f1b0f8c8afea67d3e7849cb55df",
+      "updatedAt": "2026-10-17T11:25:40.924Z"
     }
   },
   "announcements": {
@@ -557,6 +570,10 @@
         [
           0,
           60
+        ],
+        [
+          900,
+          1020
         ]
       ],
       "3.1": [
@@ -625,6 +642,10 @@
           720
         ],
         [
+          870,
+          930
+        ],
+        [
           1320,
           1440
         ]
@@ -671,18 +692,18 @@
   },
   "dailyRevisions": {
     "2026-10-17": {
-      "hash": "6e26cd44c04b35da29ed268d890a48f93f09123d5f89a69366468828f491aaac",
-      "revision": 7
+      "hash": "c659796999e468e15b65c5b21449cb6dc7fdd23393e992a59a97ae6cdb23ff1c",
+      "revision": 8
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-17",
-    "hash": "6e5cc0d2c243c0005dcc6896680bef15f6dce2fd09cfc558ebb6649e1fc70602",
+    "hash": "569e4bdb92dbc70228bff489effd398ed0cca97108144a51c7fbd342b6d0e77b",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-17T09:01:22.513Z"
+    "editedAt": "2026-10-17T11:25:38.521Z"
   }
 }
