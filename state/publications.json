@@ -596,7 +596,8 @@
       "messageId": 65,
       "sourcePostId": 5554,
       "sourceUrl": "https://t.me/Ukrenergo/5554",
-      "publishedAt": "2026-10-17T17:01:17.207Z"
+      "publishedAt": "2026-10-17T17:01:17.207Z",
+      "formatVersion": 2
     }
   },
   "confirmedSchedules": {
