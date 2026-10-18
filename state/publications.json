@@ -255,6 +255,13 @@
       "combinedBaseText": "⚠️ <b>Коригування графіка на 08:00</b>\n🔔 До планового часу: 30 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 2.1, 3.2, 5.1",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
       "editedAt": "2026-10-18T04:31:06.697Z"
+    },
+    "2026-10-18@09:00#pre30": {
+      "messageId": 81,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-18T05:31:05.531Z"
     }
   },
   "cleanedDuplicatePosts": [
