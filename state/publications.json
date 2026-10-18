@@ -281,6 +281,11 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
       "publishedAt": "2026-10-18T08:31:05.271Z"
+    },
+    "2026-10-18@12:30#pre30": {
+      "claimed": true,
+      "formatVersion": 5,
+      "recoveredAt": "2026-10-18T09:05:36.285Z"
     }
   },
   "cleanedDuplicatePosts": [
