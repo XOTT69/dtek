@@ -344,6 +344,13 @@
       "combinedBaseText": "⚠️ <b>Коригування графіка на 22:30</b>\n🔔 До планового часу: 29 хв\n📆 Неділя, 18.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 2.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n\n🔄 Змінено підгрупи: 2.2, 6.2",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
       "editedAt": "2026-10-18T19:01:21.809Z"
+    },
+    "2026-10-18@23:00#pre30": {
+      "messageId": 117,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-18T19:31:08.290Z"
     }
   },
   "cleanedDuplicatePosts": [
