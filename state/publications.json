@@ -51,53 +51,18 @@
       "formatVersion": 7,
       "headingState": "initial",
       "publishedAt": "2026-10-18T18:05:43.379Z"
+    },
+    "2026-10-19/сьогодні/all": {
+      "hash": "fe69fff0c909ccbf1c4a811a2485e645be33fd2c72fbf0372038aa125ae84f84",
+      "messageId": 119,
+      "revision": 0,
+      "formatVersion": 7,
+      "headingState": "initial",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-18T21:01:19.651Z"
     }
   },
   "events": {
-    "2026-10-16@09:30": {
-      "messageId": 9,
-      "publishedAt": "2026-10-16T06:36:38.224Z",
-      "formatVersion": 3,
-      "editedAt": "2026-10-16T07:00:42.588Z"
-    },
-    "2026-10-16@10:00": {
-      "messageId": 10,
-      "publishedAt": "2026-10-16T07:00:18.930Z",
-      "formatVersion": 3,
-      "editedAt": "2026-10-16T07:00:42.736Z"
-    },
-    "2026-10-16@11:00": {
-      "messageId": 11,
-      "formatVersion": 3,
-      "publishedAt": "2026-10-16T08:03:42.230Z"
-    },
-    "2026-10-16@11:30#pre30": {
-      "messageId": 14,
-      "leadMinutes": 23,
-      "formatVersion": 4,
-      "publishedAt": "2026-10-16T08:07:34.050Z"
-    },
-    "2026-10-16@14:30#pre30": {
-      "messageId": 18,
-      "leadMinutes": 15,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-16T11:15:35.046Z"
-    },
-    "2026-10-16@21:30#pre30": {
-      "messageId": 21,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-16T18:01:18.003Z"
-    },
-    "2026-10-16@22:00#pre30": {
-      "messageId": 25,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-16T18:31:08.724Z"
-    },
     "2026-10-17@01:00#pre30": {
       "messageId": 27,
       "leadMinutes": 20,
@@ -1429,12 +1394,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-18",
-    "hash": "05a0ab340807f9e0b269d199e0e62c1f4f84cad94e4cdcd89a4e8239d0102253",
+    "date": "2026-10-19",
+    "hash": "de85bcfe0b411ad9805b1e59e6a3a2b38af24ba1706b42c4333873393bc9d05e",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-18T19:50:48.698Z"
+    "editedAt": "2026-10-18T21:01:18.511Z"
   }
 }
