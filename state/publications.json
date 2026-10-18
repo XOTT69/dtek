@@ -36,13 +36,13 @@
       "publishedAt": "2026-10-17T18:15:50.691Z"
     },
     "2026-10-18/сьогодні/all": {
-      "hash": "c18f01cec34efa6a5f688d61a4662a44509fb7ac83022ffe49a6366c8aeac1f3",
-      "messageId": 115,
-      "revision": 18,
+      "hash": "dd382f0a626f75246667efcf9bcfcc60bd4764e2a1b774bdf3f6c836336e79c6",
+      "messageId": 118,
+      "revision": 19,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T19:01:19.412Z"
+      "publishedAt": "2026-10-18T19:50:49.882Z"
     },
     "2026-10-19/завтра/all": {
       "hash": "fe69fff0c909ccbf1c4a811a2485e645be33fd2c72fbf0372038aa125ae84f84",
@@ -343,14 +343,18 @@
       "combinedCorrectionHash": "8db5eb236b00893415d3198ab28643888be20f2b2db6a0e7abb4aa8e5aaa444f",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 22:30</b>\n🔔 До планового часу: 29 хв\n📆 Неділя, 18.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 2.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n\n🔄 Змінено підгрупи: 2.2, 6.2",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "editedAt": "2026-10-18T19:01:21.809Z"
+      "editedAt": "2026-10-18T19:50:50.217Z",
+      "correctedHash": "736a7e7ccc49e28cff99a48b696bb7a744e65448b715dd281d572bc3d8863b84"
     },
     "2026-10-18@23:00#pre30": {
       "messageId": 117,
-      "leadMinutes": 29,
-      "formatVersion": 5,
+      "leadMinutes": 10,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T19:31:08.290Z"
+      "publishedAt": "2026-10-18T19:31:08.290Z",
+      "combinedCorrectionHash": "f8896595b3348fd48f14d7ec50a5c44f2bfde612bb36995c152aa51387cf9b5d",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 23:00</b>\n🔔 До планового часу: 10 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 2.1, 6.1",
+      "editedAt": "2026-10-18T19:50:51.257Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -652,10 +656,6 @@
         [
           720,
           960
-        ],
-        [
-          1350,
-          1440
         ]
       ],
       "2.2": [
@@ -723,7 +723,7 @@
         ],
         [
           1140,
-          1380
+          1350
         ]
       ],
       "6.2": [
@@ -1020,6 +1020,12 @@
       "hash": "8db5eb236b00893415d3198ab28643888be20f2b2db6a0e7abb4aa8e5aaa444f",
       "combined": true,
       "updatedAt": "2026-10-18T19:01:21.809Z"
+    },
+    "2026-10-18@1380": {
+      "messageId": 117,
+      "hash": "f8896595b3348fd48f14d7ec50a5c44f2bfde612bb36995c152aa51387cf9b5d",
+      "combined": true,
+      "updatedAt": "2026-10-18T19:50:51.257Z"
     }
   },
   "announcements": {
@@ -1211,10 +1217,6 @@
         [
           720,
           960
-        ],
-        [
-          1350,
-          1440
         ]
       ],
       "2.2": [
@@ -1282,7 +1284,7 @@
         ],
         [
           1140,
-          1380
+          1350
         ]
       ],
       "6.2": [
@@ -1417,8 +1419,8 @@
       "revision": 14
     },
     "2026-10-18": {
-      "hash": "9dc9dc2cc684a9c74f2c64da8267f59b2df2b903ac673727a028ffd5104f8c9b",
-      "revision": 18
+      "hash": "d4dbaabda878f908d95431f2cdff29457fa2047396b4427c578a4316d3e9dd05",
+      "revision": 19
     },
     "2026-10-19": {
       "hash": "d2046fe6961c054fa69d66bdd5a8c4e86f1e8a937b4b0ca1ffd4782d163e7ec3",
@@ -1428,11 +1430,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-18",
-    "hash": "617ffeed25a3d7979fc4f6ef396fce3f9740eedc6bbd7379e3bff4467f293317",
+    "hash": "05a0ab340807f9e0b269d199e0e62c1f4f84cad94e4cdcd89a4e8239d0102253",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-18T19:01:18.098Z"
+    "editedAt": "2026-10-18T19:50:48.698Z"
   }
 }
