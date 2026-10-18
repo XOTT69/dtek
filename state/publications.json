@@ -36,13 +36,13 @@
       "publishedAt": "2026-10-17T18:15:50.691Z"
     },
     "2026-10-18/сьогодні/all": {
-      "hash": "4ab23276ebefb10bccd34327816c0edfaf9ed3e6aaa2b2e5df1aadf92e991e1f",
-      "messageId": 114,
-      "revision": 17,
+      "hash": "c18f01cec34efa6a5f688d61a4662a44509fb7ac83022ffe49a6366c8aeac1f3",
+      "messageId": 115,
+      "revision": 18,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T18:35:48.025Z"
+      "publishedAt": "2026-10-18T19:01:19.412Z"
     },
     "2026-10-19/завтра/all": {
       "hash": "fe69fff0c909ccbf1c4a811a2485e645be33fd2c72fbf0372038aa125ae84f84",
@@ -333,7 +333,17 @@
       "publishedAt": "2026-10-18T18:31:10.234Z",
       "combinedCorrectionHash": "d03fa407c72a97bcb93fcb14585f3c2c36d07b0659ddb4ff495438adbdfeb691",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 22:00</b>\n🔔 До планового часу: 25 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 1.1, 1.2, 2.2, 3.1, 4.1, 4.2, 6.1",
-      "editedAt": "2026-10-18T18:35:49.112Z"
+      "editedAt": "2026-10-18T19:01:19.566Z",
+      "correctedHash": "f64454d144f03a0bcd46f1b7673b694163b3c37e23f26a4c0357960a4b1db577"
+    },
+    "2026-10-18@22:30#pre30": {
+      "messageId": 116,
+      "leadMinutes": 29,
+      "formatVersion": 6,
+      "combinedCorrectionHash": "8db5eb236b00893415d3198ab28643888be20f2b2db6a0e7abb4aa8e5aaa444f",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 22:30</b>\n🔔 До планового часу: 29 хв\n📆 Неділя, 18.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 2.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n\n🔄 Змінено підгрупи: 2.2, 6.2",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "editedAt": "2026-10-18T19:01:21.809Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -645,10 +655,6 @@
         [
           720,
           960
-        ],
-        [
-          1350,
-          1440
         ]
       ],
       "3.1": [
@@ -720,7 +726,7 @@
         ],
         [
           1140,
-          1380
+          1320
         ]
       ]
     },
@@ -1001,6 +1007,12 @@
       "messageId": 109,
       "hash": "2416b2847b7a2aeb4c5d849c170d21b48f57a187a0a5b25c01a950ce862d75d4",
       "updatedAt": "2026-10-18T17:25:40.603Z"
+    },
+    "2026-10-18@1350": {
+      "messageId": 116,
+      "hash": "8db5eb236b00893415d3198ab28643888be20f2b2db6a0e7abb4aa8e5aaa444f",
+      "combined": true,
+      "updatedAt": "2026-10-18T19:01:21.809Z"
     }
   },
   "announcements": {
@@ -1202,10 +1214,6 @@
         [
           720,
           960
-        ],
-        [
-          1350,
-          1440
         ]
       ],
       "3.1": [
@@ -1277,7 +1285,7 @@
         ],
         [
           1140,
-          1380
+          1320
         ]
       ]
     },
@@ -1402,8 +1410,8 @@
       "revision": 14
     },
     "2026-10-18": {
-      "hash": "3cc94b0a5cab8768d6f596cba69b5dd8fbb67cda6cf07616aea52e997c4de624",
-      "revision": 17
+      "hash": "9dc9dc2cc684a9c74f2c64da8267f59b2df2b903ac673727a028ffd5104f8c9b",
+      "revision": 18
     },
     "2026-10-19": {
       "hash": "d2046fe6961c054fa69d66bdd5a8c4e86f1e8a937b4b0ca1ffd4782d163e7ec3",
@@ -1413,11 +1421,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-18",
-    "hash": "749bf5f021ea9516ce0fe6ac64bfeb8e7295be0d956c30585889785759f9a724",
+    "hash": "617ffeed25a3d7979fc4f6ef396fce3f9740eedc6bbd7379e3bff4467f293317",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-18T18:35:46.591Z"
+    "editedAt": "2026-10-18T19:01:18.098Z"
   }
 }
