@@ -1071,6 +1071,14 @@
       "sourceUrl": "https://t.me/Ukrenergo/5554",
       "publishedAt": "2026-10-17T17:01:17.207Z",
       "formatVersion": 2
+    },
+    "2026-10-20": {
+      "hash": "131b3aca8f2db043b7bd4489d150f91776e751486751ccd913457ed3dd38d6e8",
+      "messageId": 129,
+      "formatVersion": 2,
+      "sourcePostId": 5557,
+      "sourceUrl": "https://t.me/Ukrenergo/5557",
+      "publishedAt": "2026-10-19T16:15:52.047Z"
     }
   },
   "confirmedSchedules": {
