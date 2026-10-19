@@ -320,6 +320,13 @@
       "combinedCorrectionHash": "f8896595b3348fd48f14d7ec50a5c44f2bfde612bb36995c152aa51387cf9b5d",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 23:00</b>\n🔔 До планового часу: 10 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 2.1, 6.1",
       "editedAt": "2026-10-18T19:50:51.257Z"
+    },
+    "2026-10-19@06:00#pre30": {
+      "messageId": 120,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-19T02:31:04.272Z"
     }
   },
   "cleanedDuplicatePosts": [
