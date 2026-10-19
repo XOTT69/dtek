@@ -68,157 +68,18 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-10-19T20:25:51.223Z"
+    },
+    "2026-10-20/сьогодні/all": {
+      "hash": "65631e1a0d98b17f228f6051f0c3891220f71ce5cb788dcd6c65234d3eac2836",
+      "messageId": 141,
+      "revision": 2,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-19T21:01:23.452Z"
     }
   },
   "events": {
-    "2026-10-17@01:00#pre30": {
-      "messageId": 27,
-      "leadMinutes": 20,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-16T21:32:17.354Z",
-      "combinedCorrectionHash": "bc9b919e56318b2e10d76c0c3f9a3e75711bad904c9b3e0721d863bce10f37f5",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 01:00</b>\n🔔 До планового часу: 20 хв\n📆 Субота, 17.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 5.1\n🪫 Підгрупа 5.2\n🪫 Підгрупа 6.1\n🪫 Підгрупа 6.2\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 2.1\n🔋 Підгрупа 2.2\n🔋 Підгрупа 4.1\n🔋 Підгрупа 4.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n\n🔄 Змінено підгрупи: 3.1, 3.2, 4.1, 4.2, 5.1, 5.2, 6.1, 6.2",
-      "editedAt": "2026-10-16T21:40:49.510Z"
-    },
-    "2026-10-17@02:00#pre30": {
-      "messageId": 30,
-      "leadMinutes": 30,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "14eaf51fe0c2f67478ea375ebab4d27f2a4d024142d86e67bf0ed53aa16824e7",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 02:00</b>\n🔔 До планового часу: 30 хв\n📆 Субота, 17.10.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 3.1\n🔋 Підгрупа 3.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 5.1\n⚫️ Підгрупа 5.2\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 5.1, 5.2, 6.1, 6.2",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "editedAt": "2026-10-16T22:31:10.718Z"
-    },
-    "2026-10-17@03:00#pre30": {
-      "messageId": 35,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-16T23:31:04.244Z"
-    },
-    "2026-10-17@03:30#pre30": {
-      "messageId": 37,
-      "leadMinutes": 10,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "532926f1923f68f0317011b04806d256131826f433ce300f90eff3edcb7c8858",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 03:30</b>\n🔔 До планового часу: 10 хв\n📆 Субота, 17.10.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 6.1\n🔋 Підгрупа 6.2\n\n🔄 Змінено підгрупи: 6.1, 6.2",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "editedAt": "2026-10-17T00:31:05.954Z",
-      "correctedHash": "b13b9d99f3f440bc9ec1c84412dd7209173ce479412292fb80b87b27222af598"
-    },
-    "2026-10-17@04:00#pre30": {
-      "messageId": 41,
-      "leadMinutes": 29,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "7c56995d732fc77bbeb4bc600aeb179c835c42fc017fd4015a768b2f8f212202",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 04:00</b>\n🔔 До планового часу: 29 хв\n📆 Субота, 17.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 6.1, 6.2",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "editedAt": "2026-10-17T00:31:08.585Z"
-    },
-    "2026-10-17@06:00#pre30": {
-      "messageId": 42,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T02:31:07.170Z"
-    },
-    "2026-10-17@08:00#pre30": {
-      "messageId": 43,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T04:31:05.923Z"
-    },
-    "2026-10-17@08:30#pre30": {
-      "messageId": 44,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T05:01:16.094Z"
-    },
-    "2026-10-17@10:00#pre30": {
-      "messageId": 45,
-      "leadMinutes": 15,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T06:31:04.154Z",
-      "combinedCorrectionHash": "079d75ec068410b769c4bcb21d234fa1985e0037c4b53f8e587752cedc696fcb",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 10:00</b>\n🔔 До планового часу: 15 хв\n📆 Субота, 17.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 4.1\n⚫️ Підгрупа 4.2\n\n🔄 Змінено підгрупи: 1.2, 2.1, 4.1, 6.1",
-      "editedAt": "2026-10-17T06:45:51.236Z"
-    },
-    "2026-10-17@11:30#pre30": {
-      "messageId": 47,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T08:01:19.092Z"
-    },
-    "2026-10-17@12:00#pre30": {
-      "messageId": 48,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T08:31:07.764Z",
-      "correctedHash": "50f83b61a5591ba7d3b34d224e54c56ea20ec500af4bce8ba325ee2384602f91",
-      "editedAt": "2026-10-17T09:01:23.949Z"
-    },
-    "2026-10-17@15:00#pre30": {
-      "messageId": 53,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T11:31:06.727Z"
-    },
-    "2026-10-17@15:30#pre30": {
-      "messageId": 54,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-17T12:01:23.583Z"
-    },
-    "2026-10-17@17:00#pre30": {
-      "messageId": 56,
-      "leadMinutes": 25,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T13:31:07.875Z",
-      "combinedCorrectionHash": "5fc5a29810586185c9b8a356b04499b952b035080276c91a0e2da20a647cea2b",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 17:00</b>\n🔔 До планового часу: 25 хв\n📆 Субота, 17.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 6.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 1.2\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n\n🔄 Змінено підгрупи: 1.2, 2.2, 3.1, 6.1",
-      "editedAt": "2026-10-17T13:35:41.382Z"
-    },
-    "2026-10-17@18:30#pre30": {
-      "messageId": 58,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T15:01:23.515Z"
-    },
-    "2026-10-17@19:00#pre30": {
-      "messageId": 59,
-      "leadMinutes": 15,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T15:31:09.286Z",
-      "combinedCorrectionHash": "bfdce6a780a25203e2339ffee4bfb8fb9d2f0e5b7b549bdc9b858a85d10d1e91",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 19:00</b>\n🔔 До планового часу: 15 хв\n📆 Субота, 17.10.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 1.1\n🔋 Підгрупа 1.2\n🔋 Підгрупа 2.1\n🔋 Підгрупа 2.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 4.1\n⚫️ Підгрупа 4.2\n\n🔄 Змінено підгрупи: 1.2",
-      "editedAt": "2026-10-17T16:01:19.901Z",
-      "correctedHash": "f239b257a5da555df4e511476ab93be0a1a87f30aa586a7f65299bcbb73ec088"
-    },
-    "2026-10-17@22:00#pre30": {
-      "messageId": 71,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T18:31:04.378Z"
-    },
-    "2026-10-17@22:30#pre30": {
-      "messageId": 72,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T19:01:17.541Z"
-    },
     "2026-10-18@06:00#pre30": {
       "messageId": 76,
       "leadMinutes": 30,
@@ -1736,12 +1597,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-19",
-    "hash": "a52108f86939e4835ff07ce8e73e0c09386980766a8619256c28b4db452f00a6",
+    "date": "2026-10-20",
+    "hash": "824ff9685271f90216c9c692c40af32afbdf6be6253dece79c7e8fe70db392f8",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-19T20:25:43.639Z"
+    "editedAt": "2026-10-19T21:01:21.942Z"
   }
 }
