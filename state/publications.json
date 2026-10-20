@@ -284,6 +284,13 @@
       "publishedAt": "2026-10-19T20:01:19.456Z",
       "correctedHash": "84e96f6c9bf7f0c7ba881afd462fad5a097a414c17b9720ddc323f9fd6544efe",
       "editedAt": "2026-10-19T20:25:45.518Z"
+    },
+    "2026-10-20@06:00#pre30": {
+      "messageId": 142,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-20T02:31:05.466Z"
     }
   },
   "cleanedDuplicatePosts": [
