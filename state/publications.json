@@ -85,119 +85,18 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-10-20T20:31:07.075Z"
+    },
+    "2026-10-21/сьогодні/all": {
+      "hash": "e04b05985bbe35f27330a9e2f5f1b20a116dd5e765008a6b7e69e85ce2024b3b",
+      "messageId": 167,
+      "revision": 3,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-20T21:01:19.771Z"
     }
   },
   "events": {
-    "2026-10-18@06:00#pre30": {
-      "messageId": 76,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-18T02:31:03.743Z",
-      "correctedHash": "847097ee99299c3620738c4779159e1f602b7a352ea060f281a1127c6a899a1f",
-      "editedAt": "2026-10-18T03:05:42.905Z"
-    },
-    "2026-10-18@08:00#pre30": {
-      "messageId": 80,
-      "leadMinutes": 30,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "e0519323932f0e329efd5360039295aad5f4bbf7920c8b0ae2ff1bae74538986",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 08:00</b>\n🔔 До планового часу: 30 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 2.1, 3.2, 5.1",
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "editedAt": "2026-10-18T04:31:06.697Z"
-    },
-    "2026-10-18@09:00#pre30": {
-      "messageId": 81,
-      "leadMinutes": 25,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-18T05:31:05.531Z",
-      "combinedCorrectionHash": "009ec6e9ad831ef0601369e95e5d7b1123b700f195df45a93e528f23cbc7679b",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 09:00</b>\n🔔 До планового часу: 25 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 3.2, 5.1, 5.2, 6.2",
-      "editedAt": "2026-10-18T05:35:38.520Z"
-    },
-    "2026-10-18@10:00#pre30": {
-      "messageId": 84,
-      "leadMinutes": 10,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "89c640620ec3de84b4c4b45d10d392b78b903e5b28d25358ed43d2059e976d6f",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 10:00</b>\n🔔 До планового часу: 10 хв\n📆 Неділя, 18.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 5.1\n🪫 Підгрупа 5.2\n🪫 Підгрупа 6.1\n🪫 Підгрупа 6.2\n\n🔄 Змінено підгрупи: 2.1, 2.2, 5.1, 5.2, 6.1, 6.2",
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "editedAt": "2026-10-18T06:50:50.576Z"
-    },
-    "2026-10-18@12:00#pre30": {
-      "messageId": 93,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T08:31:05.271Z"
-    },
-    "2026-10-18@12:30#pre30": {
-      "claimed": true,
-      "formatVersion": 5,
-      "recoveredAt": "2026-10-18T09:05:36.285Z"
-    },
-    "2026-10-18@15:30#pre30": {
-      "messageId": 100,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T12:01:25.842Z"
-    },
-    "2026-10-18@16:00#pre30": {
-      "messageId": 103,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T12:31:07.794Z"
-    },
-    "2026-10-18@19:00#pre30": {
-      "messageId": 104,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T15:31:07.080Z"
-    },
-    "2026-10-18@19:30#pre30": {
-      "messageId": 105,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T16:01:23.881Z",
-      "correctedHash": "d19df0fa4de7bb48ce8f21915996cf0f17f4e973fb748845951b252995c080b1",
-      "editedAt": "2026-10-18T16:35:40.910Z"
-    },
-    "2026-10-18@22:00#pre30": {
-      "messageId": 113,
-      "leadMinutes": 25,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T18:31:10.234Z",
-      "combinedCorrectionHash": "d03fa407c72a97bcb93fcb14585f3c2c36d07b0659ddb4ff495438adbdfeb691",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 22:00</b>\n🔔 До планового часу: 25 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 1.1, 1.2, 2.2, 3.1, 4.1, 4.2, 6.1",
-      "editedAt": "2026-10-18T19:01:19.566Z",
-      "correctedHash": "f64454d144f03a0bcd46f1b7673b694163b3c37e23f26a4c0357960a4b1db577"
-    },
-    "2026-10-18@22:30#pre30": {
-      "messageId": 116,
-      "leadMinutes": 29,
-      "formatVersion": 6,
-      "combinedCorrectionHash": "8db5eb236b00893415d3198ab28643888be20f2b2db6a0e7abb4aa8e5aaa444f",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 22:30</b>\n🔔 До планового часу: 29 хв\n📆 Неділя, 18.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 2.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 6.1\n\n🔄 Змінено підгрупи: 2.2, 6.2",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "editedAt": "2026-10-18T19:50:50.217Z",
-      "correctedHash": "736a7e7ccc49e28cff99a48b696bb7a744e65448b715dd281d572bc3d8863b84"
-    },
-    "2026-10-18@23:00#pre30": {
-      "messageId": 117,
-      "leadMinutes": 10,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-18T19:31:08.290Z",
-      "combinedCorrectionHash": "f8896595b3348fd48f14d7ec50a5c44f2bfde612bb36995c152aa51387cf9b5d",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 23:00</b>\n🔔 До планового часу: 10 хв\n📆 Неділя, 18.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 2.1, 6.1",
-      "editedAt": "2026-10-18T19:50:51.257Z"
-    },
     "2026-10-19@06:00#pre30": {
       "messageId": 120,
       "leadMinutes": 29,
@@ -1973,12 +1872,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-20",
-    "hash": "7c8f85696ea873a4e5e2e057e61e460ef32d85fcf24284d78c7f9e86d895e949",
+    "date": "2026-10-21",
+    "hash": "5430c953e1f2062f239e180c0555f18de0870fdefc9d43eed9581cc390a6bde3",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-20T20:31:03.441Z"
+    "editedAt": "2026-10-20T21:01:18.430Z"
   }
 }
