@@ -92,8 +92,9 @@
       "revision": 3,
       "formatVersion": 7,
       "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-20T21:01:19.771Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-20T21:01:19.771Z",
+      "emergencyEditedAt": "2026-10-21T05:55:33.180Z"
     }
   },
   "events": {
@@ -1025,19 +1026,19 @@
   "emergency": {
     "status": {
       "active": true,
-      "kind": "екстрені",
+      "kind": "аварійні",
       "scope": "districts",
       "districts": [
         "Бучанський"
       ],
-      "sourceUrl": "https://t.me/dtek_ua/4648"
+      "sourceUrl": "https://t.me/dtek_ua/4659"
     },
-    "lastId": 4648,
-    "lastSignature": "fc4d8a6d645342bbf4e0f13e5ecdb8c6f3c9c717c45559b4fc3cd389c0c42d74",
-    "lastSourceUrl": "https://t.me/dtek_ua/4648",
-    "lastObservedAt": "2026-10-18T07:40:45.827Z",
-    "lastSourcePublishedAt": "2026-10-18T07:35:06.000Z",
-    "messageId": 90,
+    "lastId": 4659,
+    "lastSignature": "340626e67059b0ae80d254f80b670ba48de32430df5c429860254fbf1e45685d",
+    "lastSourceUrl": "https://t.me/dtek_ua/4659",
+    "lastObservedAt": "2026-10-21T05:55:33.180Z",
+    "lastSourcePublishedAt": "2026-10-21T05:50:28.000Z",
+    "messageId": 171,
     "formatVersion": 2
   },
   "corrections": {
@@ -1894,11 +1895,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-21",
-    "hash": "5430c953e1f2062f239e180c0555f18de0870fdefc9d43eed9581cc390a6bde3",
+    "hash": "20e27df3b11b7b4ded5847906917bc5ff51fa7fd6ecb3f350bd7ea3f36520eec",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-20T21:01:18.430Z"
+    "editedAt": "2026-10-21T05:55:39.602Z"
   }
 }
