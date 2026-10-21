@@ -103,104 +103,18 @@
       "formatVersion": 7,
       "headingState": "initial",
       "publishedAt": "2026-10-21T16:25:39.256Z"
+    },
+    "2026-10-22/сьогодні/all": {
+      "hash": "dcbc91affaf4eb954a8cffed8cd1777a311b2c9836238d3c7358fe1266e49a19",
+      "messageId": 187,
+      "revision": 0,
+      "formatVersion": 7,
+      "headingState": "initial",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-21T21:01:28.884Z"
     }
   },
   "events": {
-    "2026-10-19@06:00#pre30": {
-      "messageId": 120,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T02:31:04.272Z"
-    },
-    "2026-10-19@08:00#pre30": {
-      "messageId": 121,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T04:31:10.451Z"
-    },
-    "2026-10-19@09:00#pre30": {
-      "messageId": 122,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T05:31:05.233Z"
-    },
-    "2026-10-19@09:30#pre30": {
-      "messageId": 123,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T06:01:23.815Z"
-    },
-    "2026-10-19@12:30#pre30": {
-      "messageId": 124,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T09:01:21.023Z"
-    },
-    "2026-10-19@13:00#pre30": {
-      "messageId": 125,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T09:31:08.146Z"
-    },
-    "2026-10-19@16:00#pre30": {
-      "messageId": 126,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T12:31:10.316Z"
-    },
-    "2026-10-19@16:30#pre30": {
-      "messageId": 127,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T13:01:24.715Z"
-    },
-    "2026-10-19@19:30#pre30": {
-      "messageId": 128,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T16:01:45.948Z"
-    },
-    "2026-10-19@20:00#pre30": {
-      "messageId": 131,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T16:31:12.794Z"
-    },
-    "2026-10-19@22:00#pre30": {
-      "messageId": 134,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T18:31:19.873Z"
-    },
-    "2026-10-19@23:00#pre30": {
-      "messageId": 135,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T19:31:07.899Z",
-      "correctedHash": "e7b1d4fefe96005461f24526f078502c886325d918f1a94e32821f73cdfd5a70",
-      "editedAt": "2026-10-19T20:25:45.311Z"
-    },
-    "2026-10-19@23:30#pre30": {
-      "messageId": 136,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T20:01:19.456Z",
-      "correctedHash": "84e96f6c9bf7f0c7ba881afd462fad5a097a414c17b9720ddc323f9fd6544efe",
-      "editedAt": "2026-10-19T20:25:45.518Z"
-    },
     "2026-10-20@06:00#pre30": {
       "messageId": 142,
       "leadMinutes": 30,
@@ -2215,12 +2129,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-21",
-    "hash": "230e79e1e4a78455e4eb884bf0412ac29ae285c14727e6d1afbc7488ce4d9d59",
+    "date": "2026-10-22",
+    "hash": "0fa2543aa2e3cac29fb92d88928f50c8d0426a41cb2349e2c7c15655a987e256",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-21T08:45:51.860Z"
+    "editedAt": "2026-10-21T21:01:27.580Z"
   }
 }
