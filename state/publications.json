@@ -373,6 +373,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
       "publishedAt": "2026-10-21T17:01:31.603Z"
+    },
+    "2026-10-21@21:00#pre30": {
+      "messageId": 184,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
+      "publishedAt": "2026-10-21T17:31:13.135Z"
     }
   },
   "cleanedDuplicatePosts": [
