@@ -127,8 +127,9 @@
       "revision": 0,
       "formatVersion": 7,
       "headingState": "initial",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T21:01:21.634Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-10-22T21:01:21.634Z",
+      "emergencyEditedAt": "2026-10-23T07:50:41.314Z"
     }
   },
   "events": {
@@ -360,8 +361,9 @@
       "messageId": 207,
       "leadMinutes": 29,
       "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-23T07:31:06.201Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-10-23T07:31:06.201Z",
+      "emergencyEditedAt": "2026-10-23T07:50:41.314Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1298,19 +1300,17 @@
   "emergency": {
     "status": {
       "active": true,
-      "kind": "аварійні",
-      "scope": "districts",
-      "districts": [
-        "Бучанський"
-      ],
-      "sourceUrl": "https://t.me/dtek_ua/4659"
+      "kind": "екстрені",
+      "scope": "oblast-unspecified",
+      "districts": [],
+      "sourceUrl": "https://t.me/dtek_ua/4677"
     },
-    "lastId": 4659,
-    "lastSignature": "340626e67059b0ae80d254f80b670ba48de32430df5c429860254fbf1e45685d",
-    "lastSourceUrl": "https://t.me/dtek_ua/4659",
-    "lastObservedAt": "2026-10-21T05:55:33.180Z",
-    "lastSourcePublishedAt": "2026-10-21T05:50:28.000Z",
-    "messageId": 171,
+    "lastId": 4677,
+    "lastSignature": "1964876e888bcf0c131baa6fd08555bac44edaab9bd7c5dd88ce06154df3525e",
+    "lastSourceUrl": "https://t.me/dtek_ua/4677",
+    "lastObservedAt": "2026-10-23T07:50:41.314Z",
+    "lastSourcePublishedAt": "2026-10-23T07:45:31.000Z",
+    "messageId": 208,
     "formatVersion": 2
   },
   "corrections": {
@@ -2400,11 +2400,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-23",
-    "hash": "69f87d2196be4a165ae0d44e6e7bcb5a194a07176955bbabf4c7dcb8888bd18d",
+    "hash": "77c8a40a7690232599160b96c043263eb632cca1a3b1abc65ff95ac7b12c3096",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-22T21:01:20.188Z"
+    "editedAt": "2026-10-23T07:50:48.697Z"
   }
 }
