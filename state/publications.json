@@ -364,6 +364,13 @@
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "publishedAt": "2026-10-23T07:31:06.201Z",
       "emergencyEditedAt": "2026-10-23T07:50:41.314Z"
+    },
+    "2026-10-23@11:30#pre30": {
+      "messageId": 209,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-10-23T08:01:16.804Z"
     }
   },
   "cleanedDuplicatePosts": [
