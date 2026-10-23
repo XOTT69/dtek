@@ -426,6 +426,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
       "publishedAt": "2026-10-23T18:31:16.083Z"
+    },
+    "2026-10-24@00:00#pre30": {
+      "messageId": 225,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-23T20:31:05.149Z"
     }
   },
   "cleanedDuplicatePosts": [
