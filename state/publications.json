@@ -358,6 +358,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
       "publishedAt": "2026-10-24T05:01:29.679Z"
+    },
+    "2026-10-24@11:30#pre30": {
+      "messageId": 231,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-10-24T08:01:15.782Z"
     }
   },
   "cleanedDuplicatePosts": [
