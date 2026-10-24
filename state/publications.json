@@ -131,21 +131,21 @@
       "publishedAt": "2026-10-23T15:55:36.918Z"
     },
     "2026-10-24/сьогодні/all": {
-      "hash": "864e62d01407984f5bda0875f902fe5ea33a578cf3b6fbc5a26eb9146bc52abb",
-      "messageId": 237,
-      "revision": 2,
+      "hash": "2830abb433e792ba817cc1edbb9c7f611c1031ee6b8bcec439d2743c253ec880",
+      "messageId": 245,
+      "revision": 3,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T11:50:50.667Z"
+      "publishedAt": "2026-10-24T19:43:12.190Z"
     },
     "2026-10-25/завтра/all": {
-      "hash": "eee47df6cf853a2d5758504d9a1928096babf6121bc42c62ca8705954e00548a",
-      "messageId": 242,
-      "revision": 0,
+      "hash": "957926535dd620af2ed3265e675f7def2362e3485a1c5bc32eff463ffad16143",
+      "messageId": 247,
+      "revision": 1,
       "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-10-24T17:05:37.150Z"
+      "headingState": "updated",
+      "publishedAt": "2026-10-24T19:43:14.642Z"
     }
   },
   "events": {
@@ -424,7 +424,9 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T19:01:14.618Z"
+      "publishedAt": "2026-10-24T19:01:14.618Z",
+      "correctedHash": "5c4f4672f77e4a524650c654feaa79d21af151dd24a3d6d812fc20f5dfaa4db5",
+      "editedAt": "2026-10-24T19:43:12.351Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1331,7 +1333,7 @@
         ],
         [
           1320,
-          1440
+          1350
         ]
       ],
       "6.2": [
@@ -1341,7 +1343,7 @@
         ],
         [
           1320,
-          1440
+          1350
         ]
       ]
     },
@@ -1399,37 +1401,45 @@
       ],
       "5.1": [
         [
-          510,
-          750
-        ],
-        [
           1140,
-          1260
+          1350
         ]
       ],
       "5.2": [
-        [
-          510,
-          750
-        ],
-        [
-          1140,
-          1260
-        ]
-      ],
-      "6.1": [
         [
           540,
           750
         ],
         [
           1140,
+          1350
+        ]
+      ],
+      "6.1": [
+        [
+          510,
+          750
+        ],
+        [
+          1140,
+          1260
+        ],
+        [
+          1350,
           1440
         ]
       ],
       "6.2": [
         [
+          510,
+          750
+        ],
+        [
           1140,
+          1260
+        ],
+        [
+          1350,
           1440
         ]
       ]
@@ -1676,6 +1686,16 @@
       "hash": "a4f630845e2e4795ffd9d459434d577d3e42783a3886f6c6c046cfd79e782574",
       "combined": true,
       "updatedAt": "2026-10-24T11:50:51.802Z"
+    },
+    "2026-10-24@1350": {
+      "messageId": 246,
+      "hash": "2ced19bf799d6958399fa49a9d7c58915b5094b9825323017e1d22b776787321",
+      "updatedAt": "2026-10-24T19:43:13.450Z"
+    },
+    "2026-10-25@510": {
+      "messageId": 248,
+      "hash": "5378500a2e4adb6c94154aa5ad755d72cc69763d983fd3370fe82fad4e42190a",
+      "updatedAt": "2026-10-24T19:43:15.969Z"
     }
   },
   "announcements": {
@@ -2634,7 +2654,7 @@
         ],
         [
           1320,
-          1440
+          1350
         ]
       ],
       "6.2": [
@@ -2644,7 +2664,7 @@
         ],
         [
           1320,
-          1440
+          1350
         ]
       ]
     },
@@ -2702,37 +2722,45 @@
       ],
       "5.1": [
         [
-          510,
-          750
-        ],
-        [
           1140,
-          1260
+          1350
         ]
       ],
       "5.2": [
-        [
-          510,
-          750
-        ],
-        [
-          1140,
-          1260
-        ]
-      ],
-      "6.1": [
         [
           540,
           750
         ],
         [
           1140,
+          1350
+        ]
+      ],
+      "6.1": [
+        [
+          510,
+          750
+        ],
+        [
+          1140,
+          1260
+        ],
+        [
+          1350,
           1440
         ]
       ],
       "6.2": [
         [
+          510,
+          750
+        ],
+        [
           1140,
+          1260
+        ],
+        [
+          1350,
           1440
         ]
       ]
@@ -2768,22 +2796,22 @@
       "revision": 4
     },
     "2026-10-24": {
-      "hash": "9004a6921520f8ccf566a6ee06a180dd9a78365a37aebe41bb4d789ae53888f1",
-      "revision": 2
+      "hash": "56401aa003adbe3e3715db614e017d79b8a25494e167b4d845acc2b0d676f1c6",
+      "revision": 3
     },
     "2026-10-25": {
-      "hash": "062d14f33402767bd81c90029697d83debd4178e5ae14e27d19061eb613802ef",
-      "revision": 0
+      "hash": "23986b782b5193ddc51a6e923b6bc10f83537abb76dc95ba4d2fbbc37c5e4ef4",
+      "revision": 1
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-24",
-    "hash": "d8c2d54e74a11d8204486fb4c4dc970bf33ef8432f938477b38769b23a719ace",
+    "hash": "91026ef24fa0c3d28dd2d93ade55def0715e0ccfeedb86502d8824cf095886dd",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-24T11:50:49.325Z"
+    "editedAt": "2026-10-24T19:43:10.766Z"
   }
 }
