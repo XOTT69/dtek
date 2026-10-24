@@ -1,24 +1,5 @@
 {
   "publications": {
-    "2026-10-17/завтра/1.1-3.2": {
-      "hash": "4e539d9fbc79b0e0178a4c3865ce734b3f2681dd66bd4a1ccb0435f6773a7cba",
-      "messageId": 7,
-      "publishedAt": "2026-10-16T06:23:50.659Z"
-    },
-    "2026-10-17/завтра/4.1-6.2": {
-      "hash": "8dad36f6b2dc1e8050d91ec937308799e7aa8663bb942b44518a8ea681b0e310",
-      "messageId": 8,
-      "publishedAt": "2026-10-16T06:23:50.850Z"
-    },
-    "2026-10-17/сьогодні/all": {
-      "hash": "5d20e80cd2c00eb3d796239bd005c7726ae868de202badf33edf04f1241fd8d2",
-      "messageId": 73,
-      "revision": 14,
-      "formatVersion": 7,
-      "headingState": "updated",
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-17T20:10:50.269Z"
-    },
     "2026-10-18/завтра/all": {
       "hash": "bfa377da470d3cd55d441eed45d6aa9be40f2767f73654aa1e81dbe4b74392a1",
       "messageId": 69,
@@ -146,107 +127,18 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-10-24T19:55:36.611Z"
+    },
+    "2026-10-25/сьогодні/all": {
+      "hash": "1348d63389f59ab8f9a511e252d7ea9ce53a47a17e9aa728eee66a6216a97955",
+      "messageId": 251,
+      "revision": 2,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-24T21:01:18.841Z"
     }
   },
   "events": {
-    "2026-10-22@00:00#pre30": {
-      "messageId": 186,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-21T20:31:50.113Z"
-    },
-    "2026-10-22@06:00#pre30": {
-      "messageId": 188,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T02:31:04.424Z"
-    },
-    "2026-10-22@07:00#pre30": {
-      "messageId": 189,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T03:31:04.068Z"
-    },
-    "2026-10-22@07:30#pre30": {
-      "messageId": 190,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T04:01:24.052Z"
-    },
-    "2026-10-22@08:00#pre30": {
-      "messageId": 191,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T04:31:09.856Z"
-    },
-    "2026-10-22@10:30#pre30": {
-      "messageId": 192,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T07:01:20.431Z"
-    },
-    "2026-10-22@11:00#pre30": {
-      "messageId": 193,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T07:31:10.783Z"
-    },
-    "2026-10-22@14:00#pre30": {
-      "messageId": 194,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T10:31:08.752Z"
-    },
-    "2026-10-22@14:30#pre30": {
-      "messageId": 195,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T11:01:25.568Z"
-    },
-    "2026-10-22@17:30#pre30": {
-      "messageId": 196,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T14:01:27.723Z"
-    },
-    "2026-10-22@18:00#pre30": {
-      "messageId": 197,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T14:31:10.640Z"
-    },
-    "2026-10-22@21:00#pre30": {
-      "messageId": 198,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T17:31:12.484Z"
-    },
-    "2026-10-22@21:30#pre30": {
-      "messageId": 199,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T18:01:21.422Z"
-    },
-    "2026-10-22@22:00#pre30": {
-      "messageId": 200,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"аварійні\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-22T18:31:08.729Z"
-    },
     "2026-10-23@00:00#pre30": {
       "messageId": 202,
       "leadMinutes": 29,
@@ -435,160 +327,6 @@
     15
   ],
   "scheduleSnapshots": {
-    "2026-10-17": {
-      "1.1": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "1.2": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.1": [
-        [
-          0,
-          60
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.2": [
-        [
-          0,
-          60
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "3.1": [
-        [
-          0,
-          120
-        ],
-        [
-          510,
-          720
-        ],
-        [
-          1110,
-          1140
-        ]
-      ],
-      "3.2": [
-        [
-          0,
-          120
-        ],
-        [
-          510,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "4.1": [
-        [
-          0,
-          60
-        ],
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "4.2": [
-        [
-          0,
-          60
-        ],
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1260
-        ]
-      ],
-      "5.1": [
-        [
-          60,
-          180
-        ],
-        [
-          690,
-          720
-        ],
-        [
-          870,
-          930
-        ]
-      ],
-      "5.2": [
-        [
-          60,
-          180
-        ],
-        [
-          690,
-          930
-        ]
-      ],
-      "6.1": [
-        [
-          60,
-          210
-        ],
-        [
-          690,
-          930
-        ],
-        [
-          1020,
-          1110
-        ],
-        [
-          1320,
-          1380
-        ]
-      ],
-      "6.2": [
-        [
-          60,
-          210
-        ],
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1380
-        ]
-      ]
-    },
     "2026-10-18": {
       "1.1": [
         [
@@ -1454,80 +1192,10 @@
     "formatVersion": 2
   },
   "corrections": {
-    "2026-10-17@60": {
-      "messageId": 27,
-      "hash": "bc9b919e56318b2e10d76c0c3f9a3e75711bad904c9b3e0721d863bce10f37f5",
-      "combined": true,
-      "updatedAt": "2026-10-16T21:40:49.510Z"
-    },
-    "2026-10-17@120": {
-      "messageId": 30,
-      "hash": "14eaf51fe0c2f67478ea375ebab4d27f2a4d024142d86e67bf0ed53aa16824e7",
-      "combined": true,
-      "updatedAt": "2026-10-16T22:31:10.718Z"
-    },
-    "2026-10-17@180": {
-      "messageId": 34,
-      "hash": "6fbced06a8dc2f019b28165ea7c8b2786d1f848872b655ae9074bcbf37815036",
-      "updatedAt": "2026-10-16T23:15:50.378Z"
-    },
-    "2026-10-17@210": {
-      "messageId": 39,
-      "hash": "2f9a709f1874ee043c882d607188694bbfaf3c52f329642c1cedef4e91edb513",
-      "updatedAt": "2026-10-17T00:25:37.834Z"
-    },
-    "2026-10-17@240": {
-      "messageId": 41,
-      "hash": "7c56995d732fc77bbeb4bc600aeb179c835c42fc017fd4015a768b2f8f212202",
-      "combined": true,
-      "updatedAt": "2026-10-17T00:31:08.585Z"
-    },
-    "2026-10-17@600": {
-      "messageId": 45,
-      "hash": "079d75ec068410b769c4bcb21d234fa1985e0037c4b53f8e587752cedc696fcb",
-      "combined": true,
-      "updatedAt": "2026-10-17T06:45:51.236Z"
-    },
-    "2026-10-17@720": {
-      "messageId": 50,
-      "hash": "5091f3e85086a40eb302f7e2ab62cc1afd9e400f8e60c19e18beeab76594d971",
-      "updatedAt": "2026-10-17T09:01:24.974Z"
-    },
-    "2026-10-17@870": {
-      "messageId": 52,
-      "hash": "e0eb96fc757ed8b8b4e038a5d6729e9d0ae95f1b0f8c8afea67d3e7849cb55df",
-      "updatedAt": "2026-10-17T11:25:40.924Z"
-    },
-    "2026-10-17@1020": {
-      "messageId": 56,
-      "hash": "5fc5a29810586185c9b8a356b04499b952b035080276c91a0e2da20a647cea2b",
-      "combined": true,
-      "updatedAt": "2026-10-17T13:35:41.382Z"
-    },
-    "2026-10-17@1140": {
-      "messageId": 62,
-      "hash": "3fee3fcc12b3fbd5cdca485f6d016622b3efe0e8e9d2030f806b414b839129de",
-      "updatedAt": "2026-10-17T16:01:20.969Z"
-    },
-    "2026-10-17@1320": {
-      "messageId": 64,
-      "hash": "ba58ac6fa7f6d35fe1542e0cb882ccec4de44c3e935e2a8ef7b0497b5a5cfb5d",
-      "updatedAt": "2026-10-17T16:55:43.211Z"
-    },
-    "2026-10-17@1260": {
-      "messageId": 67,
-      "hash": "343cdf3978a84ec5295eedce0560c9eb8689ebad265fe9f4e87c62ff99e88692",
-      "updatedAt": "2026-10-17T17:55:41.206Z"
-    },
     "2026-10-18@360": {
       "messageId": 78,
       "hash": "ae352fa8f381651e8d9f7e0c876e8d5b045939cde5e3221d5fe938aaf8be9e89",
       "updatedAt": "2026-10-18T03:05:43.988Z"
-    },
-    "2026-10-17@1380": {
-      "messageId": 74,
-      "hash": "3fcc7583ce82664ea73d2e9cb200a7e9f9357b2a6754beb10735d36f2e355015",
-      "updatedAt": "2026-10-17T20:10:51.672Z"
     },
     "2026-10-18@480": {
       "messageId": 80,
@@ -1753,160 +1421,6 @@
     }
   },
   "confirmedSchedules": {
-    "2026-10-17": {
-      "1.1": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "1.2": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.1": [
-        [
-          0,
-          60
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.2": [
-        [
-          0,
-          60
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "3.1": [
-        [
-          0,
-          120
-        ],
-        [
-          510,
-          720
-        ],
-        [
-          1110,
-          1140
-        ]
-      ],
-      "3.2": [
-        [
-          0,
-          120
-        ],
-        [
-          510,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "4.1": [
-        [
-          0,
-          60
-        ],
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "4.2": [
-        [
-          0,
-          60
-        ],
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1260
-        ]
-      ],
-      "5.1": [
-        [
-          60,
-          180
-        ],
-        [
-          690,
-          720
-        ],
-        [
-          870,
-          930
-        ]
-      ],
-      "5.2": [
-        [
-          60,
-          180
-        ],
-        [
-          690,
-          930
-        ]
-      ],
-      "6.1": [
-        [
-          60,
-          210
-        ],
-        [
-          690,
-          930
-        ],
-        [
-          1020,
-          1110
-        ],
-        [
-          1320,
-          1380
-        ]
-      ],
-      "6.2": [
-        [
-          60,
-          210
-        ],
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1380
-        ]
-      ]
-    },
     "2026-10-18": {
       "1.1": [
         [
@@ -2756,10 +2270,6 @@
     }
   },
   "dailyRevisions": {
-    "2026-10-17": {
-      "hash": "e60e6162a7db6992a3725315b2f1e53c9521a8f46fe9b7853ff0e9addef5e488",
-      "revision": 14
-    },
     "2026-10-18": {
       "hash": "d4dbaabda878f908d95431f2cdff29457fa2047396b4427c578a4316d3e9dd05",
       "revision": 19
@@ -2795,12 +2305,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-24",
-    "hash": "91026ef24fa0c3d28dd2d93ade55def0715e0ccfeedb86502d8824cf095886dd",
+    "date": "2026-10-25",
+    "hash": "db932ab8a614d3183ed87b22d36bd2e20b2e0d4a646ea7e06f77349467870d00",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-24T19:43:10.766Z"
+    "editedAt": "2026-10-24T21:01:17.617Z"
   }
 }
