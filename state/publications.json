@@ -129,13 +129,13 @@
       "publishedAt": "2026-10-24T19:55:36.611Z"
     },
     "2026-10-25/сьогодні/all": {
-      "hash": "88d35ed0b696481a3c4b6a239f77d460376c236b12ba70d6225763de34b98e7c",
-      "messageId": 257,
-      "revision": 5,
+      "hash": "525b6516b1bc2b3ed6ac777bfc3982eaef3cf47e66d1de51d6b725a6a46932ce",
+      "messageId": 260,
+      "revision": 6,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-25T08:05:35.777Z"
+      "publishedAt": "2026-10-25T09:45:44.034Z"
     }
   },
   "events": {
@@ -341,10 +341,13 @@
     },
     "2026-10-25@12:00#pre30": {
       "messageId": 259,
-      "leadMinutes": 30,
-      "formatVersion": 5,
+      "leadMinutes": 15,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-25T09:31:02.704Z"
+      "publishedAt": "2026-10-25T09:31:02.704Z",
+      "combinedCorrectionHash": "345dc74d23389559d7383f05ee3e1177b3b4067ccabe95b83afd5fb6cd62db10",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 12:00</b>\n🔔 До планового часу: 15 хв\n📆 Неділя, 25.10.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🔄 Змінено підгрупи: 1.1, 2.1, 2.2",
+      "editedAt": "2026-10-25T09:45:45.135Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1114,20 +1117,20 @@
     "2026-10-25": {
       "1.1": [
         [
-          720,
+          840,
           960
         ]
       ],
       "1.2": [],
       "2.1": [
         [
-          720,
+          840,
           960
         ]
       ],
       "2.2": [
         [
-          720,
+          840,
           960
         ]
       ],
@@ -1391,6 +1394,12 @@
       "messageId": 258,
       "hash": "2c4499cd7af1194ca993c92eb350c46f48cf0c9eed29d96747f0271e4a3705c1",
       "updatedAt": "2026-10-25T08:05:37.146Z"
+    },
+    "2026-10-25@720": {
+      "messageId": 259,
+      "hash": "345dc74d23389559d7383f05ee3e1177b3b4067ccabe95b83afd5fb6cd62db10",
+      "combined": true,
+      "updatedAt": "2026-10-25T09:45:45.135Z"
     }
   },
   "announcements": {
@@ -2212,20 +2221,20 @@
     "2026-10-25": {
       "1.1": [
         [
-          720,
+          840,
           960
         ]
       ],
       "1.2": [],
       "2.1": [
         [
-          720,
+          840,
           960
         ]
       ],
       "2.2": [
         [
-          720,
+          840,
           960
         ]
       ],
@@ -2317,18 +2326,18 @@
       "revision": 3
     },
     "2026-10-25": {
-      "hash": "b8f9320e2e07520577f1bf7170e1e699e4135ada0d429071cb1d0a572fadc057",
-      "revision": 5
+      "hash": "ad72e70d21c323dd67aec1a1a78f69ca5fac88fa4bee11beaf20f5e8e0ec9359",
+      "revision": 6
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-25",
-    "hash": "f41df64070aaacdc989f0e8e2accc9b197512cb8be8cdcd3075647e57eea6ded",
+    "hash": "7fa603bc8d8aa91d7d1f0388282acf2dc01bc50cc6f3395f339e69641d431424",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-25T08:05:34.239Z"
+    "editedAt": "2026-10-25T09:45:42.781Z"
   }
 }
