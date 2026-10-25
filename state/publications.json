@@ -129,13 +129,13 @@
       "publishedAt": "2026-10-24T19:55:36.611Z"
     },
     "2026-10-25/сьогодні/all": {
-      "hash": "9882c8dc5277da9719e67518eaf0f5118f084639055acdf115c89ff2f49a88a0",
-      "messageId": 277,
-      "revision": 11,
+      "hash": "bfcf6e298c75c3f2bb0fcd3a0c02f8d6b266cabe424c235c0aa7c1ecb68df258",
+      "messageId": 281,
+      "revision": 12,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-25T20:25:34.428Z"
+      "publishedAt": "2026-10-25T20:50:47.572Z"
     },
     "2026-10-26/завтра/all": {
       "hash": "c2d8675819f798cc57d9095d4d77bb3d8b6a7179463040abaa673cb5520a9e88",
@@ -1237,7 +1237,7 @@
       "6.2": [
         [
           1140,
-          1440
+          1350
         ]
       ]
     },
@@ -1535,9 +1535,9 @@
       "updatedAt": "2026-10-24T19:43:15.969Z"
     },
     "2026-10-25@1350": {
-      "messageId": 271,
-      "hash": "9eadc5979b302ab2dc8a032f67f47ee1d71104a6d3be4c66475992ad33a8d5fc",
-      "updatedAt": "2026-10-25T18:10:48.212Z"
+      "messageId": 282,
+      "hash": "282f65f3c623cc98fbbcf0cd8e34f12dd6388a3914d38ef589d40918ba5ec490",
+      "updatedAt": "2026-10-25T20:50:48.905Z"
     },
     "2026-10-25@420": {
       "messageId": 253,
@@ -2468,7 +2468,7 @@
       "6.2": [
         [
           1140,
-          1440
+          1350
         ]
       ]
     },
@@ -2613,8 +2613,8 @@
       "revision": 3
     },
     "2026-10-25": {
-      "hash": "28fd16883df82394baaaaa2cf20aa2f9370f8ec92a6222bd6f983c2396999c9b",
-      "revision": 11
+      "hash": "fd82fdd5e7f5379d493acf4670e15235073251f14ee468b294ecc6d46075a6c9",
+      "revision": 12
     },
     "2026-10-26": {
       "hash": "f794df15c760e0063b7da82b44d11f32953d303621419927b6969292cad0c75f",
@@ -2624,11 +2624,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-25",
-    "hash": "181e3306835572bef5cad51b85e82e67499c84daf1e8e767742687ffb9f80e69",
+    "hash": "6189ba94f92a91a026eb875e98f9b187450e7bf0511ebccd4fa8768522087a46",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-25T20:25:33.355Z"
+    "editedAt": "2026-10-25T20:50:46.105Z"
   }
 }
