@@ -319,6 +319,13 @@
       "publishedAt": "2026-10-24T19:01:14.618Z",
       "correctedHash": "5c4f4672f77e4a524650c654feaa79d21af151dd24a3d6d812fc20f5dfaa4db5",
       "editedAt": "2026-10-24T19:43:12.351Z"
+    },
+    "2026-10-25@09:00#pre30": {
+      "messageId": 254,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-25T06:31:03.837Z"
     }
   },
   "cleanedDuplicatePosts": [
