@@ -338,6 +338,13 @@
       "publishedAt": "2026-10-25T07:31:04.940Z",
       "correctedHash": "8a73a9f9f38b1694f9774e6fd490c7cd6b0964f51e52ea0a2ed9d312c86de4b4",
       "editedAt": "2026-10-25T08:05:35.954Z"
+    },
+    "2026-10-25@12:00#pre30": {
+      "messageId": 259,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-25T09:31:02.704Z"
     }
   },
   "cleanedDuplicatePosts": [
