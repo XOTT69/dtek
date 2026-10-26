@@ -335,6 +335,13 @@
       "publishedAt": "2026-10-26T05:31:03.252Z",
       "correctedHash": "4b494648666188a25690005d2bd041f2101915dc3ceea5d92e9afc2769d70970",
       "editedAt": "2026-10-26T06:05:39.819Z"
+    },
+    "2026-10-26@09:00#pre30": {
+      "messageId": 293,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-26T06:31:04.108Z"
     }
   },
   "cleanedDuplicatePosts": [
