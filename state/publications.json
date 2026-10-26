@@ -129,13 +129,13 @@
       "publishedAt": "2026-10-25T20:25:36.650Z"
     },
     "2026-10-26/сьогодні/all": {
-      "hash": "2791c58abadcbaa38e7e466d42e9757e1dc5886d841f52de39b5ad903bf27f5f",
-      "messageId": 289,
-      "revision": 4,
+      "hash": "506478636c70d2b2eaffd4d81a929a40d04f2d1242f8f1addae1958c021325a7",
+      "messageId": 291,
+      "revision": 5,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-26T06:05:39.677Z"
+      "publishedAt": "2026-10-26T06:10:44.096Z"
     }
   },
   "events": {
@@ -1109,7 +1109,7 @@
       "3.2": [
         [
           750,
-          1170
+          1200
         ]
       ],
       "4.1": [
@@ -1165,7 +1165,7 @@
         ],
         [
           960,
-          1170
+          1200
         ]
       ]
     }
@@ -1334,6 +1334,11 @@
       "messageId": 290,
       "hash": "05c64899d4871c13da662df877ad2d9b42e038a892b57b14c57154e6e4f3a4fd",
       "updatedAt": "2026-10-26T06:05:41.173Z"
+    },
+    "2026-10-26@1170": {
+      "messageId": 292,
+      "hash": "af814a18eb86e04408f2318ee323f967c3d0f5f941e609a651d52f6d57cdb7e3",
+      "updatedAt": "2026-10-26T06:10:45.165Z"
     }
   },
   "announcements": {
@@ -2168,7 +2173,7 @@
       "3.2": [
         [
           750,
-          1170
+          1200
         ]
       ],
       "4.1": [
@@ -2224,7 +2229,7 @@
         ],
         [
           960,
-          1170
+          1200
         ]
       ]
     }
@@ -2259,18 +2264,18 @@
       "revision": 12
     },
     "2026-10-26": {
-      "hash": "d8a9c990589166b7d317050d9bb279e526e85c40b06b908cefa5d575af6f6a13",
-      "revision": 4
+      "hash": "9664849257b7861d3a45d9b1a417a568e30bd942d1916fc4dbe2b45eb795a826",
+      "revision": 5
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-26",
-    "hash": "8a9c8ebef89cdac49e9888684bd6b53c320dcb749c3444aae20efd8776386753",
+    "hash": "08fa99b1293b0add3b4c98d29d9a4f8d4d9951f3d5fbc062d65e1225ce291e71",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-26T06:05:38.575Z"
+    "editedAt": "2026-10-26T06:10:42.918Z"
   }
 }
