@@ -1,22 +1,5 @@
 {
   "publications": {
-    "2026-10-19/завтра/all": {
-      "hash": "fe69fff0c909ccbf1c4a811a2485e645be33fd2c72fbf0372038aa125ae84f84",
-      "messageId": 112,
-      "revision": 0,
-      "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-10-18T18:05:43.379Z"
-    },
-    "2026-10-19/сьогодні/all": {
-      "hash": "985be0782c1285cd966eed74ba2919e5c40f26f125b3bb8a99b397924cc0a6db",
-      "messageId": 137,
-      "revision": 1,
-      "formatVersion": 7,
-      "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\"]}",
-      "publishedAt": "2026-10-19T20:25:45.115Z"
-    },
     "2026-10-20/завтра/all": {
       "hash": "65631e1a0d98b17f228f6051f0c3891220f71ce5cb788dcd6c65234d3eac2836",
       "messageId": 139,
@@ -144,99 +127,18 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-10-26T20:45:51.606Z"
+    },
+    "2026-10-27/сьогодні/all": {
+      "hash": "4cb234d40bc650b5d16f8129ba2afc8733c76ffe9f85e03583b72aa4909ca78c",
+      "messageId": 313,
+      "revision": 2,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-26T22:01:17.922Z"
     }
   },
   "events": {
-    "2026-10-24@00:00#pre30": {
-      "messageId": 225,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-23T20:31:05.149Z"
-    },
-    "2026-10-24@06:00#pre30": {
-      "messageId": 227,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T02:31:08.996Z"
-    },
-    "2026-10-24@08:00#pre30": {
-      "messageId": 228,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T04:31:13.049Z"
-    },
-    "2026-10-24@08:30#pre30": {
-      "messageId": 229,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T05:01:29.679Z"
-    },
-    "2026-10-24@11:30#pre30": {
-      "messageId": 231,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-10-24T08:01:15.782Z"
-    },
-    "2026-10-24@12:00#pre30": {
-      "messageId": 232,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T08:31:01.863Z",
-      "emergencyEditedAt": "2026-10-24T08:55:29.322Z"
-    },
-    "2026-10-24@15:00#pre30": {
-      "messageId": 236,
-      "leadMinutes": 10,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T11:31:05.437Z",
-      "combinedCorrectionHash": "a4f630845e2e4795ffd9d459434d577d3e42783a3886f6c6c046cfd79e782574",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 15:00</b>\n🔔 До планового часу: 10 хв\n📆 Субота, 24.10.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 1.2\n🪫 Підгрупа 2.1\n🪫 Підгрупа 2.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 5.2\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 1.2, 2.1, 2.2, 5.2, 6.1, 6.2",
-      "editedAt": "2026-10-24T11:50:51.802Z"
-    },
-    "2026-10-24@15:30#pre30": {
-      "messageId": 238,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T12:01:13.625Z"
-    },
-    "2026-10-24@18:30#pre30": {
-      "messageId": 239,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T15:01:14.172Z"
-    },
-    "2026-10-24@19:00#pre30": {
-      "messageId": 240,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T15:31:05.370Z"
-    },
-    "2026-10-24@22:00#pre30": {
-      "messageId": 243,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T18:31:05.506Z"
-    },
-    "2026-10-24@22:30#pre30": {
-      "messageId": 244,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T19:01:14.618Z",
-      "correctedHash": "5c4f4672f77e4a524650c654feaa79d21af151dd24a3d6d812fc20f5dfaa4db5",
-      "editedAt": "2026-10-24T19:43:12.351Z"
-    },
     "2026-10-25@09:00#pre30": {
       "messageId": 254,
       "leadMinutes": 20,
@@ -440,112 +342,6 @@
     15
   ],
   "scheduleSnapshots": {
-    "2026-10-19": {
-      "1.1": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "1.2": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "2.1": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1380
-        ]
-      ],
-      "2.2": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1380
-        ]
-      ],
-      "3.1": [
-        [
-          750,
-          990
-        ]
-      ],
-      "3.2": [
-        [
-          750,
-          990
-        ]
-      ],
-      "4.1": [
-        [
-          750,
-          990
-        ]
-      ],
-      "4.2": [
-        [
-          750,
-          990
-        ]
-      ],
-      "5.1": [
-        [
-          360,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "5.2": [
-        [
-          360,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "6.1": [
-        [
-          480,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "6.2": [
-        [
-          480,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ]
-    },
     "2026-10-20": {
       "1.1": [
         [
@@ -1407,11 +1203,6 @@
       "hash": "942d5a73d907f7738fd0b307e0b110b337e970e8d06a7700a1fd1f022176f709",
       "updatedAt": "2026-10-19T16:50:48.030Z"
     },
-    "2026-10-19@1410": {
-      "messageId": 138,
-      "hash": "6b23d25123c19d96d8eaa25b5bde845822969dcc531ca4f3d23172974aa6bf91",
-      "updatedAt": "2026-10-19T20:25:46.835Z"
-    },
     "2026-10-20@600": {
       "messageId": 140,
       "hash": "05c56f072526be1bcc7df64a2f4a7f6cbd1dd581edcc153f38783dc9d738b7f9",
@@ -1652,112 +1443,6 @@
     }
   },
   "confirmedSchedules": {
-    "2026-10-19": {
-      "1.1": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "1.2": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "2.1": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1380
-        ]
-      ],
-      "2.2": [
-        [
-          540,
-          780
-        ],
-        [
-          1170,
-          1380
-        ]
-      ],
-      "3.1": [
-        [
-          750,
-          990
-        ]
-      ],
-      "3.2": [
-        [
-          750,
-          990
-        ]
-      ],
-      "4.1": [
-        [
-          750,
-          990
-        ]
-      ],
-      "4.2": [
-        [
-          750,
-          990
-        ]
-      ],
-      "5.1": [
-        [
-          360,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "5.2": [
-        [
-          360,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "6.1": [
-        [
-          480,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ],
-      "6.2": [
-        [
-          480,
-          570
-        ],
-        [
-          960,
-          1200
-        ]
-      ]
-    },
     "2026-10-20": {
       "1.1": [
         [
@@ -2598,10 +2283,6 @@
     }
   },
   "dailyRevisions": {
-    "2026-10-19": {
-      "hash": "5ba7482fc44aad1ce09879010c02191b1f0d096581fdb7aec6c82e5d1f1378ab",
-      "revision": 1
-    },
     "2026-10-20": {
       "hash": "205282ff4f8d01d3f3adea40c87448aef2c45a2f4164f99a4e4eacdba1970e44",
       "revision": 5
@@ -2637,12 +2318,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-26",
-    "hash": "052d0b3689df783b097e66d8b4b6cf7949a1a60310c7a6b39d8d939863ea34f2",
+    "date": "2026-10-27",
+    "hash": "e35ea572566a4ad24b636bd79604aa769f825b1344ae1029d039e6c4b4a9f176",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-26T20:45:47.698Z"
+    "editedAt": "2026-10-26T22:01:16.551Z"
   }
 }
