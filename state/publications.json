@@ -1534,6 +1534,14 @@
       "sourcePostId": 5580,
       "sourceUrl": "https://t.me/Ukrenergo/5580",
       "publishedAt": "2026-10-26T17:25:32.856Z"
+    },
+    "2026-10-28": {
+      "hash": "dff8ea445558862545666ff22e3836615cd0d5f0b5349e1e8b7da8fbb8f074ff",
+      "messageId": 333,
+      "formatVersion": 2,
+      "sourcePostId": 5582,
+      "sourceUrl": "https://t.me/Ukrenergo/5582",
+      "publishedAt": "2026-10-27T18:25:32.131Z"
     }
   },
   "confirmedSchedules": {
