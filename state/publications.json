@@ -128,13 +128,13 @@
       "publishedAt": "2026-10-29T18:31:09.238Z"
     },
     "2026-10-30/сьогодні/all": {
-      "hash": "b5bc0404e71f4964ef31c15590ffc34f00c1c0f24739d4186dc851da070e8c7c",
-      "messageId": 392,
-      "revision": 1,
+      "hash": "ff2039ad830d84b58b507fdb792191e09741e42f4d41c619a12e6a4114469b45",
+      "messageId": 394,
+      "revision": 2,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-30T18:10:48.039Z"
+      "publishedAt": "2026-10-30T18:15:47.475Z"
     }
   },
   "events": {
@@ -1224,7 +1224,7 @@
         ],
         [
           1080,
-          1320
+          1260
         ]
       ],
       "3.1": [
@@ -1489,9 +1489,9 @@
       "updatedAt": "2026-10-28T21:15:47.413Z"
     },
     "2026-10-30@1260": {
-      "messageId": 393,
-      "hash": "7946679b109a785e67c50f1f2f1055bbac7b2e4ff24887796d964d4fc8dfc8af",
-      "updatedAt": "2026-10-30T18:10:49.633Z"
+      "messageId": 395,
+      "hash": "0cbe80ee2a03115f04c7950c07d755bde256ce8fdcc40dc949eb150e75efa220",
+      "updatedAt": "2026-10-30T18:15:48.716Z"
     }
   },
   "announcements": {
@@ -2390,7 +2390,7 @@
         ],
         [
           1080,
-          1320
+          1260
         ]
       ],
       "3.1": [
@@ -2497,18 +2497,18 @@
       "revision": 2
     },
     "2026-10-30": {
-      "hash": "1b22d4ab9ca0df0708de104e5025754be23892c1d2fad820a188d931ab1f6fb0",
-      "revision": 1
+      "hash": "c8b1caacb032c2f3fbd0143432ba239ef8d72e0def4fac72122f688d751ea821",
+      "revision": 2
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-10-30",
-    "hash": "65491091be45e1336a40a8e7816531741b3af52cc5048f3c2c7812ab46f75b1c",
+    "hash": "b4df76982153a03d096fa002ecc924f6c4d895d271d7bec89ba340351db7da75",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-30T18:10:46.541Z"
+    "editedAt": "2026-10-30T18:15:46.097Z"
   }
 }
