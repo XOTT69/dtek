@@ -1,22 +1,5 @@
 {
   "publications": {
-    "2026-10-24/завтра/all": {
-      "hash": "f5bdd7bef4554fc6c266def14e216784e4e70abdd6e6d631d96747a631675419",
-      "messageId": 222,
-      "revision": 0,
-      "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-10-23T15:55:36.918Z"
-    },
-    "2026-10-24/сьогодні/all": {
-      "hash": "2830abb433e792ba817cc1edbb9c7f611c1031ee6b8bcec439d2743c253ec880",
-      "messageId": 245,
-      "revision": 3,
-      "formatVersion": 7,
-      "headingState": "updated",
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-24T19:43:12.190Z"
-    },
     "2026-10-25/завтра/all": {
       "hash": "1348d63389f59ab8f9a511e252d7ea9ce53a47a17e9aa728eee66a6216a97955",
       "messageId": 249,
@@ -143,114 +126,18 @@
       "formatVersion": 7,
       "headingState": "initial",
       "publishedAt": "2026-10-31T16:45:45.472Z"
+    },
+    "2026-11-01/сьогодні/all": {
+      "hash": "489619e7fc81b3108e262061720e63153dae7ac2c6ac3eee6aed123e4538854c",
+      "messageId": 423,
+      "revision": 0,
+      "formatVersion": 7,
+      "headingState": "initial",
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-31T22:01:25.876Z"
     }
   },
   "events": {
-    "2026-10-29@00:00#pre30": {
-      "messageId": 361,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-28T21:31:04.576Z"
-    },
-    "2026-10-29@01:00#pre30": {
-      "messageId": 363,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-28T22:31:06.027Z"
-    },
-    "2026-10-29@06:00#pre30": {
-      "messageId": 364,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T03:31:04.002Z"
-    },
-    "2026-10-29@07:00#pre30": {
-      "messageId": 365,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T04:31:04.363Z"
-    },
-    "2026-10-29@07:30#pre30": {
-      "messageId": 366,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T05:01:14.982Z"
-    },
-    "2026-10-29@09:00#pre30": {
-      "messageId": 367,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T06:31:06.661Z"
-    },
-    "2026-10-29@10:30#pre30": {
-      "messageId": 368,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T08:01:14.193Z"
-    },
-    "2026-10-29@11:00#pre30": {
-      "messageId": 369,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T08:31:08.846Z"
-    },
-    "2026-10-29@12:00#pre30": {
-      "messageId": 370,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T09:31:09.296Z"
-    },
-    "2026-10-29@14:00#pre30": {
-      "messageId": 371,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T11:31:07.533Z"
-    },
-    "2026-10-29@14:30#pre30": {
-      "messageId": 372,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T12:01:23.143Z"
-    },
-    "2026-10-29@17:30#pre30": {
-      "messageId": 373,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T15:01:26.327Z"
-    },
-    "2026-10-29@18:00#pre30": {
-      "messageId": 374,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T15:31:12.282Z"
-    },
-    "2026-10-29@21:00#pre30": {
-      "messageId": 377,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T18:31:11.012Z"
-    },
-    "2026-10-29@21:30#pre30": {
-      "messageId": 378,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
-      "publishedAt": "2026-10-29T19:01:26.363Z"
-    },
     "2026-10-30@00:00#pre30": {
       "messageId": 379,
       "leadMinutes": 29,
@@ -466,104 +353,6 @@
     15
   ],
   "scheduleSnapshots": {
-    "2026-10-24": {
-      "1.1": [
-        [
-          360,
-          510
-        ]
-      ],
-      "1.2": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.1": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.2": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "3.1": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "3.2": [
-        [
-          480,
-          720
-        ]
-      ],
-      "4.1": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1320
-        ]
-      ],
-      "4.2": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "5.1": [
-        [
-          690,
-          840
-        ]
-      ],
-      "5.2": [
-        [
-          690,
-          930
-        ]
-      ],
-      "6.1": [
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1350
-        ]
-      ],
-      "6.2": [
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1350
-        ]
-      ]
-    },
     "2026-10-25": {
       "1.1": [],
       "1.2": [],
@@ -1460,17 +1249,6 @@
     "formatVersion": 2
   },
   "corrections": {
-    "2026-10-24@900": {
-      "messageId": 236,
-      "hash": "a4f630845e2e4795ffd9d459434d577d3e42783a3886f6c6c046cfd79e782574",
-      "combined": true,
-      "updatedAt": "2026-10-24T11:50:51.802Z"
-    },
-    "2026-10-24@1350": {
-      "messageId": 246,
-      "hash": "2ced19bf799d6958399fa49a9d7c58915b5094b9825323017e1d22b776787321",
-      "updatedAt": "2026-10-24T19:43:13.450Z"
-    },
     "2026-10-25@510": {
       "messageId": 248,
       "hash": "5378500a2e4adb6c94154aa5ad755d72cc69763d983fd3370fe82fad4e42190a",
@@ -1731,104 +1509,6 @@
     }
   },
   "confirmedSchedules": {
-    "2026-10-24": {
-      "1.1": [
-        [
-          360,
-          510
-        ]
-      ],
-      "1.2": [
-        [
-          360,
-          510
-        ],
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.1": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "2.2": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "3.1": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "3.2": [
-        [
-          480,
-          720
-        ]
-      ],
-      "4.1": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1320
-        ]
-      ],
-      "4.2": [
-        [
-          480,
-          720
-        ],
-        [
-          1110,
-          1350
-        ]
-      ],
-      "5.1": [
-        [
-          690,
-          840
-        ]
-      ],
-      "5.2": [
-        [
-          690,
-          930
-        ]
-      ],
-      "6.1": [
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1350
-        ]
-      ],
-      "6.2": [
-        [
-          690,
-          930
-        ],
-        [
-          1320,
-          1350
-        ]
-      ]
-    },
     "2026-10-25": {
       "1.1": [],
       "1.2": [],
@@ -2709,10 +2389,6 @@
     }
   },
   "dailyRevisions": {
-    "2026-10-24": {
-      "hash": "56401aa003adbe3e3715db614e017d79b8a25494e167b4d845acc2b0d676f1c6",
-      "revision": 3
-    },
     "2026-10-25": {
       "hash": "fd82fdd5e7f5379d493acf4670e15235073251f14ee468b294ecc6d46075a6c9",
       "revision": 12
@@ -2748,12 +2424,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-10-31",
-    "hash": "642568bef59197938c48fc1c4fd9bc608362891ca81a22649ee7becf30a9354f",
+    "date": "2026-11-01",
+    "hash": "8a249647c839dbc26b50611d1901aa0db3a80a799c1098caeee9f8f269bdefcd",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-10-30T22:10:44.882Z"
+    "editedAt": "2026-10-31T22:01:24.450Z"
   }
 }
