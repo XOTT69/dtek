@@ -345,6 +345,13 @@
       "claimed": true,
       "formatVersion": 5,
       "recoveredAt": "2026-10-30T21:35:36.292Z"
+    },
+    "2026-10-31@06:00#pre30": {
+      "messageId": 406,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-10-31T03:31:04.208Z"
     }
   },
   "cleanedDuplicatePosts": [
