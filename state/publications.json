@@ -1472,13 +1472,6 @@
     }
   },
   "announcements": {
-    "2026-10-17": {
-      "hash": "0a0a393c15b5f74c5eb26dd4dcab86d30bae6246011a5a0cad369b2b9288e029",
-      "messageId": 22,
-      "sourcePostId": 5549,
-      "sourceUrl": "https://t.me/Ukrenergo/5549",
-      "publishedAt": "2026-10-16T18:05:34.812Z"
-    },
     "2026-10-18": {
       "hash": "09755fedd7e804be4e484343dd266ba972674ecce21756591524b612f06993c7",
       "messageId": 65,
@@ -1574,6 +1567,14 @@
       "sourcePostId": 5596,
       "sourceUrl": "https://t.me/Ukrenergo/5596",
       "publishedAt": "2026-10-30T16:10:48.236Z"
+    },
+    "2026-11-01": {
+      "hash": "8edfa4733cbdd488faa3aa537bc3002f48c0cef4263053d80de3f4b4881105b4",
+      "messageId": 416,
+      "formatVersion": 2,
+      "sourcePostId": 5601,
+      "sourceUrl": "https://t.me/Ukrenergo/5601",
+      "publishedAt": "2026-10-31T16:05:34.447Z"
     }
   },
   "confirmedSchedules": {
