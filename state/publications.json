@@ -444,6 +444,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
       "publishedAt": "2026-11-01T20:31:04.408Z"
+    },
+    "2026-11-02@00:00#pre30": {
+      "messageId": 439,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-11-01T21:31:03.714Z"
     }
   },
   "cleanedDuplicatePosts": [
