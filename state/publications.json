@@ -380,6 +380,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
       "publishedAt": "2026-11-01T10:01:13.337Z"
+    },
+    "2026-11-01@13:00#pre30": {
+      "messageId": 429,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "publishedAt": "2026-11-01T10:31:00.926Z"
     }
   },
   "cleanedDuplicatePosts": [
