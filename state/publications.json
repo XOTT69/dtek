@@ -360,6 +360,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "publishedAt": "2026-11-02T06:31:08.693Z"
+    },
+    "2026-11-02@09:30#pre30": {
+      "messageId": 444,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-02T07:01:23.110Z"
     }
   },
   "cleanedDuplicatePosts": [
