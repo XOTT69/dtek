@@ -416,6 +416,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "publishedAt": "2026-11-02T17:01:27.779Z"
+    },
+    "2026-11-02@20:00#pre30": {
+      "messageId": 460,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-02T17:31:11.122Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1591,6 +1598,14 @@
       "sourcePostId": 5602,
       "sourceUrl": "https://t.me/Ukrenergo/5602",
       "publishedAt": "2026-11-01T16:50:44.921Z"
+    },
+    "2026-11-03": {
+      "hash": "167f3992aafc56ea460dfc999c2f751f71d7cc4d6a432a963b5d851ce2cc8a73",
+      "messageId": 459,
+      "formatVersion": 2,
+      "sourcePostId": 5605,
+      "sourceUrl": "https://t.me/Ukrenergo/5605",
+      "publishedAt": "2026-11-02T17:31:06.002Z"
     }
   },
   "confirmedSchedules": {
