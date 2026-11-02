@@ -128,13 +128,13 @@
       "publishedAt": "2026-11-01T20:01:21.484Z"
     },
     "2026-11-02/сьогодні/all": {
-      "hash": "73d34c573d57f03e5e593710966d3d8f2b0b9d5b38288757b431c41faf84c51d",
-      "messageId": 445,
-      "revision": 1,
+      "hash": "8b08961fcdacca29fbbc4f2de08cd27bd66e480f39501b4f716b185017b15384",
+      "messageId": 449,
+      "revision": 2,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
-      "publishedAt": "2026-11-02T07:05:40.600Z"
+      "publishedAt": "2026-11-02T12:50:47.980Z"
     }
   },
   "events": {
@@ -1228,7 +1228,7 @@
       "1.2": [
         [
           540,
-          960
+          990
         ],
         [
           1170,
@@ -1248,7 +1248,7 @@
       "2.2": [
         [
           720,
-          960
+          990
         ],
         [
           1170,
@@ -1454,6 +1454,11 @@
       "hash": "c9263457517198be508c645aa3a2d6e2d090ffb31a4b51ec6f56b02aa3040011",
       "combined": true,
       "updatedAt": "2026-11-02T07:05:42.124Z"
+    },
+    "2026-11-02@960": {
+      "messageId": 450,
+      "hash": "e649ab7613ad18aa4ba2b46da6447808514e894fbc3821c4b464367e458069ae",
+      "updatedAt": "2026-11-02T12:50:49.159Z"
     }
   },
   "announcements": {
@@ -2391,7 +2396,7 @@
       "1.2": [
         [
           540,
-          960
+          990
         ],
         [
           1170,
@@ -2411,7 +2416,7 @@
       "2.2": [
         [
           720,
-          960
+          990
         ],
         [
           1170,
@@ -2522,18 +2527,18 @@
       "revision": 0
     },
     "2026-11-02": {
-      "hash": "3412e40710cfa0f03ace38b7b8613a9674bf199dbff6cf86cb6eb339c2401a1f",
-      "revision": 1
+      "hash": "d109791150246ab0aca140af901bc14534bca38698412d2e095bbcc9ff32608b",
+      "revision": 2
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-02",
-    "hash": "98ce17ac779d4455af2a8486643d02a77b5a3917aa53566d344c4f32f321b7e7",
+    "hash": "fac29d6ebbfb641817c34a5eb6dcd3eab8029459b52d4f688620d79d7fb23ab1",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-02T07:05:39.330Z"
+    "editedAt": "2026-11-02T12:50:46.640Z"
   }
 }
