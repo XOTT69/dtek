@@ -421,6 +421,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "publishedAt": "2026-11-03T14:31:07.962Z"
+    },
+    "2026-11-03@20:00#pre30": {
+      "messageId": 483,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-03T17:31:11.582Z"
     }
   },
   "cleanedDuplicatePosts": [
