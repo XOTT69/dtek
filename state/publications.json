@@ -133,9 +133,9 @@
       "revision": 5,
       "formatVersion": 7,
       "headingState": "updated",
-      "emergencyContextKey": "{\"active\":false,\"kind\":\"\",\"districts\":[]}",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "publishedAt": "2026-11-04T09:31:07.645Z",
-      "emergencyEditedAt": "2026-11-04T11:31:01.754Z"
+      "emergencyEditedAt": "2026-11-04T13:15:45.073Z"
     }
   },
   "events": {
@@ -1464,18 +1464,18 @@
   },
   "emergency": {
     "status": {
-      "active": false,
+      "active": true,
       "kind": "екстрені",
       "scope": "oblast-unspecified",
       "districts": [],
-      "sourceUrl": "https://t.me/dtek_ua/4771"
+      "sourceUrl": "https://t.me/dtek_ua/4773"
     },
-    "lastId": 4771,
-    "lastSignature": "e9f439a8ddcf6e13f15849487659045a88d86fa27851485fc81dc0f027a71d71",
-    "lastSourceUrl": "https://t.me/dtek_ua/4771",
-    "lastObservedAt": "2026-11-04T11:31:01.754Z",
-    "lastSourcePublishedAt": "2026-11-04T11:25:28.000Z",
-    "messageId": 507,
+    "lastId": 4773,
+    "lastSignature": "1964876e888bcf0c131baa6fd08555bac44edaab9bd7c5dd88ce06154df3525e",
+    "lastSourceUrl": "https://t.me/dtek_ua/4773",
+    "lastObservedAt": "2026-11-04T13:15:45.073Z",
+    "lastSourcePublishedAt": "2026-11-04T13:14:57.000Z",
+    "messageId": 509,
     "formatVersion": 2
   },
   "corrections": {
@@ -2733,11 +2733,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-04",
-    "hash": "6cb1bdb022771be3c3c4286f8011be0bbd0657784a985cf9844bef0317e55d96",
+    "hash": "9d85a9c644a552bcd0eac2b77fa05e762e9f37402c9633078f8be6f99961c808",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-04T11:31:06.207Z"
+    "editedAt": "2026-11-04T13:15:50.821Z"
   }
 }
