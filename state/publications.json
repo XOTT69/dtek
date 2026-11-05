@@ -479,6 +479,13 @@
       "combinedBaseText": "⚠️ <b>Коригування графіка на 22:00</b>\n🔔 До планового часу: 29 хв\n📆 Четвер, 05.11.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 6.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 1.2\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n⚫️ Підгрупа 5.1\n⚫️ Підгрупа 5.2\n\n🔄 Змінено підгрупи: 6.1",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "editedAt": "2026-11-05T19:31:13.066Z"
+    },
+    "2026-11-06@00:00#pre30": {
+      "messageId": 538,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-05T21:31:06.662Z"
     }
   },
   "cleanedDuplicatePosts": [
