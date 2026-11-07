@@ -129,13 +129,13 @@
       "publishedAt": "2026-11-06T21:35:39.635Z"
     },
     "2026-11-07/сьогодні/all": {
-      "hash": "eb9e98621d3e36342c5eba0086d43f9dace3961e882fbc483db799f7480d1c4e",
-      "messageId": 589,
-      "revision": 5,
+      "hash": "0ef0d2a4864f2c63f8374469298d4a24112475742d1505b2cf5f3558a4d247c3",
+      "messageId": 596,
+      "revision": 6,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
-      "publishedAt": "2026-11-06T22:01:15.799Z"
+      "publishedAt": "2026-11-07T07:40:48.503Z"
     }
   },
   "events": {
@@ -1455,6 +1455,10 @@
         ],
         [
           270,
+          570
+        ],
+        [
+          660,
           720
         ],
         [
@@ -1732,6 +1736,11 @@
       "messageId": 581,
       "hash": "44df0b2dba137298777a0b89e41e1fcb79f41586795fec41c9f41be895748d9e",
       "updatedAt": "2026-11-06T19:10:52.989Z"
+    },
+    "2026-11-07@570": {
+      "messageId": 597,
+      "hash": "43c73a60dba36b0c8e8a00f8d4f7023e14d4777843bb6c059997f804c4646d65",
+      "updatedAt": "2026-11-07T07:40:49.634Z"
     }
   },
   "announcements": {
@@ -2857,6 +2866,10 @@
         ],
         [
           270,
+          570
+        ],
+        [
+          660,
           720
         ],
         [
@@ -3036,18 +3049,18 @@
       "revision": 11
     },
     "2026-11-07": {
-      "hash": "86f9871763362874a7102b323e6c4fd1b64ca5c6a9aa1492b256db90bfb2f8e7",
-      "revision": 5
+      "hash": "9b85abfcbb2a58e0976f9d24c7b5575e58920af2e5ac72f6aaff3b5449dd4e6b",
+      "revision": 6
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-07",
-    "hash": "0b11c67b15c11c11ab5b84bc9304fdcda70e5576d89e331222454807e230a923",
+    "hash": "745a7294ef4369372322a8ef4d2c4053f1aa835ea1dd1e4c6bf31d9869c44624",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-06T22:01:14.392Z"
+    "editedAt": "2026-11-07T07:40:46.752Z"
   }
 }
