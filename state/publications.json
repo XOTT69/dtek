@@ -449,6 +449,13 @@
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
       "editedAt": "2026-11-07T08:55:38.977Z",
       "correctedHash": "09b41029c4fa2582c8f02c7742e9761389021c196f8c4dff5623c57f984e146a"
+    },
+    "2026-11-07@11:30#pre30": {
+      "messageId": 603,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-07T09:01:20.869Z"
     }
   },
   "cleanedDuplicatePosts": [
