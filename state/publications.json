@@ -134,8 +134,9 @@
       "revision": 7,
       "formatVersion": 7,
       "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
-      "publishedAt": "2026-11-10T08:35:38.652Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
+      "publishedAt": "2026-11-10T08:35:38.652Z",
+      "emergencyEditedAt": "2026-11-10T09:20:43.909Z"
     }
   },
   "events": {
@@ -637,8 +638,9 @@
       "messageId": 721,
       "leadMinutes": 29,
       "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
-      "publishedAt": "2026-11-10T09:01:23.255Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
+      "publishedAt": "2026-11-10T09:01:23.255Z",
+      "emergencyEditedAt": "2026-11-10T09:20:43.909Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1972,16 +1974,19 @@
     "status": {
       "active": true,
       "kind": "екстрені",
-      "scope": "oblast-unspecified",
-      "districts": [],
-      "sourceUrl": "https://t.me/dtek_ua/4814"
+      "scope": "districts",
+      "districts": [
+        "Бучанський",
+        "Вишгородський"
+      ],
+      "sourceUrl": "https://t.me/dtek_ua/4821"
     },
-    "lastId": 4814,
-    "lastSignature": "1964876e888bcf0c131baa6fd08555bac44edaab9bd7c5dd88ce06154df3525e",
-    "lastSourceUrl": "https://t.me/dtek_ua/4814",
-    "lastObservedAt": "2026-11-08T08:40:41.887Z",
-    "lastSourcePublishedAt": "2026-11-08T08:35:13.000Z",
-    "messageId": 509,
+    "lastId": 4821,
+    "lastSignature": "7f2abffdadd26a76ddd85c22145c441a9fc801f94a7bf65453e1eefb550d9c6d",
+    "lastSourceUrl": "https://t.me/dtek_ua/4821",
+    "lastObservedAt": "2026-11-10T09:20:43.909Z",
+    "lastSourcePublishedAt": "2026-11-10T09:17:39.000Z",
+    "messageId": 722,
     "formatVersion": 2
   },
   "corrections": {
@@ -3641,11 +3646,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-10",
-    "hash": "06ddae59de41b5d53cfb14bf1783b2c0899cdd86cb6bb2181016caa277995c0f",
+    "hash": "da7d0a613f9b038abbe9ba20e738b2db28f1e623d09baee0e34a7fad5bbb3dbd",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-10T08:35:37.213Z"
+    "editedAt": "2026-11-10T09:20:47.486Z"
   }
 }
