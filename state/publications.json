@@ -129,13 +129,13 @@
       "publishedAt": "2026-11-09T19:45:55.245Z"
     },
     "2026-11-10/сьогодні/all": {
-      "hash": "8b47c71a7757e6778b8bcf176f5846a2c02a38c94228afb3bade07abe2b9b90c",
-      "messageId": 733,
-      "revision": 10,
+      "hash": "076fea39e2468aefac5277a508b2451a961cbe0a03d37774ab54f0e2cc6cb109",
+      "messageId": 737,
+      "revision": 11,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T17:01:25.891Z"
+      "publishedAt": "2026-11-10T18:11:51.795Z"
     }
   },
   "events": {
@@ -1860,7 +1860,7 @@
         ],
         [
           990,
-          1440
+          1320
         ]
       ],
       "1.2": [
@@ -1874,7 +1874,7 @@
         ],
         [
           900,
-          1440
+          1320
         ]
       ],
       "2.1": [
@@ -2234,6 +2234,11 @@
       "messageId": 732,
       "hash": "bcf0b125371db7a4df921bb9605d7fbb7a29381d63db6b051fab4b11ef4e13be",
       "updatedAt": "2026-11-10T16:31:11.501Z"
+    },
+    "2026-11-10@1320": {
+      "messageId": 738,
+      "hash": "82ac76a2377ee8cd460b6a6d50d2c3d3eb8e98773bdf1cc68d3a30fa7f039c5b",
+      "updatedAt": "2026-11-10T18:11:52.927Z"
     }
   },
   "announcements": {
@@ -3505,7 +3510,7 @@
         ],
         [
           990,
-          1440
+          1320
         ]
       ],
       "1.2": [
@@ -3519,7 +3524,7 @@
         ],
         [
           900,
-          1440
+          1320
         ]
       ],
       "2.1": [
@@ -3698,18 +3703,18 @@
       "revision": 3
     },
     "2026-11-10": {
-      "hash": "62778288fa4d6571e460a8c47592ec053f9fbdf4a36ea3132b29fe210540acf9",
-      "revision": 10
+      "hash": "52c775f7cff257fb5edafce29efbbc5c4ef0bf412664a4e8c208b2246928001c",
+      "revision": 11
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-10",
-    "hash": "134a2550d509e2766ab99c575492e10e04eefe94e5b92b3de19df47bdc4ec693",
+    "hash": "a18ddfe8e7001b08c34524c9f674dfde6e7b2b755e0c41481e8eca33e916cba4",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-10T17:01:24.494Z"
+    "editedAt": "2026-11-10T18:11:50.593Z"
   }
 }
