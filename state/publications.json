@@ -604,6 +604,13 @@
       "publishedAt": "2026-11-10T05:31:05.163Z",
       "correctedHash": "b272692e11474acb387c366a4ac2757adc3c7ad9382790f27a63411a18be507a",
       "editedAt": "2026-11-10T06:35:41.232Z"
+    },
+    "2026-11-10@09:30#pre30": {
+      "messageId": 717,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
+      "publishedAt": "2026-11-10T07:01:18.426Z"
     }
   },
   "cleanedDuplicatePosts": [
