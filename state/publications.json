@@ -129,13 +129,13 @@
       "publishedAt": "2026-11-09T19:45:55.245Z"
     },
     "2026-11-10/сьогодні/all": {
-      "hash": "076fea39e2468aefac5277a508b2451a961cbe0a03d37774ab54f0e2cc6cb109",
-      "messageId": 737,
-      "revision": 11,
+      "hash": "de44ff8b47ed01c9aa21733d9f4036010406a9da986e130436e895d85d3c563f",
+      "messageId": 740,
+      "revision": 12,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T18:11:51.795Z"
+      "publishedAt": "2026-11-10T18:50:47.833Z"
     }
   },
   "events": {
@@ -697,14 +697,19 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T18:01:18.647Z"
+      "publishedAt": "2026-11-10T18:01:18.647Z",
+      "correctedHash": "60a724ccc32f97dff9b678f11753c5dc34f955f5a970a15de3dfdb58f2a513aa",
+      "editedAt": "2026-11-10T18:50:48.033Z"
     },
     "2026-11-10@21:00#pre30": {
       "messageId": 739,
-      "leadMinutes": 29,
-      "formatVersion": 5,
+      "leadMinutes": 10,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T18:31:09.343Z"
+      "publishedAt": "2026-11-10T18:31:09.343Z",
+      "combinedCorrectionHash": "1bb1ac33ceb7d5b00bbb7f3221c959b20183dd74ddf269e18932af9afd7f79e2",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 21:00</b>\n🔔 До планового часу: 10 хв\n📆 Вівторок, 10.11.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 4.1\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 1.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 4.2\n\n🔄 Змінено підгрупи: 1.1, 1.2, 2.1, 6.1",
+      "editedAt": "2026-11-10T18:50:49.288Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1867,7 +1872,7 @@
         ],
         [
           990,
-          1320
+          1410
         ]
       ],
       "1.2": [
@@ -1881,7 +1886,7 @@
         ],
         [
           900,
-          1320
+          1260
         ]
       ],
       "2.1": [
@@ -1895,6 +1900,10 @@
         ],
         [
           990,
+          1320
+        ],
+        [
+          1410,
           1440
         ]
       ],
@@ -2011,7 +2020,7 @@
         ],
         [
           780,
-          1290
+          1230
         ]
       ],
       "6.2": [
@@ -2246,6 +2255,12 @@
       "messageId": 738,
       "hash": "82ac76a2377ee8cd460b6a6d50d2c3d3eb8e98773bdf1cc68d3a30fa7f039c5b",
       "updatedAt": "2026-11-10T18:11:52.927Z"
+    },
+    "2026-11-10@1260": {
+      "messageId": 739,
+      "hash": "1bb1ac33ceb7d5b00bbb7f3221c959b20183dd74ddf269e18932af9afd7f79e2",
+      "combined": true,
+      "updatedAt": "2026-11-10T18:50:49.288Z"
     }
   },
   "announcements": {
@@ -3517,7 +3532,7 @@
         ],
         [
           990,
-          1320
+          1410
         ]
       ],
       "1.2": [
@@ -3531,7 +3546,7 @@
         ],
         [
           900,
-          1320
+          1260
         ]
       ],
       "2.1": [
@@ -3545,6 +3560,10 @@
         ],
         [
           990,
+          1320
+        ],
+        [
+          1410,
           1440
         ]
       ],
@@ -3661,7 +3680,7 @@
         ],
         [
           780,
-          1290
+          1230
         ]
       ],
       "6.2": [
@@ -3710,18 +3729,18 @@
       "revision": 3
     },
     "2026-11-10": {
-      "hash": "52c775f7cff257fb5edafce29efbbc5c4ef0bf412664a4e8c208b2246928001c",
-      "revision": 11
+      "hash": "16f5c67f2d50c7de4dfd2fb2358d1b6fd8aee7b822eb806eaf1b5815daae7950",
+      "revision": 12
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-10",
-    "hash": "a18ddfe8e7001b08c34524c9f674dfde6e7b2b755e0c41481e8eca33e916cba4",
+    "hash": "9a59a272be6fe610c1a4c186d786940ff05fb5532ae69d991c17fae098b36901",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-10T18:11:50.593Z"
+    "editedAt": "2026-11-10T18:50:46.489Z"
   }
 }
