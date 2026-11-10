@@ -129,14 +129,13 @@
       "publishedAt": "2026-11-09T19:45:55.245Z"
     },
     "2026-11-10/сьогодні/all": {
-      "hash": "5dde2ae042d5444019d97f026b797d3cf5f6e52fabd8dce8146dd329cb7b6ad3",
-      "messageId": 720,
-      "revision": 7,
+      "hash": "4051fc2d672dbf41c264674de4f3b39c2254831f9a510d62a6efddf06d7fe573",
+      "messageId": 728,
+      "revision": 8,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T08:35:38.652Z",
-      "emergencyEditedAt": "2026-11-10T09:20:43.909Z"
+      "publishedAt": "2026-11-10T14:50:50.858Z"
     }
   },
   "events": {
@@ -1968,7 +1967,7 @@
         ],
         [
           660,
-          1200
+          1230
         ],
         [
           1410,
@@ -2206,6 +2205,11 @@
       "hash": "fc2ee830ad3e023e3b95ca7895375c9dbb0c12580978ccfcb08089e3e0479e09",
       "combined": true,
       "updatedAt": "2026-11-10T08:35:39.818Z"
+    },
+    "2026-11-10@1200": {
+      "messageId": 729,
+      "hash": "5488c16dd30f9292d3e6825418632c0858fa4833ac54081d3090d08cceb60b10",
+      "updatedAt": "2026-11-10T14:50:52.388Z"
     }
   },
   "announcements": {
@@ -3607,7 +3611,7 @@
         ],
         [
           660,
-          1200
+          1230
         ],
         [
           1410,
@@ -3674,18 +3678,18 @@
       "revision": 3
     },
     "2026-11-10": {
-      "hash": "37dabcfd92c1625b89bf44584bbef059258b73fbb229eb314683014a4c7e04c2",
-      "revision": 7
+      "hash": "9d491540a86391a55df1ecd1ce8e34ef30452e564ee6b84d4ca9f983d8c7c0c1",
+      "revision": 8
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-10",
-    "hash": "da7d0a613f9b038abbe9ba20e738b2db28f1e623d09baee0e34a7fad5bbb3dbd",
+    "hash": "361542f6696b83dfc0b27bf605ae78f22271950bf91448cdd43c735798276dd3",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-10T09:20:47.486Z"
+    "editedAt": "2026-11-10T14:50:49.305Z"
   }
 }
