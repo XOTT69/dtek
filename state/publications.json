@@ -129,13 +129,13 @@
       "publishedAt": "2026-11-10T20:20:53.539Z"
     },
     "2026-11-11/сьогодні/all": {
-      "hash": "c521504fe4cd68de0fc68015d69488ddf24de6e12485aa642b1538743b0f4610",
-      "messageId": 749,
-      "revision": 1,
+      "hash": "8ef2308a960e951288c2b1507ff2f2da0aeb939c17437acba3648b6ce6613385",
+      "messageId": 751,
+      "revision": 2,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T22:01:17.644Z"
+      "publishedAt": "2026-11-11T00:20:50.537Z"
     }
   },
   "events": {
@@ -1781,7 +1781,7 @@
       "3.2": [
         [
           0,
-          210
+          120
         ],
         [
           480,
@@ -1837,7 +1837,7 @@
       "5.2": [
         [
           0,
-          270
+          210
         ],
         [
           600,
@@ -1851,7 +1851,7 @@
       "6.1": [
         [
           0,
-          390
+          270
         ],
         [
           660,
@@ -2104,6 +2104,11 @@
       "messageId": 746,
       "hash": "fe0c4a6aa4e777ec694f4a7146dd133c3fb67c95ea8c4747664fad0930518562",
       "updatedAt": "2026-11-10T20:20:54.896Z"
+    },
+    "2026-11-11@120": {
+      "messageId": 752,
+      "hash": "9106da3ba13435dc4f4382892dc2b49c7df5e4a879b8d77eed8db74eacd4d9b9",
+      "updatedAt": "2026-11-11T00:20:51.582Z"
     }
   },
   "announcements": {
@@ -3437,7 +3442,7 @@
       "3.2": [
         [
           0,
-          210
+          120
         ],
         [
           480,
@@ -3493,7 +3498,7 @@
       "5.2": [
         [
           0,
-          270
+          210
         ],
         [
           600,
@@ -3507,7 +3512,7 @@
       "6.1": [
         [
           0,
-          390
+          270
         ],
         [
           660,
@@ -3564,18 +3569,18 @@
       "revision": 13
     },
     "2026-11-11": {
-      "hash": "3d80cec01d30c3ff61582ae99f4185b4b77b4dcb730ff18b3ab13ab49c15dfbf",
-      "revision": 1
+      "hash": "0e356b534256be6a5ea3a29200392d5ff6bed7a10d9da3717d45685e86fb1d24",
+      "revision": 2
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-11",
-    "hash": "27bb8013d7bd3f10fe375dbf54950baf7ce18fc43b700b394675f54d61302ab4",
+    "hash": "a68a056c0b25087123d0808acee207fc2f8913222d3fd1784642a64b571d4d19",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-10T22:01:16.347Z"
+    "editedAt": "2026-11-11T00:20:49.372Z"
   }
 }
