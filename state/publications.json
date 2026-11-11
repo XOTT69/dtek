@@ -615,6 +615,13 @@
       "publishedAt": "2026-11-11T05:31:03.241Z",
       "correctedHash": "1dccc122114646708253d541000b5a73528c2f5b7a50ee195fd625aaff1f0945",
       "editedAt": "2026-11-11T06:01:24.319Z"
+    },
+    "2026-11-11@10:00#pre30": {
+      "messageId": 763,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
+      "publishedAt": "2026-11-11T07:31:06.379Z"
     }
   },
   "cleanedDuplicatePosts": [
