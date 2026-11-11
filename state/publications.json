@@ -632,6 +632,11 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
       "publishedAt": "2026-11-11T08:01:19.387Z"
+    },
+    "2026-11-11@11:00#pre30": {
+      "claimed": true,
+      "formatVersion": 5,
+      "recoveredAt": "2026-11-11T08:35:38.140Z"
     }
   },
   "cleanedDuplicatePosts": [
