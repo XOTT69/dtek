@@ -133,8 +133,9 @@
       "revision": 0,
       "formatVersion": 7,
       "headingState": "initial",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-12T22:01:23.350Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-12T22:01:23.350Z",
+      "emergencyEditedAt": "2026-11-13T08:55:31.848Z"
     }
   },
   "events": {
@@ -640,8 +641,9 @@
       "messageId": 833,
       "leadMinutes": 30,
       "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-13T08:31:04.045Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-13T08:31:04.045Z",
+      "emergencyEditedAt": "2026-11-13T08:55:31.848Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1969,17 +1971,19 @@
       "kind": "екстрені",
       "scope": "districts",
       "districts": [
+        "Білоцерківський",
         "Бучанський",
-        "Вишгородський"
+        "Обухівський",
+        "Фастівський"
       ],
-      "sourceUrl": "https://t.me/dtek_ua/4821"
+      "sourceUrl": "https://t.me/dtek_ua/4832"
     },
-    "lastId": 4821,
-    "lastSignature": "7f2abffdadd26a76ddd85c22145c441a9fc801f94a7bf65453e1eefb550d9c6d",
-    "lastSourceUrl": "https://t.me/dtek_ua/4821",
-    "lastObservedAt": "2026-11-10T09:20:43.909Z",
-    "lastSourcePublishedAt": "2026-11-10T09:17:39.000Z",
-    "messageId": 722,
+    "lastId": 4832,
+    "lastSignature": "fc2214132d799df01aafcc4e852efe19c53d15e24e6a598129cc9d58f9aea311",
+    "lastSourceUrl": "https://t.me/dtek_ua/4832",
+    "lastObservedAt": "2026-11-13T08:55:31.848Z",
+    "lastSourcePublishedAt": "2026-11-13T08:54:07.000Z",
+    "messageId": 834,
     "formatVersion": 2
   },
   "corrections": {
@@ -3656,11 +3660,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-13",
-    "hash": "acaaa1291402d401e738a022d1ecb7237239b49aacdd54f21fa963514bd1a053",
+    "hash": "bdcbe568f049f2f9a706fb9a82115720247ab29cb7eda8cf6b6c192d7f691e9e",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-12T22:01:21.837Z"
+    "editedAt": "2026-11-13T08:55:38.424Z"
   }
 }
