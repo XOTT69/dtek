@@ -731,6 +731,13 @@
       "claimed": true,
       "formatVersion": 5,
       "recoveredAt": "2026-11-13T19:05:36.471Z"
+    },
+    "2026-11-13@22:00#pre30": {
+      "messageId": 846,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-13T19:31:06.650Z"
     }
   },
   "cleanedDuplicatePosts": [
