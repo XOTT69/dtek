@@ -726,6 +726,11 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-11-13T18:31:06.522Z"
+    },
+    "2026-11-13@21:30#pre30": {
+      "claimed": true,
+      "formatVersion": 5,
+      "recoveredAt": "2026-11-13T19:05:36.471Z"
     }
   },
   "cleanedDuplicatePosts": [
