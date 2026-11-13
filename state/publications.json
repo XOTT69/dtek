@@ -565,6 +565,13 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
       "publishedAt": "2026-11-13T00:01:18.993Z"
+    },
+    "2026-11-13@04:00#pre30": {
+      "messageId": 823,
+      "leadMinutes": 30,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
+      "publishedAt": "2026-11-13T01:30:59.586Z"
     }
   },
   "cleanedDuplicatePosts": [
