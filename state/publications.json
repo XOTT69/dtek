@@ -1,22 +1,5 @@
 {
   "publications": {
-    "2026-11-06/завтра/all": {
-      "hash": "30c02ea7e4208a2bd0a5fc1e525b14de0eb8776d698b6fe5c34d5ac6495c43bc",
-      "messageId": 533,
-      "revision": 0,
-      "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-11-05T17:55:36.331Z"
-    },
-    "2026-11-06/сьогодні/all": {
-      "hash": "ba69d3abb6b6a91c788aa95cd8cbb2af5cd3a65ea80e6f9aa90af49b89b458aa",
-      "messageId": 578,
-      "revision": 11,
-      "formatVersion": 7,
-      "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[]}",
-      "publishedAt": "2026-11-06T19:10:49.448Z"
-    },
     "2026-11-07/завтра/all": {
       "hash": "eb9e98621d3e36342c5eba0086d43f9dace3961e882fbc483db799f7480d1c4e",
       "messageId": 588,
@@ -144,204 +127,17 @@
       "formatVersion": 7,
       "headingState": "initial",
       "publishedAt": "2026-11-13T19:50:48.705Z"
+    },
+    "2026-11-15/завтра/all": {
+      "hash": "408ba6655a1158451eebf617ddde0fc83503f98d38872372527b7dc932fbc4a7",
+      "messageId": 872,
+      "revision": 0,
+      "formatVersion": 7,
+      "headingState": "initial",
+      "publishedAt": "2026-11-14T17:35:37.048Z"
     }
   },
   "events": {
-    "2026-11-11@00:00#pre30": {
-      "messageId": 748,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T21:31:07.276Z"
-    },
-    "2026-11-11@00:30#pre30": {
-      "messageId": 750,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-10T22:01:18.988Z"
-    },
-    "2026-11-11@03:00#pre30": {
-      "messageId": 753,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T00:31:02.443Z"
-    },
-    "2026-11-11@03:30#pre30": {
-      "messageId": 754,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T01:01:14.459Z"
-    },
-    "2026-11-11@04:00#pre30": {
-      "messageId": 755,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T01:31:03.870Z"
-    },
-    "2026-11-11@04:30#pre30": {
-      "messageId": 756,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T02:01:18.150Z"
-    },
-    "2026-11-11@06:00#pre30": {
-      "messageId": 757,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T03:31:20.666Z"
-    },
-    "2026-11-11@07:00#pre30": {
-      "messageId": 758,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T04:31:09.604Z"
-    },
-    "2026-11-11@07:30#pre30": {
-      "messageId": 759,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T05:01:16.765Z"
-    },
-    "2026-11-11@08:00#pre30": {
-      "messageId": 760,
-      "leadMinutes": 30,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T05:31:03.241Z",
-      "correctedHash": "1dccc122114646708253d541000b5a73528c2f5b7a50ee195fd625aaff1f0945",
-      "editedAt": "2026-11-11T06:01:24.319Z"
-    },
-    "2026-11-11@10:00#pre30": {
-      "messageId": 763,
-      "leadMinutes": 10,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T07:31:06.379Z",
-      "combinedCorrectionHash": "981fcc43860ba2bf592516300677dc64f03f16781cd6af5b5e7a18cdf74d517d",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 10:00</b>\n🔔 До планового часу: 10 хв\n📆 Середа, 11.11.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 5.1\n🪫 Підгрупа 5.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 4.1\n⚫️ Підгрупа 4.2\n\n🔄 Змінено підгрупи: 1.2, 2.1, 2.2, 4.1",
-      "editedAt": "2026-11-11T07:50:46.320Z"
-    },
-    "2026-11-11@10:30#pre30": {
-      "messageId": 765,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T08:01:19.387Z"
-    },
-    "2026-11-11@11:00#pre30": {
-      "claimed": true,
-      "formatVersion": 5,
-      "recoveredAt": "2026-11-11T08:35:38.140Z"
-    },
-    "2026-11-11@11:30#pre30": {
-      "messageId": 766,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T09:01:22.468Z"
-    },
-    "2026-11-11@12:00#pre30": {
-      "messageId": 767,
-      "leadMinutes": 15,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T09:31:12.574Z",
-      "combinedCorrectionHash": "ac1bc5966514a1025c965bbe1955ad3c5331630cc773b0ca5b4c3caa328e0216",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 12:00</b>\n🔔 До планового часу: 15 хв\n📆 Середа, 11.11.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 3.1\n⚫️ Підгрупа 3.2\n⚫️ Підгрупа 5.1\n⚫️ Підгрупа 5.2\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 2.2, 4.1",
-      "editedAt": "2026-11-11T09:45:54.484Z"
-    },
-    "2026-11-11@13:30#pre30": {
-      "messageId": 769,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T11:01:24.272Z"
-    },
-    "2026-11-11@14:00#pre30": {
-      "messageId": 770,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T11:31:10.406Z"
-    },
-    "2026-11-11@14:30#pre30": {
-      "messageId": 771,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T12:01:22.766Z"
-    },
-    "2026-11-11@15:00#pre30": {
-      "messageId": 772,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T12:31:08.497Z"
-    },
-    "2026-11-11@17:00#pre30": {
-      "messageId": 773,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T14:31:06.534Z"
-    },
-    "2026-11-11@17:30#pre30": {
-      "messageId": 774,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T15:01:29.206Z"
-    },
-    "2026-11-11@18:00#pre30": {
-      "messageId": 775,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T15:31:09.875Z"
-    },
-    "2026-11-11@18:30#pre30": {
-      "messageId": 776,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T16:01:21.003Z"
-    },
-    "2026-11-11@20:30#pre30": {
-      "messageId": 777,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T18:01:22.307Z"
-    },
-    "2026-11-11@21:00#pre30": {
-      "messageId": 779,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T18:31:08.333Z"
-    },
-    "2026-11-11@21:30#pre30": {
-      "messageId": 780,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T19:01:21.786Z"
-    },
-    "2026-11-11@22:00#pre30": {
-      "messageId": 781,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Вишгородський\"]}",
-      "publishedAt": "2026-11-11T19:31:10.915Z"
-    },
     "2026-11-12@00:00#pre30": {
       "messageId": 782,
       "leadMinutes": 29,
@@ -932,180 +728,6 @@
     15
   ],
   "scheduleSnapshots": {
-    "2026-11-06": {
-      "1.1": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          990,
-          1440
-        ]
-      ],
-      "1.2": [
-        [
-          0,
-          270
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "2.1": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          990
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "2.2": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "3.1": [
-        [
-          30,
-          270
-        ],
-        [
-          450,
-          570
-        ],
-        [
-          660,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "3.2": [
-        [
-          30,
-          270
-        ],
-        [
-          360,
-          480
-        ],
-        [
-          660,
-          1140
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "4.1": [
-        [
-          30,
-          480
-        ],
-        [
-          570,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "4.2": [
-        [
-          30,
-          270
-        ],
-        [
-          600,
-          630
-        ],
-        [
-          660,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "5.1": [
-        [
-          240,
-          690
-        ],
-        [
-          780,
-          1320
-        ]
-      ],
-      "5.2": [
-        [
-          0,
-          60
-        ],
-        [
-          240,
-          690
-        ],
-        [
-          780,
-          1320
-        ]
-      ],
-      "6.1": [
-        [
-          240,
-          690
-        ],
-        [
-          720,
-          780
-        ],
-        [
-          870,
-          1320
-        ]
-      ],
-      "6.2": [
-        [
-          240,
-          780
-        ],
-        [
-          870,
-          1320
-        ]
-      ]
-    },
     "2026-11-07": {
       "1.1": [
         [
@@ -2397,6 +2019,88 @@
           1440
         ]
       ]
+    },
+    "2026-11-15": {
+      "1.1": [
+        [
+          690,
+          930
+        ]
+      ],
+      "1.2": [
+        [
+          690,
+          930
+        ]
+      ],
+      "2.1": [
+        [
+          1320,
+          1440
+        ]
+      ],
+      "2.2": [
+        [
+          1320,
+          1440
+        ]
+      ],
+      "3.1": [
+        [
+          960,
+          1200
+        ]
+      ],
+      "3.2": [
+        [
+          960,
+          1200
+        ]
+      ],
+      "4.1": [
+        [
+          900,
+          1140
+        ]
+      ],
+      "4.2": [
+        [
+          900,
+          1140
+        ]
+      ],
+      "5.1": [
+        [
+          1110,
+          1350
+        ]
+      ],
+      "5.2": [
+        [
+          1110,
+          1350
+        ]
+      ],
+      "6.1": [
+        [
+          480,
+          720
+        ],
+        [
+          1170,
+          1320
+        ]
+      ],
+      "6.2": [
+        [
+          480,
+          720
+        ],
+        [
+          1170,
+          1320
+        ]
+      ]
     }
   },
   "emergency": {
@@ -2421,47 +2125,10 @@
     "formatVersion": 2
   },
   "corrections": {
-    "2026-11-06@480": {
-      "messageId": 546,
-      "hash": "4265b90118c6378532d498a535936d922bf3f8fc3784e29d632a4440b80532fb",
-      "combined": true,
-      "updatedAt": "2026-11-06T05:35:40.034Z"
-    },
-    "2026-11-06@570": {
-      "messageId": 549,
-      "hash": "0c9b1c1fe72ec665a22a871248fd66cca0ae6881cc027d5037d0b8a463d23d38",
-      "updatedAt": "2026-11-06T05:50:50.741Z"
-    },
-    "2026-11-06@660": {
-      "messageId": 553,
-      "hash": "c0af0ca41c9a90fc10f22faf4bc1f7ba2f238a0080324e09178cdc57a9fd66b9",
-      "combined": true,
-      "updatedAt": "2026-11-06T08:50:50.701Z"
-    },
-    "2026-11-06@780": {
-      "messageId": 562,
-      "hash": "72400005342b95253f670faeba44e9c9b9c7fed42b93730cf53cbbcc41e2ffc4",
-      "updatedAt": "2026-11-06T10:25:39.752Z"
-    },
-    "2026-11-06@900": {
-      "messageId": 567,
-      "hash": "200888249d51a396a9f44e39117f5bd5faa5ffe586b01c6895ac2a2fd875f8a9",
-      "updatedAt": "2026-11-06T13:10:48.053Z"
-    },
-    "2026-11-06@1200": {
-      "messageId": 573,
-      "hash": "e7f185cf1783c2b6748f9bcf68d7921a1d058343db5cfca47f1a897d81be84c9",
-      "updatedAt": "2026-11-06T17:10:49.924Z"
-    },
     "2026-11-07@60": {
       "messageId": 586,
       "hash": "bc1aadf69d8b0daf43182e1ebb1c48dc4319e5ad4ee428c1e0b6bc446b771453",
       "updatedAt": "2026-11-06T21:31:07.400Z"
-    },
-    "2026-11-06@1320": {
-      "messageId": 579,
-      "hash": "3b4f88ee2eadd8f3aba3b8bb9544dbe2d1df72a78c78dfe5a76942dadd1b6692",
-      "updatedAt": "2026-11-06T19:10:50.628Z"
     },
     "2026-11-07@1320": {
       "messageId": 581,
@@ -2744,180 +2411,6 @@
     }
   },
   "confirmedSchedules": {
-    "2026-11-06": {
-      "1.1": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          990,
-          1440
-        ]
-      ],
-      "1.2": [
-        [
-          0,
-          270
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "2.1": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          990
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "2.2": [
-        [
-          0,
-          60
-        ],
-        [
-          450,
-          900
-        ],
-        [
-          1080,
-          1440
-        ]
-      ],
-      "3.1": [
-        [
-          30,
-          270
-        ],
-        [
-          450,
-          570
-        ],
-        [
-          660,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "3.2": [
-        [
-          30,
-          270
-        ],
-        [
-          360,
-          480
-        ],
-        [
-          660,
-          1140
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "4.1": [
-        [
-          30,
-          480
-        ],
-        [
-          570,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "4.2": [
-        [
-          30,
-          270
-        ],
-        [
-          600,
-          630
-        ],
-        [
-          660,
-          1110
-        ],
-        [
-          1290,
-          1440
-        ]
-      ],
-      "5.1": [
-        [
-          240,
-          690
-        ],
-        [
-          780,
-          1320
-        ]
-      ],
-      "5.2": [
-        [
-          0,
-          60
-        ],
-        [
-          240,
-          690
-        ],
-        [
-          780,
-          1320
-        ]
-      ],
-      "6.1": [
-        [
-          240,
-          690
-        ],
-        [
-          720,
-          780
-        ],
-        [
-          870,
-          1320
-        ]
-      ],
-      "6.2": [
-        [
-          240,
-          780
-        ],
-        [
-          870,
-          1320
-        ]
-      ]
-    },
     "2026-11-07": {
       "1.1": [
         [
@@ -4209,13 +3702,91 @@
           1440
         ]
       ]
+    },
+    "2026-11-15": {
+      "1.1": [
+        [
+          690,
+          930
+        ]
+      ],
+      "1.2": [
+        [
+          690,
+          930
+        ]
+      ],
+      "2.1": [
+        [
+          1320,
+          1440
+        ]
+      ],
+      "2.2": [
+        [
+          1320,
+          1440
+        ]
+      ],
+      "3.1": [
+        [
+          960,
+          1200
+        ]
+      ],
+      "3.2": [
+        [
+          960,
+          1200
+        ]
+      ],
+      "4.1": [
+        [
+          900,
+          1140
+        ]
+      ],
+      "4.2": [
+        [
+          900,
+          1140
+        ]
+      ],
+      "5.1": [
+        [
+          1110,
+          1350
+        ]
+      ],
+      "5.2": [
+        [
+          1110,
+          1350
+        ]
+      ],
+      "6.1": [
+        [
+          480,
+          720
+        ],
+        [
+          1170,
+          1320
+        ]
+      ],
+      "6.2": [
+        [
+          480,
+          720
+        ],
+        [
+          1170,
+          1320
+        ]
+      ]
     }
   },
   "dailyRevisions": {
-    "2026-11-06": {
-      "hash": "da02dc2096dab88b887e7bca23104c2a58758893f26d7d0291209ceaf4976fc5",
-      "revision": 11
-    },
     "2026-11-07": {
       "hash": "28aa4da1b2ab045bf9a9d53fef2838a01e2c4d833444dc6ef711a310d2045a38",
       "revision": 12
@@ -4246,6 +3817,10 @@
     },
     "2026-11-14": {
       "hash": "aa56d6a0592db5d0bcc25e6722f8a6e1e2c6e35862f7af52223742a6393c34e7",
+      "revision": 0
+    },
+    "2026-11-15": {
+      "hash": "90e9b2b970dc0772827035c9fd17f47911bde1c6626e5886fd38fb40de3fedc3",
       "revision": 0
     }
   },
