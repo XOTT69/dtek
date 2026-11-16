@@ -554,9 +554,11 @@
       "publishedAt": "2026-11-16T14:31:09.641Z"
     },
     "2026-11-16@19:00#pre30": {
+      "claimed": true,
+      "formatVersion": 5,
+      "recoveredAt": "2026-11-16T16:49:11.908Z",
       "messageId": 913,
       "leadMinutes": 25,
-      "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-11-16T16:35:44.324Z"
     }
