@@ -553,6 +553,15 @@
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-11-16T14:31:09.641Z"
     },
+    "2026-11-16@20:00#pre30": {
+      "claimed": true,
+      "formatVersion": 5,
+      "recoveredAt": "2026-11-16T17:35:56.421Z",
+      "messageId": 915,
+      "leadMinutes": 29,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-16T17:31:09.342Z"
+    },
     "2026-11-16@19:00#pre30": {
       "claimed": true,
       "formatVersion": 5,
@@ -568,13 +577,6 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-11-16T17:01:41.474Z"
-    },
-    "2026-11-16@20:00#pre30": {
-      "messageId": 915,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-16T17:31:09.342Z"
     }
   },
   "cleanedDuplicatePosts": [
