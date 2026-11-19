@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-18T19:31:13.378Z"
     },
     "2026-11-19/сьогодні/all": {
-      "hash": "b60126d0244373b3f886912b93c93d865eecee0606c0a02f91af1439a9854ec4",
-      "messageId": 989,
-      "revision": 2,
+      "hash": "a27f67b4025a9dea6f5b662cbaf919c9c28dbfd0a3ae7ed0be810112a6d1da02",
+      "messageId": 991,
+      "revision": 3,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-19T10:25:47.245Z"
+      "publishedAt": "2026-11-19T10:31:17.180Z"
     }
   },
   "events": {
@@ -1511,7 +1511,7 @@
       "2.1": [
         [
           630,
-          870
+          690
         ],
         [
           1290,
@@ -1647,9 +1647,9 @@
       "updatedAt": "2026-11-19T09:50:53.757Z"
     },
     "2026-11-19@870": {
-      "messageId": 990,
-      "hash": "820725e11e65b7128db96d659c832c787963ac2bc747d49d98592169160e1aca",
-      "updatedAt": "2026-11-19T10:25:48.510Z"
+      "messageId": 992,
+      "hash": "cc1b726b15b268252f2c83a4668d67e535458e55821f4d3054779f925b0cc249",
+      "updatedAt": "2026-11-19T10:31:18.601Z"
     }
   },
   "announcements": {
@@ -2741,7 +2741,7 @@
       "2.1": [
         [
           630,
-          870
+          690
         ],
         [
           1290,
@@ -2858,18 +2858,18 @@
       "revision": 0
     },
     "2026-11-19": {
-      "hash": "06e3313844aafdfa3d574441c0a5a36d121c6f70c97e9f5ba151f4358b007ac8",
-      "revision": 2
+      "hash": "5ef142f10534b3175ef327f50b11c7ca5a5e81a104271600667d91913f0fadf5",
+      "revision": 3
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-19",
-    "hash": "985b2979130e389a54c85fbbcb27a1e181a875a95dfc894310feab87c922cd42",
+    "hash": "8a686b065b2f4d9e047a56c878910af6e9fa7bb8be73678f0674a21f0de6205f",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-19T10:25:45.840Z"
+    "editedAt": "2026-11-19T10:31:15.911Z"
   }
 }
