@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-18T19:31:13.378Z"
     },
     "2026-11-19/сьогодні/all": {
-      "hash": "b60126d0244373b3f886912b93c93d865eecee0606c0a02f91af1439a9854ec4",
-      "messageId": 993,
-      "revision": 4,
+      "hash": "a27f67b4025a9dea6f5b662cbaf919c9c28dbfd0a3ae7ed0be810112a6d1da02",
+      "messageId": 994,
+      "revision": 5,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-19T10:35:46.644Z"
+      "publishedAt": "2026-11-19T10:40:50.339Z"
     }
   },
   "events": {
@@ -1511,7 +1511,7 @@
       "2.1": [
         [
           630,
-          870
+          690
         ],
         [
           1290,
@@ -2741,7 +2741,7 @@
       "2.1": [
         [
           630,
-          870
+          690
         ],
         [
           1290,
@@ -2858,18 +2858,18 @@
       "revision": 0
     },
     "2026-11-19": {
-      "hash": "06e3313844aafdfa3d574441c0a5a36d121c6f70c97e9f5ba151f4358b007ac8",
-      "revision": 4
+      "hash": "5ef142f10534b3175ef327f50b11c7ca5a5e81a104271600667d91913f0fadf5",
+      "revision": 5
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-19",
-    "hash": "985b2979130e389a54c85fbbcb27a1e181a875a95dfc894310feab87c922cd42",
+    "hash": "8a686b065b2f4d9e047a56c878910af6e9fa7bb8be73678f0674a21f0de6205f",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-19T10:35:45.239Z"
+    "editedAt": "2026-11-19T10:40:48.988Z"
   }
 }
