@@ -2920,12 +2920,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-11-19",
-    "hash": "487b23ea68741ed1d55bb849140a272ec722e70670f0165cc1edf99cb208dd72",
+    "date": "2026-11-20",
+    "hash": "e0ec86ed57dd56ea168f6a7f29f29c9421bd7424b4002d45d1e1ee7ae5664c91",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-19T17:35:40.355Z"
+    "editedAt": "2026-11-19T22:01:24.932Z"
   }
 }
