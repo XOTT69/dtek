@@ -111,13 +111,13 @@
       "publishedAt": "2026-11-20T21:50:52.257Z"
     },
     "2026-11-21/сьогодні/all": {
-      "hash": "52f3403c6b3094f729c21689671a9797b57106c3ea8f29ceb05e5dc9edbe6843",
-      "messageId": 1115,
-      "revision": 17,
+      "hash": "aa81e3b3c51877d833acd033864797c6ea3c821682914436fe85cee5c0ae10b9",
+      "messageId": 1118,
+      "revision": 18,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-21T17:01:25.249Z"
+      "publishedAt": "2026-11-21T19:55:37.206Z"
     }
   },
   "events": {
@@ -515,7 +515,9 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-21T19:31:15.552Z"
+      "publishedAt": "2026-11-21T19:31:15.552Z",
+      "correctedHash": "12fc644680ddd63acb3cfa7979310996258f5dadfa300630395d38b0cb9cb3a0",
+      "editedAt": "2026-11-21T19:55:37.348Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1432,12 +1434,7 @@
           750
         ]
       ],
-      "6.1": [
-        [
-          1320,
-          1440
-        ]
-      ],
+      "6.1": [],
       "6.2": [
         [
           1320,
@@ -1615,6 +1612,11 @@
       "messageId": 1116,
       "hash": "ade180d0f0680fdabaaa20089ac14a7a50d5e68bb4e7ce5be4ecb42ef1f25719",
       "updatedAt": "2026-11-21T17:01:26.628Z"
+    },
+    "2026-11-21@1320": {
+      "messageId": 1119,
+      "hash": "45cf9aff97b873dd840dbcdef799bc204cd8bce0d0f0c00166eb517cd7f95d54",
+      "updatedAt": "2026-11-21T19:55:38.393Z"
     }
   },
   "announcements": {
@@ -2640,12 +2642,7 @@
           750
         ]
       ],
-      "6.1": [
-        [
-          1320,
-          1440
-        ]
-      ],
+      "6.1": [],
       "6.2": [
         [
           1320,
@@ -2684,8 +2681,8 @@
       "revision": 6
     },
     "2026-11-21": {
-      "hash": "9b1ed6ef198d9e692f96dd235194fcda684d7515af61c2d998dd38e07673d46b",
-      "revision": 17
+      "hash": "2faa380654fb9a7c299eae12be13e7134d4e8c451abfd995432101065a2b6ed6",
+      "revision": 18
     }
   },
   "pinnedGraphic": {
