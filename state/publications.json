@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-21T20:31:05.471Z"
     },
     "2026-11-22/сьогодні/all": {
-      "hash": "7afbbc0084f0131aa0e3c7e635f502960fbfb45ba2574f6f0f518bad3dd597d9",
-      "messageId": 1146,
-      "revision": 5,
+      "hash": "7bc5514b79b032e2dc666c90fe93af76cd2d2bde168d32168cd44227d35df416",
+      "messageId": 1150,
+      "revision": 6,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-22T21:12:59.470Z"
+      "publishedAt": "2026-11-22T21:20:50.010Z"
     },
     "2026-11-23/завтра/all": {
       "hash": "f1722dfe81eac4ed566ff7edd6c44000ff2d681ee358e4506abf46ed36554f4b",
@@ -489,8 +489,8 @@
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
       "publishedAt": "2026-11-22T20:31:09.577Z",
-      "correctedHash": "a91573433de231a738b2fbcfa4f4e6ef44622ba7c2437c9a9703843f8a6b4068",
-      "editedAt": "2026-11-22T21:12:59.607Z"
+      "correctedHash": "df07812353d631c6e2858197452e886d52d26bdbcf8bdf39135ee8dfb156d880",
+      "editedAt": "2026-11-22T21:20:50.139Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1286,7 +1286,7 @@
       "2.2": [
         [
           1350,
-          1440
+          1380
         ]
       ],
       "3.1": [
@@ -2566,7 +2566,7 @@
       "2.2": [
         [
           1350,
-          1440
+          1380
         ]
       ],
       "3.1": [
@@ -2767,8 +2767,8 @@
       "revision": 19
     },
     "2026-11-22": {
-      "hash": "dbc3045bb47ad9cbb1dfab9ff0efb47f6b3044a6016f1b3faa4fd504bd034124",
-      "revision": 5
+      "hash": "6e322535a54e148bf7277e4a45300f4b5b6f0c549b1e94c4b00a19f245e31999",
+      "revision": 6
     },
     "2026-11-23": {
       "hash": "fe13c565254b562f20806bdc2f5a0c5a3df2835ff4fa89f302716b5b79caf03c",
@@ -2778,11 +2778,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-22",
-    "hash": "1dcb545d103dec54d4a6b959f0d514858967b2ae65824b79f1ace7152e98aac2",
+    "hash": "7179248c5f0529fcdfa0a55d40db5d51b70813892c93bfc05ca597c5d8148d27",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-22T21:12:58.299Z"
+    "editedAt": "2026-11-22T21:20:48.879Z"
   }
 }
