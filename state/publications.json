@@ -1,22 +1,5 @@
 {
   "publications": {
-    "2026-11-15/завтра/all": {
-      "hash": "408ba6655a1158451eebf617ddde0fc83503f98d38872372527b7dc932fbc4a7",
-      "messageId": 872,
-      "revision": 0,
-      "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-11-14T17:35:37.048Z"
-    },
-    "2026-11-15/сьогодні/all": {
-      "hash": "057343b890d141720fb15c6efcac8deb076e94d79f7dfb34fc26ee69d89d2945",
-      "messageId": 880,
-      "revision": 1,
-      "formatVersion": 7,
-      "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-15T06:25:39.924Z"
-    },
     "2026-11-16/завтра/all": {
       "hash": "0aba64ad403df03543a8ef45480710b4becc14cc618c497e46b74a611599bd9e",
       "messageId": 891,
@@ -135,136 +118,18 @@
       "formatVersion": 7,
       "headingState": "updated",
       "publishedAt": "2026-11-22T21:13:01.862Z"
+    },
+    "2026-11-23/сьогодні/all": {
+      "hash": "f1722dfe81eac4ed566ff7edd6c44000ff2d681ee358e4506abf46ed36554f4b",
+      "messageId": 1152,
+      "revision": 2,
+      "formatVersion": 7,
+      "headingState": "updated",
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-22T22:01:20.931Z"
     }
   },
   "events": {
-    "2026-11-20@06:00#pre30": {
-      "messageId": 1044,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T03:31:19.818Z"
-    },
-    "2026-11-20@08:00#pre30": {
-      "messageId": 1045,
-      "leadMinutes": 25,
-      "formatVersion": 6,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T05:31:07.403Z",
-      "combinedCorrectionHash": "4ad04aa95795477bb196536006494de46068fd2a8d3e3b5a0957fd253ec9a53e",
-      "combinedBaseText": "⚠️ <b>Коригування графіка на 08:00</b>\n🔔 До планового часу: 25 хв\n📆 П'ятниця, 20.11.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 2.1\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 6.1\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 2.2\n\n🔄 Змінено підгрупи: 2.1, 2.2, 4.1, 4.2",
-      "editedAt": "2026-11-20T06:01:22.949Z",
-      "correctedHash": "3dd8255764fd79433ac0f10fb84cc8ff20f3fec65d13798c365fb0d1725f3bf8"
-    },
-    "2026-11-20@11:00#pre30": {
-      "messageId": 1053,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T08:31:21.198Z"
-    },
-    "2026-11-20@11:30#pre30": {
-      "messageId": 1054,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T09:01:22.428Z"
-    },
-    "2026-11-20@12:00#pre30": {
-      "messageId": 1055,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T09:31:10.261Z"
-    },
-    "2026-11-20@12:30#pre30": {
-      "messageId": 1056,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T10:01:29.957Z"
-    },
-    "2026-11-20@14:30#pre30": {
-      "messageId": 1057,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T12:01:23.502Z"
-    },
-    "2026-11-20@15:30#pre30": {
-      "messageId": 1060,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T13:01:21.728Z"
-    },
-    "2026-11-20@16:00#pre30": {
-      "messageId": 1061,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T13:31:09.779Z"
-    },
-    "2026-11-20@17:00#pre30": {
-      "messageId": 1062,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T14:31:12.376Z"
-    },
-    "2026-11-20@17:30#pre30": {
-      "messageId": 1063,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T15:01:28.565Z"
-    },
-    "2026-11-20@18:00#pre30": {
-      "messageId": 1064,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T15:31:17.178Z"
-    },
-    "2026-11-20@18:30#pre30": {
-      "messageId": 1065,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T16:01:21.084Z"
-    },
-    "2026-11-20@20:30#pre30": {
-      "messageId": 1067,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T18:01:40.785Z"
-    },
-    "2026-11-20@21:00#pre30": {
-      "messageId": 1068,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T18:31:17.593Z"
-    },
-    "2026-11-20@21:30#pre30": {
-      "messageId": 1069,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T19:01:24.623Z",
-      "correctedHash": "71012689882ed976152da5e70f5c6e5e7c5048ceed0d56655946914bab393a04",
-      "editedAt": "2026-11-20T20:01:23.024Z"
-    },
-    "2026-11-20@22:00#pre30": {
-      "messageId": 1070,
-      "leadMinutes": 29,
-      "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-20T19:31:19.533Z",
-      "correctedHash": "ecdc6678e4d093543442e7a32fa36dc1c707ea149c4671ceb28345d2383007ce",
-      "editedAt": "2026-11-20T20:01:23.163Z"
-    },
     "2026-11-21@00:00#pre30": {
       "messageId": 1077,
       "leadMinutes": 29,
@@ -506,88 +371,6 @@
     15
   ],
   "scheduleSnapshots": {
-    "2026-11-15": {
-      "1.1": [
-        [
-          690,
-          930
-        ]
-      ],
-      "1.2": [
-        [
-          690,
-          930
-        ]
-      ],
-      "2.1": [
-        [
-          1320,
-          1440
-        ]
-      ],
-      "2.2": [
-        [
-          1320,
-          1440
-        ]
-      ],
-      "3.1": [
-        [
-          960,
-          1200
-        ]
-      ],
-      "3.2": [
-        [
-          960,
-          1200
-        ]
-      ],
-      "4.1": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "4.2": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "5.1": [
-        [
-          1110,
-          1350
-        ]
-      ],
-      "5.2": [
-        [
-          1110,
-          1350
-        ]
-      ],
-      "6.1": [
-        [
-          540,
-          720
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "6.2": [
-        [
-          540,
-          720
-        ],
-        [
-          1170,
-          1320
-        ]
-      ]
-    },
     "2026-11-16": {
       "1.1": [
         [
@@ -1486,11 +1269,6 @@
     "formatVersion": 2
   },
   "corrections": {
-    "2026-11-15@540": {
-      "messageId": 881,
-      "hash": "1332079b554fab0b5774c7cd354f734f413117c44a55add553cc361beadd23ac",
-      "updatedAt": "2026-11-15T06:25:41.283Z"
-    },
     "2026-11-16@1380": {
       "messageId": 922,
       "hash": "37e32658a8290123984502406debd8f64da6a3199d1698ab9379bbacb0a074dd",
@@ -1786,88 +1564,6 @@
     }
   },
   "confirmedSchedules": {
-    "2026-11-15": {
-      "1.1": [
-        [
-          690,
-          930
-        ]
-      ],
-      "1.2": [
-        [
-          690,
-          930
-        ]
-      ],
-      "2.1": [
-        [
-          1320,
-          1440
-        ]
-      ],
-      "2.2": [
-        [
-          1320,
-          1440
-        ]
-      ],
-      "3.1": [
-        [
-          960,
-          1200
-        ]
-      ],
-      "3.2": [
-        [
-          960,
-          1200
-        ]
-      ],
-      "4.1": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "4.2": [
-        [
-          900,
-          1140
-        ]
-      ],
-      "5.1": [
-        [
-          1110,
-          1350
-        ]
-      ],
-      "5.2": [
-        [
-          1110,
-          1350
-        ]
-      ],
-      "6.1": [
-        [
-          540,
-          720
-        ],
-        [
-          1170,
-          1320
-        ]
-      ],
-      "6.2": [
-        [
-          540,
-          720
-        ],
-        [
-          1170,
-          1320
-        ]
-      ]
-    },
     "2026-11-16": {
       "1.1": [
         [
@@ -2745,10 +2441,6 @@
     }
   },
   "dailyRevisions": {
-    "2026-11-15": {
-      "hash": "80a244c9b33cb5898d6a1155d0b821fa1b2be140b2b33ce78bbba672c88664cb",
-      "revision": 1
-    },
     "2026-11-16": {
       "hash": "d995336ec5714bd9dabfb6a11376664b5fbe3c39b22eb4d7de847c77e96afc5e",
       "revision": 4
@@ -2784,12 +2476,12 @@
   },
   "pinnedGraphic": {
     "messageId": 31,
-    "date": "2026-11-22",
-    "hash": "7179248c5f0529fcdfa0a55d40db5d51b70813892c93bfc05ca597c5d8148d27",
+    "date": "2026-11-23",
+    "hash": "dd27e7dc7ca2ec1b60b2aba994372cd4fb7a533f2759adb19f1d76e41d67f741",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-22T21:20:48.879Z"
+    "editedAt": "2026-11-22T22:01:19.274Z"
   }
 }
