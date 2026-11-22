@@ -120,21 +120,21 @@
       "publishedAt": "2026-11-21T20:31:05.471Z"
     },
     "2026-11-22/сьогодні/all": {
-      "hash": "7afbbc0084f0131aa0e3c7e635f502960fbfb45ba2574f6f0f518bad3dd597d9",
-      "messageId": 1134,
-      "revision": 3,
+      "hash": "7bc5514b79b032e2dc666c90fe93af76cd2d2bde168d32168cd44227d35df416",
+      "messageId": 1142,
+      "revision": 4,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-22T13:25:47.962Z"
+      "publishedAt": "2026-11-22T21:10:53.744Z"
     },
     "2026-11-23/завтра/all": {
-      "hash": "f1722dfe81eac4ed566ff7edd6c44000ff2d681ee358e4506abf46ed36554f4b",
-      "messageId": 1140,
-      "revision": 0,
+      "hash": "bfecf90efdfb153a828a540a22aff8cb506a95809211c7b90f1c7310106cdf44",
+      "messageId": 1144,
+      "revision": 1,
       "formatVersion": 7,
-      "headingState": "initial",
-      "publishedAt": "2026-11-22T20:31:08.408Z"
+      "headingState": "updated",
+      "publishedAt": "2026-11-22T21:10:56.366Z"
     }
   },
   "events": {
@@ -488,7 +488,9 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-22T20:31:09.577Z"
+      "publishedAt": "2026-11-22T20:31:09.577Z",
+      "correctedHash": "df07812353d631c6e2858197452e886d52d26bdbcf8bdf39135ee8dfb156d880",
+      "editedAt": "2026-11-22T21:10:53.947Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1284,7 +1286,7 @@
       "2.2": [
         [
           1350,
-          1440
+          1380
         ]
       ],
       "3.1": [
@@ -1367,7 +1369,7 @@
       ],
       "2.1": [
         [
-          480,
+          540,
           960
         ],
         [
@@ -1376,6 +1378,10 @@
         ]
       ],
       "2.2": [
+        [
+          480,
+          540
+        ],
         [
           570,
           1020
@@ -1650,6 +1656,16 @@
       "messageId": 1135,
       "hash": "f34716a650e99df7e0a1e6db68bcdc0ce671232548073c21ee658bafc17a43cc",
       "updatedAt": "2026-11-22T13:25:49.360Z"
+    },
+    "2026-11-22@1380": {
+      "messageId": 1143,
+      "hash": "474c76d9e309a6fa129cc278d2cdaaa8d5b9d1aa503c741ee957766bb6ef4e3c",
+      "updatedAt": "2026-11-22T21:10:55.132Z"
+    },
+    "2026-11-23@480": {
+      "messageId": 1145,
+      "hash": "168b18ccf4709828a46ea5009b0bc5d6e8945eb7d06dfff2c95c742ef9736aa4",
+      "updatedAt": "2026-11-22T21:11:00.482Z"
     }
   },
   "announcements": {
@@ -2554,7 +2570,7 @@
       "2.2": [
         [
           1350,
-          1440
+          1380
         ]
       ],
       "3.1": [
@@ -2637,7 +2653,7 @@
       ],
       "2.1": [
         [
-          480,
+          540,
           960
         ],
         [
@@ -2646,6 +2662,10 @@
         ]
       ],
       "2.2": [
+        [
+          480,
+          540
+        ],
         [
           570,
           1020
@@ -2755,22 +2775,22 @@
       "revision": 19
     },
     "2026-11-22": {
-      "hash": "dbc3045bb47ad9cbb1dfab9ff0efb47f6b3044a6016f1b3faa4fd504bd034124",
-      "revision": 3
+      "hash": "6e322535a54e148bf7277e4a45300f4b5b6f0c549b1e94c4b00a19f245e31999",
+      "revision": 4
     },
     "2026-11-23": {
-      "hash": "fe13c565254b562f20806bdc2f5a0c5a3df2835ff4fa89f302716b5b79caf03c",
-      "revision": 0
+      "hash": "e48e1774bcc70418135a3a22afa872444d6d6d423c0a0f34fc40addbeb8d8bdf",
+      "revision": 1
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-22",
-    "hash": "1dcb545d103dec54d4a6b959f0d514858967b2ae65824b79f1ace7152e98aac2",
+    "hash": "7179248c5f0529fcdfa0a55d40db5d51b70813892c93bfc05ca597c5d8148d27",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-22T13:25:46.762Z"
+    "editedAt": "2026-11-22T21:10:52.622Z"
   }
 }
