@@ -491,6 +491,13 @@
       "publishedAt": "2026-11-22T20:31:09.577Z",
       "correctedHash": "df07812353d631c6e2858197452e886d52d26bdbcf8bdf39135ee8dfb156d880",
       "editedAt": "2026-11-22T21:20:50.139Z"
+    },
+    "2026-11-23@00:00#pre30": {
+      "messageId": 1151,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-22T21:31:07.767Z"
     }
   },
   "cleanedDuplicatePosts": [
