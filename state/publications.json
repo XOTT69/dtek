@@ -129,12 +129,12 @@
       "publishedAt": "2026-11-23T20:01:24.179Z"
     },
     "2026-11-24/завтра/all": {
-      "hash": "8d915f95f59b6d5a7e64caa999711d2140dac9df5be3d7aa247dd399a32a4e8f",
-      "messageId": 1192,
-      "revision": 1,
+      "hash": "957b4f0459f3a95839df92458173482d2e089c1a7ed4ad4f959718496f13c79b",
+      "messageId": 1194,
+      "revision": 2,
       "formatVersion": 7,
       "headingState": "updated",
-      "publishedAt": "2026-11-23T20:45:51.877Z"
+      "publishedAt": "2026-11-23T21:10:53.489Z"
     }
   },
   "events": {
@@ -1474,7 +1474,7 @@
       "3.1": [
         [
           0,
-          150
+          60
         ],
         [
           480,
@@ -1486,6 +1486,10 @@
         ]
       ],
       "3.2": [
+        [
+          0,
+          150
+        ],
         [
           630,
           990
@@ -1813,6 +1817,11 @@
       "messageId": 1193,
       "hash": "cce0c60579aac7bcf917b18d1652d340f3e3aa5897c8b27c59799eeddf7845f0",
       "updatedAt": "2026-11-23T20:45:53.131Z"
+    },
+    "2026-11-24@60": {
+      "messageId": 1195,
+      "hash": "3be5b1e7c7b2283c6cdd15eadb91e6f56de887e596c4ba45a130703754c40dd1",
+      "updatedAt": "2026-11-23T21:10:54.874Z"
     }
   },
   "announcements": {
@@ -2853,7 +2862,7 @@
       "3.1": [
         [
           0,
-          150
+          60
         ],
         [
           480,
@@ -2865,6 +2874,10 @@
         ]
       ],
       "3.2": [
+        [
+          0,
+          150
+        ],
         [
           630,
           990
@@ -2966,8 +2979,8 @@
       "revision": 13
     },
     "2026-11-24": {
-      "hash": "c508a9c380ec37a83f5e0ea7136e5822c493cc5c60f929002f2ccd8dc15e88fe",
-      "revision": 1
+      "hash": "dd9beea57e0b46dd992e7d0540eb0435ac2ab9bd5aa678d537d90a636257c66f",
+      "revision": 2
     }
   },
   "pinnedGraphic": {
