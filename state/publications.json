@@ -373,6 +373,13 @@
       "combinedCorrectionHash": "d88f6f21c356b49599afb18e1bf87dd2f5a557f8f67121b26ad8a5a362834aa6",
       "combinedBaseText": "⚠️ <b>Коригування графіка на 06:00</b>\n🔔 До планового часу: 10 хв\n📆 Понеділок, 23.11.2026\n\n🔴 <b>За графіком вимикаємо світло:</b>\n🪫 Підгрупа 6.1\n🪫 Підгрупа 6.2\n\n🔄 Змінено підгрупи: 5.1, 5.2",
       "editedAt": "2026-11-23T03:50:54.837Z"
+    },
+    "2026-11-23@07:00#pre30": {
+      "messageId": 1155,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-23T04:31:21.525Z"
     }
   },
   "cleanedDuplicatePosts": [
