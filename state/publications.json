@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-23T21:10:53.489Z"
     },
     "2026-11-24/сьогодні/all": {
-      "hash": "631db0cf0e2f631b1d3b0d7ea5530fcd7973f79432aff1dc4fcef321efa2effb",
-      "messageId": 1197,
-      "revision": 3,
+      "hash": "88633eb0ec1840dfc70e1eaebecccc292d5b0803b63872278aea8db3f7a01999",
+      "messageId": 1202,
+      "revision": 4,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-23T22:01:23.823Z"
+      "publishedAt": "2026-11-24T01:05:42.946Z"
     }
   },
   "events": {
@@ -1280,7 +1280,7 @@
       ],
       "5.1": [
         [
-          720,
+          780,
           1110
         ],
         [
@@ -1307,7 +1307,11 @@
       "6.2": [
         [
           120,
-          390
+          180
+        ],
+        [
+          720,
+          780
         ],
         [
           870,
@@ -1576,6 +1580,11 @@
       "hash": "acc4ea949629e7980993c7b9c30e091325b812f481117ae9d286c707fd393a28",
       "combined": true,
       "updatedAt": "2026-11-23T22:01:26.317Z"
+    },
+    "2026-11-24@180": {
+      "messageId": 1203,
+      "hash": "9159a2ff2eaf5a149c20894ba37a93d6ab458cc693500767b64a6747b9958888",
+      "updatedAt": "2026-11-24T01:05:44.121Z"
     }
   },
   "announcements": {
@@ -2537,7 +2546,7 @@
       ],
       "5.1": [
         [
-          720,
+          780,
           1110
         ],
         [
@@ -2564,7 +2573,11 @@
       "6.2": [
         [
           120,
-          390
+          180
+        ],
+        [
+          720,
+          780
         ],
         [
           870,
@@ -2603,18 +2616,18 @@
       "revision": 13
     },
     "2026-11-24": {
-      "hash": "7b84c30ca2344dfa9981c5c1e410a34330b8b889fd760417c9478f5e204cc0c6",
-      "revision": 3
+      "hash": "ffe33e9a53af69f4d9ab45a78433cca931d5bab4bc3a21980a075be614215336",
+      "revision": 4
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-24",
-    "hash": "91735137d427da40db50aefca489221034b423936630d2137ecae21bf652680a",
+    "hash": "be9918a810ea27765ea5b3fc68e50c185c7290a3b9af9c6c6be73119e676b1b4",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-23T22:01:22.253Z"
+    "editedAt": "2026-11-24T01:05:41.285Z"
   }
 }
