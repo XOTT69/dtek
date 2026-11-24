@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-23T21:10:53.489Z"
     },
     "2026-11-24/сьогодні/all": {
-      "hash": "fc5a2b8ddf45f4637280e6c06710c43d6245d194f276e1f8ec0696ac32f08b58",
-      "messageId": 1224,
-      "revision": 10,
+      "hash": "31f96bd50a47c49642a6733eeb4a1a32edd8fbb194076afadbb36dadc17478f6",
+      "messageId": 1228,
+      "revision": 11,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-24T15:15:52.444Z"
+      "publishedAt": "2026-11-24T16:05:42.220Z"
     }
   },
   "events": {
@@ -532,10 +532,13 @@
     },
     "2026-11-24@18:30#pre30": {
       "messageId": 1227,
-      "leadMinutes": 29,
-      "formatVersion": 5,
+      "leadMinutes": 25,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-24T16:01:23.701Z"
+      "publishedAt": "2026-11-24T16:01:23.701Z",
+      "combinedCorrectionHash": "a499f1b047ef32a86054e4b59b4cffed8a7748bb34846bddbbe176e6ed535808",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 18:30</b>\n🔔 До планового часу: 25 хв\n📆 Вівторок, 24.11.2026\n\n🟢 <b>За графіком вмикаємо світло:</b>\n🔋 Підгрупа 4.2\n🔋 Підгрупа 5.1\n🔋 Підгрупа 5.2\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 1.1\n⚫️ Підгрупа 1.2\n⚫️ Підгрупа 2.1\n⚫️ Підгрупа 2.2\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 1.1, 5.2",
+      "editedAt": "2026-11-24T16:05:43.529Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1301,7 +1304,7 @@
         ],
         [
           960,
-          1320
+          1290
         ]
       ],
       "1.2": [
@@ -1403,7 +1406,7 @@
       "5.2": [
         [
           780,
-          1200
+          1110
         ],
         [
           1410,
@@ -1718,6 +1721,12 @@
       "messageId": 1225,
       "hash": "dfd8214eb51f757c016ef9e517da8f053760f9f6b342526b1a4365e619a3f78d",
       "updatedAt": "2026-11-24T15:15:53.778Z"
+    },
+    "2026-11-24@1110": {
+      "messageId": 1227,
+      "hash": "a499f1b047ef32a86054e4b59b4cffed8a7748bb34846bddbbe176e6ed535808",
+      "combined": true,
+      "updatedAt": "2026-11-24T16:05:43.529Z"
     }
   },
   "announcements": {
@@ -2592,7 +2601,7 @@
         ],
         [
           960,
-          1320
+          1290
         ]
       ],
       "1.2": [
@@ -2694,7 +2703,7 @@
       "5.2": [
         [
           780,
-          1200
+          1110
         ],
         [
           1410,
@@ -2753,18 +2762,18 @@
       "revision": 13
     },
     "2026-11-24": {
-      "hash": "3b5938fbf0d9d4ce8fc436d636faf61fe41ea79d6c0a667bb53f7b8372eba359",
-      "revision": 10
+      "hash": "d22b3c7aa954ea7e8a107d84e554cccb47615cb1a1bae6839d77c8b7246de7c4",
+      "revision": 11
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-24",
-    "hash": "1e2a05995bf62707fbaa862172a63ba8397d01814847a51818c2c004f9a92090",
+    "hash": "ce687296411cba2488a304b6f4bff037404129c2feb532e8148f6d3ca90db427",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-24T15:15:50.975Z"
+    "editedAt": "2026-11-24T16:05:40.742Z"
   }
 }
