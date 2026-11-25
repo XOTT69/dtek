@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-25T20:20:56.072Z"
     },
     "2026-11-26/сьогодні/all": {
-      "hash": "f6a9d4205194cf3315cbc13dbf7ca9c6f6bbd33e0b53acb444888d0f8e2260e1",
-      "messageId": 1286,
-      "revision": 1,
+      "hash": "dc5fa263ed791b4ae81e6176abad5bc316bec49bb86b545d63d6c1c9b71c638a",
+      "messageId": 1288,
+      "revision": 2,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T22:01:21.564Z"
+      "publishedAt": "2026-11-25T22:25:40.039Z"
     }
   },
   "events": {
@@ -1262,7 +1262,7 @@
       "1.1": [
         [
           0,
-          120
+          30
         ],
         [
           600,
@@ -1752,6 +1752,11 @@
       "messageId": 1287,
       "hash": "80d48c8e273f8ae6efa910706d62c729ec075a4cdc5e4e211171b33115f55baa",
       "updatedAt": "2026-11-25T22:01:22.781Z"
+    },
+    "2026-11-26@30": {
+      "messageId": 1289,
+      "hash": "b2696cbf5f800124d46d11528b6547479d53bb0032eaf1d52a43c6d126685a6d",
+      "updatedAt": "2026-11-25T22:25:41.178Z"
     }
   },
   "announcements": {
@@ -2614,7 +2619,7 @@
       "1.1": [
         [
           0,
-          120
+          30
         ],
         [
           600,
@@ -2771,18 +2776,18 @@
       "revision": 14
     },
     "2026-11-26": {
-      "hash": "02128c19f20c9dc883809e80deeee94b669c9daf8c5bac79c79a16338f68ddae",
-      "revision": 1
+      "hash": "d5634a76ffc9c00ea064cc2445338e0c0d07019930f5aaf425368bcce2e47260",
+      "revision": 2
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-26",
-    "hash": "9f97091c347febf2f5332a5a10f4c816f7c73bd0f84c8a0ce0f3a6af7fa44258",
+    "hash": "b2e1a044a18827c4d6782aaf6feadc9afac5a2a634b4913c44c4078234a40444",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-25T22:01:20.029Z"
+    "editedAt": "2026-11-25T22:25:38.652Z"
   }
 }
