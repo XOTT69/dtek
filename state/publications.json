@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-24T19:35:46.985Z"
     },
     "2026-11-25/сьогодні/all": {
-      "hash": "fe66616214dfd3c68b38184d30798ee9759c74d3119e76549e5e782050cfd2a4",
-      "messageId": 1251,
-      "revision": 6,
+      "hash": "831b35ddf73a778cf8c307c03b1c59be9e6882d545bff390bef697bdc9f56b6e",
+      "messageId": 1255,
+      "revision": 7,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T01:15:50.257Z"
+      "publishedAt": "2026-11-25T05:55:41.609Z"
     }
   },
   "events": {
@@ -1374,7 +1374,7 @@
       "5.1": [
         [
           570,
-          990
+          900
         ],
         [
           1200,
@@ -1388,7 +1388,7 @@
         ],
         [
           570,
-          990
+          900
         ],
         [
           1200,
@@ -1402,10 +1402,6 @@
         ],
         [
           630,
-          900
-        ],
-        [
-          990,
           1020
         ],
         [
@@ -1420,10 +1416,6 @@
         ],
         [
           630,
-          900
-        ],
-        [
-          990,
           1020
         ],
         [
@@ -1758,6 +1750,11 @@
       "hash": "e716d8b0b4cee52b3f8d53e499dce7157b78d7af635832edc6674ddf08c9b70e",
       "combined": true,
       "updatedAt": "2026-11-25T01:15:52.520Z"
+    },
+    "2026-11-25@900": {
+      "messageId": 1256,
+      "hash": "5c47251f3bd04c453a0d22126f0bff573cec3f540047cad2e40b44920798c3e2",
+      "updatedAt": "2026-11-25T05:55:42.963Z"
     }
   },
   "announcements": {
@@ -2700,7 +2697,7 @@
       "5.1": [
         [
           570,
-          990
+          900
         ],
         [
           1200,
@@ -2714,7 +2711,7 @@
         ],
         [
           570,
-          990
+          900
         ],
         [
           1200,
@@ -2728,10 +2725,6 @@
         ],
         [
           630,
-          900
-        ],
-        [
-          990,
           1020
         ],
         [
@@ -2746,10 +2739,6 @@
         ],
         [
           630,
-          900
-        ],
-        [
-          990,
           1020
         ],
         [
@@ -2789,18 +2778,18 @@
       "revision": 14
     },
     "2026-11-25": {
-      "hash": "de9c76b53cd5dc9e8925681f801a43362db78e6e5dc76eae61374dffe1581ae3",
-      "revision": 6
+      "hash": "afffab86c21a4528162b3feeebdbb31dec6516cb7e94e39f7b3fe307e1ab6cbb",
+      "revision": 7
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-25",
-    "hash": "89289fede93c3e0fb198320dbf296c79ed8b776c6b8a7c540c8407bfaaa533dc",
+    "hash": "ed6132af9cc6030a7350792694cb0d64384ce3e998de0d0f08ea6dbef55dff70",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-25T01:15:48.823Z"
+    "editedAt": "2026-11-25T05:55:40.172Z"
   }
 }
