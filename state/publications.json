@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-24T19:35:46.985Z"
     },
     "2026-11-25/сьогодні/all": {
-      "hash": "c4f15c6d512a2cac7004edfee5f8dd872e0962325b74b505297d1f0ad5c9549e",
-      "messageId": 1261,
-      "revision": 8,
+      "hash": "eecc2945fda09b6e5540a0776904ecfc85c805dea57804f7075c25b439600540",
+      "messageId": 1274,
+      "revision": 9,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T08:40:55.023Z"
+      "publishedAt": "2026-11-25T19:05:44.032Z"
     }
   },
   "events": {
@@ -648,14 +648,19 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T18:31:12.202Z"
+      "publishedAt": "2026-11-25T18:31:12.202Z",
+      "correctedHash": "6f7673a6c54b5ff398c2b145cf1624e64bb148d27c4be6b0dda38dbaf00ae7fd",
+      "editedAt": "2026-11-25T19:05:44.201Z"
     },
     "2026-11-25@21:30#pre30": {
       "messageId": 1273,
-      "leadMinutes": 29,
-      "formatVersion": 5,
+      "leadMinutes": 25,
+      "formatVersion": 6,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T19:01:25.345Z"
+      "publishedAt": "2026-11-25T19:01:25.345Z",
+      "combinedCorrectionHash": "52ef394a9876df81b0132e99aa119e4d94d2e1854bd359a51e50c9b5528f9b63",
+      "combinedBaseText": "⚠️ <b>Коригування графіка на 21:30</b>\n🔔 До планового часу: 25 хв\n📆 Середа, 25.11.2026\n\n🔄 Раніше заплановане перемикання на цей час скасовано або перенесено.\n\n🌑 <b>Залишаються без світла:</b>\n⚫️ Підгрупа 5.1\n⚫️ Підгрупа 5.2\n⚫️ Підгрупа 6.1\n⚫️ Підгрупа 6.2\n\n🔄 Змінено підгрупи: 4.1, 4.2, 5.2",
+      "editedAt": "2026-11-25T19:05:45.432Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1473,7 +1478,7 @@
         ],
         [
           990,
-          1290
+          1260
         ]
       ],
       "4.2": [
@@ -1483,7 +1488,7 @@
         ],
         [
           990,
-          1290
+          1260
         ]
       ],
       "5.1": [
@@ -1507,7 +1512,7 @@
         ],
         [
           1200,
-          1320
+          1350
         ]
       ],
       "6.1": [
@@ -1876,6 +1881,12 @@
       "hash": "61f3a632e15a6046d2614a92681617f40d3993248147cea34c339cdb2eb5dd64",
       "combined": true,
       "updatedAt": "2026-11-25T08:40:56.291Z"
+    },
+    "2026-11-25@1290": {
+      "messageId": 1273,
+      "hash": "52ef394a9876df81b0132e99aa119e4d94d2e1854bd359a51e50c9b5528f9b63",
+      "combined": true,
+      "updatedAt": "2026-11-25T19:05:45.432Z"
     }
   },
   "announcements": {
@@ -2802,7 +2813,7 @@
         ],
         [
           990,
-          1290
+          1260
         ]
       ],
       "4.2": [
@@ -2812,7 +2823,7 @@
         ],
         [
           990,
-          1290
+          1260
         ]
       ],
       "5.1": [
@@ -2836,7 +2847,7 @@
         ],
         [
           1200,
-          1320
+          1350
         ]
       ],
       "6.1": [
@@ -2899,18 +2910,18 @@
       "revision": 14
     },
     "2026-11-25": {
-      "hash": "e55963136b9309dcbae50f0c166f93fd7c93be250f8d2a11a3cdadc84150a374",
-      "revision": 8
+      "hash": "7cd67030487cb2c821296cd119d65d92649824f2db1942172d0a8388175ab623",
+      "revision": 9
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-25",
-    "hash": "92822327784c62b8665e82d79e3745f6cb7d6c1b742ca06d2cb839d307ee64ba",
+    "hash": "d887ea67bc54a75e9a993d07792fbd7dd265559cfc0a3da55a441a3ec750b1a7",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-25T08:40:53.466Z"
+    "editedAt": "2026-11-25T19:05:42.790Z"
   }
 }
