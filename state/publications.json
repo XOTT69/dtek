@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-25T20:20:56.072Z"
     },
     "2026-11-26/сьогодні/all": {
-      "hash": "dc5fa263ed791b4ae81e6176abad5bc316bec49bb86b545d63d6c1c9b71c638a",
-      "messageId": 1288,
-      "revision": 2,
+      "hash": "d66bfac33b0aa83c529192f7c472dcbdf9ffcd679e7e48a5f83f187dda8b4038",
+      "messageId": 1290,
+      "revision": 3,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T22:25:40.039Z"
+      "publishedAt": "2026-11-25T22:55:40.374Z"
     }
   },
   "events": {
@@ -1286,7 +1286,7 @@
       "2.1": [
         [
           0,
-          120
+          60
         ],
         [
           660,
@@ -1300,7 +1300,7 @@
       "2.2": [
         [
           0,
-          120
+          60
         ],
         [
           660,
@@ -1757,6 +1757,11 @@
       "messageId": 1289,
       "hash": "b2696cbf5f800124d46d11528b6547479d53bb0032eaf1d52a43c6d126685a6d",
       "updatedAt": "2026-11-25T22:25:41.178Z"
+    },
+    "2026-11-26@60": {
+      "messageId": 1291,
+      "hash": "00bb9d88719e2460bd4fc0c074cd6fe59e6f270f2a156d0b10dbfb7c8fa16d80",
+      "updatedAt": "2026-11-25T22:55:41.847Z"
     }
   },
   "announcements": {
@@ -2643,7 +2648,7 @@
       "2.1": [
         [
           0,
-          120
+          60
         ],
         [
           660,
@@ -2657,7 +2662,7 @@
       "2.2": [
         [
           0,
-          120
+          60
         ],
         [
           660,
@@ -2776,18 +2781,18 @@
       "revision": 14
     },
     "2026-11-26": {
-      "hash": "d5634a76ffc9c00ea064cc2445338e0c0d07019930f5aaf425368bcce2e47260",
-      "revision": 2
+      "hash": "75175cdc36859bcf8715186b7c23d81199e39e917c7e1298afb47d5df1cabcfd",
+      "revision": 3
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-26",
-    "hash": "b2e1a044a18827c4d6782aaf6feadc9afac5a2a634b4913c44c4078234a40444",
+    "hash": "7674e6ee24bba4c2c1752011ee02978c449743037910c6657e4d889cb20a055d",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-25T22:25:38.652Z"
+    "editedAt": "2026-11-25T22:55:38.969Z"
   }
 }
