@@ -120,13 +120,13 @@
       "publishedAt": "2026-11-25T20:20:56.072Z"
     },
     "2026-11-26/сьогодні/all": {
-      "hash": "d66bfac33b0aa83c529192f7c472dcbdf9ffcd679e7e48a5f83f187dda8b4038",
-      "messageId": 1290,
-      "revision": 3,
+      "hash": "4341f421b8e2fbf55cab8a1a8a24a20e4e02ffc968b063505125f17be44cb747",
+      "messageId": 1306,
+      "revision": 4,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-25T22:55:40.374Z"
+      "publishedAt": "2026-11-26T14:31:14.014Z"
     }
   },
   "events": {
@@ -606,7 +606,16 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-26T13:31:10.039Z"
+      "publishedAt": "2026-11-26T13:31:10.039Z",
+      "correctedHash": "721d8d4a30a3f687276f790c3ebd565cb2788957b14ac8691aed36637824617d",
+      "editedAt": "2026-11-26T14:31:14.220Z"
+    },
+    "2026-11-26@17:00#pre30": {
+      "messageId": 1308,
+      "leadMinutes": 29,
+      "formatVersion": 5,
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-26T14:31:16.789Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1388,7 +1397,7 @@
         ],
         [
           660,
-          1050
+          960
         ],
         [
           1290,
@@ -1412,7 +1421,7 @@
         ],
         [
           840,
-          1200
+          1110
         ]
       ],
       "3.2": [
@@ -1422,7 +1431,7 @@
         ],
         [
           840,
-          1110
+          1050
         ]
       ],
       "4.1": [
@@ -1860,6 +1869,11 @@
       "messageId": 1291,
       "hash": "00bb9d88719e2460bd4fc0c074cd6fe59e6f270f2a156d0b10dbfb7c8fa16d80",
       "updatedAt": "2026-11-25T22:55:41.847Z"
+    },
+    "2026-11-26@1050": {
+      "messageId": 1307,
+      "hash": "dde42afbfdad7a681a0c231da064913d02d890084c0a91e4425735f0898f1ed7",
+      "updatedAt": "2026-11-26T14:31:15.563Z"
     }
   },
   "announcements": {
@@ -2750,7 +2764,7 @@
         ],
         [
           660,
-          1050
+          960
         ],
         [
           1290,
@@ -2774,7 +2788,7 @@
         ],
         [
           840,
-          1200
+          1110
         ]
       ],
       "3.2": [
@@ -2784,7 +2798,7 @@
         ],
         [
           840,
-          1110
+          1050
         ]
       ],
       "4.1": [
@@ -2879,18 +2893,18 @@
       "revision": 14
     },
     "2026-11-26": {
-      "hash": "75175cdc36859bcf8715186b7c23d81199e39e917c7e1298afb47d5df1cabcfd",
-      "revision": 3
+      "hash": "889b9bd50e5a1b7be6ce017f36de251c754c894ffc1ffdea9cda468707dc9720",
+      "revision": 4
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-26",
-    "hash": "7674e6ee24bba4c2c1752011ee02978c449743037910c6657e4d889cb20a055d",
+    "hash": "48837c90007fd5803396d42fc513a9bade027d92558a8d500a3751b60fee0b9a",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-25T22:55:38.969Z"
+    "editedAt": "2026-11-26T14:31:12.332Z"
   }
 }
