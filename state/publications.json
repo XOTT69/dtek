@@ -120,14 +120,13 @@
       "publishedAt": "2026-11-26T20:10:52.481Z"
     },
     "2026-11-27/сьогодні/all": {
-      "hash": "62c77820c6be70659e13209b567b142b58a320a06de41a1b5a69663ca9ea213c",
-      "messageId": 1340,
-      "revision": 3,
+      "hash": "2af038dfe367f015c3d9b099a4291a10f11489806817eebf7d5d8bec64f30824",
+      "messageId": 1347,
+      "revision": 4,
       "formatVersion": 7,
       "headingState": "updated",
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-27T10:31:12.728Z",
-      "emergencyEditedAt": "2026-11-27T12:25:32.332Z"
+      "publishedAt": "2026-11-27T13:55:47.864Z"
     }
   },
   "events": {
@@ -622,7 +621,9 @@
       "leadMinutes": 29,
       "formatVersion": 5,
       "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-27T13:01:29.191Z"
+      "publishedAt": "2026-11-27T13:01:29.191Z",
+      "correctedHash": "ae19877cd9dacff01e1f2cb81b7132b96e9b7b2f030059d06ac651f152c32db6",
+      "editedAt": "2026-11-27T13:55:48.068Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1482,7 +1483,7 @@
         ],
         [
           720,
-          1080
+          930
         ],
         [
           1290,
@@ -1550,7 +1551,7 @@
         ],
         [
           780,
-          1200
+          1080
         ]
       ],
       "6.2": [
@@ -1921,6 +1922,11 @@
       "hash": "6f9c0c48234c7b8d86332d49b883d8500091280612c4030a314d649c16fe4734",
       "combined": true,
       "updatedAt": "2026-11-27T10:31:14.924Z"
+    },
+    "2026-11-27@930": {
+      "messageId": 1348,
+      "hash": "9706a167f94310040f2f81a765d3cbd5c5b93bacc4d4a86eedad9cc0ea6905f8",
+      "updatedAt": "2026-11-27T13:55:49.386Z"
     }
   },
   "announcements": {
@@ -2889,7 +2895,7 @@
         ],
         [
           720,
-          1080
+          930
         ],
         [
           1290,
@@ -2957,7 +2963,7 @@
         ],
         [
           780,
-          1200
+          1080
         ]
       ],
       "6.2": [
@@ -3002,18 +3008,18 @@
       "revision": 7
     },
     "2026-11-27": {
-      "hash": "f58155859a492600baec3229a8d747959c3649d6f2cc5de33dc139747d2d3f62",
-      "revision": 3
+      "hash": "5d36c4947a9989e969bf87a44df8aca9402fc2107c6cf0f9a8eea71b4b6a3b50",
+      "revision": 4
     }
   },
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-27",
-    "hash": "3b558d2ebbcfabee86825fc62c7e29d01f70c69732dbbac8bfc25c046277b55f",
+    "hash": "f2856760aafaf728b6f3d9ff10f6eb380388e2b66e7a35a7203ecf8ce3982e6f",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-27T12:25:39.010Z"
+    "editedAt": "2026-11-27T13:55:46.119Z"
   }
 }
