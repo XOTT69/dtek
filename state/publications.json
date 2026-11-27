@@ -125,8 +125,9 @@
       "revision": 3,
       "formatVersion": 7,
       "headingState": "updated",
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-27T10:31:12.728Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-27T10:31:12.728Z",
+      "emergencyEditedAt": "2026-11-27T12:25:32.332Z"
     }
   },
   "events": {
@@ -605,8 +606,9 @@
       "messageId": 1343,
       "leadMinutes": 29,
       "formatVersion": 5,
-      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Білоцерківський\",\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
-      "publishedAt": "2026-11-27T12:01:23.511Z"
+      "emergencyContextKey": "{\"active\":true,\"kind\":\"екстрені\",\"districts\":[\"Бучанський\",\"Обухівський\",\"Фастівський\"]}",
+      "publishedAt": "2026-11-27T12:01:23.511Z",
+      "emergencyEditedAt": "2026-11-27T12:25:32.332Z"
     }
   },
   "cleanedDuplicatePosts": [
@@ -1555,19 +1557,18 @@
       "kind": "екстрені",
       "scope": "districts",
       "districts": [
-        "Білоцерківський",
         "Бучанський",
         "Обухівський",
         "Фастівський"
       ],
-      "sourceUrl": "https://t.me/dtek_ua/4832"
+      "sourceUrl": "https://t.me/dtek_ua/4901"
     },
-    "lastId": 4832,
-    "lastSignature": "fc2214132d799df01aafcc4e852efe19c53d15e24e6a598129cc9d58f9aea311",
-    "lastSourceUrl": "https://t.me/dtek_ua/4832",
-    "lastObservedAt": "2026-11-13T08:55:31.848Z",
-    "lastSourcePublishedAt": "2026-11-13T08:54:07.000Z",
-    "messageId": 834,
+    "lastId": 4901,
+    "lastSignature": "28f84f1d0f0cae72de89a751ee3ab85ff79d3f4b03ad9e65cb6c7ec999ae639e",
+    "lastSourceUrl": "https://t.me/dtek_ua/4901",
+    "lastObservedAt": "2026-11-27T12:25:32.332Z",
+    "lastSourcePublishedAt": "2026-11-27T12:20:03.000Z",
+    "messageId": 1344,
     "formatVersion": 2
   },
   "corrections": {
@@ -2994,11 +2995,11 @@
   "pinnedGraphic": {
     "messageId": 31,
     "date": "2026-11-27",
-    "hash": "20367edd2d655ad3ba1557fac3a2934333446c15ffd6fdb1347875c80fc7d667",
+    "hash": "3b558d2ebbcfabee86825fc62c7e29d01f70c69732dbbac8bfc25c046277b55f",
     "formatVersion": 1,
     "pinned": true,
     "publishedAt": "2026-10-16T22:38:16.079Z",
     "pinnedAt": "2026-10-16T22:38:16.257Z",
-    "editedAt": "2026-11-27T10:31:10.995Z"
+    "editedAt": "2026-11-27T12:25:39.010Z"
   }
 }
